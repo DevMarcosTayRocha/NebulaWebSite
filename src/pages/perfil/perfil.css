@@ -1,0 +1,174 @@
+.prf-banner {
+    width: 100%;
+    height: 200px;
+    background-image: url(../../assets/nebulosaBanner.jpg);
+}
+
+.prf-usuario-barra {
+    width: 100%;
+    height: 100px;
+    background-color: var(--barra-clara);
+    display: flex;
+    justify-content: center;
+
+    color: #fff;
+}
+
+.prf-container {
+    width: 90%;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.prf-foto {
+    width: 180px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    position: relative;
+    top: -50px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.prf-nome-usuario span{
+    font-family: "Archivo Black", sans-serif;
+    font-size: 40px;
+}
+
+.prf-usuario-rank {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    top: -10px;
+    font-family: "Questrial", sans-serif;
+}
+
+.prf-usuario span {
+    font-size: 20px;
+}
+
+.prf-rank span {
+    color: #ffffff80;
+}
+
+.prf-editar svg {
+    min-width: 40px;
+    min-height: 40px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.prf-container2 {
+    width: 90%;
+}
+
+/* COLUNAS */
+
+.prf-colunas {
+    display: flex;
+    margin: 60px 0;
+    gap: 60px;
+}
+
+.prf-coluna1 {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.prf-biografia {
+    padding: 40px;
+    text-align: justify;
+    width: calc(100% - 80px);
+    
+    color: rgba(255, 255, 255, 1);
+    background-color: var(--barra-escura);
+    border-radius: 25px;
+
+    font-family: "Questrial", sans-serif;
+    font-size: 24px;
+
+    letter-spacing: 1.5px;
+    line-height: 1.3;
+
+    & span {
+        white-space: pre-wrap
+    }
+}
+
+.prf-curso-estatistica {
+    background-color: var(--barra-escura);
+    height: 60px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prf-titulo-estatistica {
+    background-color: var(--barra-clara);
+    height: 100%;
+    width: 150px;
+    border-radius: 25px 0 0 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #fff;
+    font-family: "Archivo Black", sans-serif;
+}
+
+.prf-barra-estatistica {
+    background-color: #fff;
+    height: 20px;
+    width: 60%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.prf-barra-estatistica::-webkit-progress-value{
+    background-color: var(--barra-clara);
+
+}
+
+.prf-barra-estatistica::-webkit-progress-bar{
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.prf-porcentagem-estatistica {
+    background-color: var(--barra-clara);
+    height: 100%;
+}
+
+.prf-descricao-estatistica {
+    width: 80px;
+    height: 100%;
+    
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    color: #fff;
+    font-family: "Questrial", sans-serif;
+    font-size: 12px;
+}
+
+@media screen and (max-width: 425px) {
+
+    .prf-colunas {
+        flex-direction: column;
+    }
+
+    .prf-coluna1 {
+        width: 100%;
+    }
+
+    .prf-coluna2 {
+        width: 100%;
+    }
+  }

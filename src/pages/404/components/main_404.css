@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Questrial&display=swap');
+
+#main{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#msg{
+     font-family: "Archivo Black", sans-serif;
+    font-size: 25px;
+    color:#d4d4d4;
+    text-align: center;
+}
+#error{
+    display: table;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#f1,#f2{
+     font-family: "Archivo Black", sans-serif;
+    font-size: 100px;
+    color:#d4d4d4;
+    display: table-cell;
+}
+#circle{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background:radial-gradient(circle,#b16ed8,#941ed8);
+    position: relative;
+    top:10px;
+    animation: move 4s linear infinite;
+}
+@-webkit-keyframes move{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+#smalldot{
+    height: 5px;
+    width: 5px;
+    background-color:#111742;
+    border-radius: 50%;
+    position: relative;
+    top:75%;
+    left: 65%;
+    transform: translate(-50%,-50%);
+}
+#info{
+     font-family: "Questrial", sans-serif;
+    font-size: 13px;
+    color:#d4d4d4;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#btn{
+    height: 40px;
+    width: 300px;
+    color:white;
+    background-color:#9B3BD2;
+    font-family: "Archivo Black", sans-serif;
+    font-size: 23px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 15px;
+    position: relative;
+    margin-top: 10px;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-50%);
+}
+#btn:hover{
+    cursor: pointer;
+}

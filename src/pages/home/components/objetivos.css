@@ -1,0 +1,47 @@
+.obj-container {
+    width: 90%;
+}
+
+.obj-container-objetivos {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    width: 100%;
+}
+
+.obj-container-objetivo {
+    width: 100%;
+    height: 125px;
+    background-color: rgb(17, 10, 17);
+    display: flex;
+    justify-content: space-between;
+    font-family: "Questrial", sans-serif;
+}
+
+.obj-container-esquerda {
+    color: #fff;
+}
+
+.obj-container-direita {
+    color: #fff;
+    align-self: flex-end;
+}
+
+.obj-barra-texto {
+    width: 100%;
+    margin: 25px;
+}
+
+.obj-icone {
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--barra-clara);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.obj-icone svg {
+    width: 50px;
+    height: 50px;
+}

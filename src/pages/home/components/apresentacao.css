@@ -1,0 +1,61 @@
+.apr-container {
+    width: 90%;
+}
+
+.apr-descricao {
+    font-size: 24px;
+}
+
+.apr-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.apr-card {
+    width: 100%;
+    height: 200px;
+    background-color: rgb(17, 10, 17);
+    display: flex;
+    justify-content: space-between; 
+}
+
+.apr-descricao-card {
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;  
+}
+
+.apr-titulo-card {
+    font-family: "Archivo Black", sans-serif;
+}
+
+.apr-texto-card {
+    font-family: "Questrial", sans-serif;
+}
+
+.apr-imagem-card {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    background-position: center;
+}
+
+.apr-botao-card {
+    width: 100%;
+    height: 50px;
+    font-family: "Questrial", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--barra-clara);
+    color: #fff;
+}
+
+.apr-botao-card:hover {
+    background-color: #fff;
+    color: var(--barra-clara);
+    cursor: pointer;
+}

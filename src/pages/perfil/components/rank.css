@@ -1,0 +1,87 @@
+.prf-coluna2 {
+    width: 45%;
+    font-family: "Questrial", sans-serif;
+}
+
+/* coluna 2 */
+
+.prf-rank-header {
+    background-color: var(--barra-clara);
+    border-radius: 25px 25px 0 0;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.prf-container3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+
+    font-family: "Archivo Black", sans-serif;
+    color: #fff;
+    font-size: 28px;
+}
+
+.prf-pesquisa-usuario {
+    background-color: var(--cor-secundaria);
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+    width: 60%;
+    position: relative;
+}
+
+.prf-pesquisa-usuario input {
+    border: 0;
+    height: 100%;
+    font-size: 16px;
+    background-color: #ffffff00;
+    width: 100%;
+    padding: 0 0 0 10px;
+    color: #fff;
+    font-family: "Questrial", sans-serif;
+}
+
+.prf-pesquisa-usuario input:focus {
+    outline: 0;
+}
+
+
+.prf-pesquisa-usuario svg {
+    margin-right: 10px;
+    position: absolute;
+    right: 0px;
+}
+
+.prf-usuarios-rank {
+    display: flex;
+    background-color: var(--barra-escura);
+    height: 80px;
+    width: 100%;
+    color: #fff;
+    justify-content: center;
+}
+
+.prf-usuarios-rank:nth-child(even) {
+    background-color: rgb(28, 19, 32); /* Ou a cor que você preferir */
+}
+
+.prf-container4 {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prf-foto-rank {
+    height: 50px;
+    width: 50px;
+    background-size: cover;
+    border-radius: 25px;
+    background-position: center;
+}
