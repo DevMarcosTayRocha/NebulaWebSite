@@ -45,6 +45,15 @@
   fill: var(--barra-clara);
 }
 
+.menu-icones img {
+  min-width: 40px;
+  min-height: 40px;
+  width: 40px;
+  height: 40px;
+  margin-left: 15px;
+  border-radius: 20px;
+}
+
 .menu-icones span {
   font-family: "Questrial", sans-serif;
   margin-left: 15px;

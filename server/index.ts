@@ -23,22 +23,18 @@ const asyncHandler = (
   };
 
 // Tipos
-interface LocalUser {
-  id: string;
-  name: string;
-  email: string;
-  password: string; 
-}
 
-interface GoogleUser {
+interface UserType {
   id: string;
   name: string;
   email: string;
   photo: string;
+  password: string;
+  provider: 'google' | 'local';
 }
 
 // Utilidades
-function readUsers(): LocalUser[] {
+function readUsers(): UserType[] {
   try {
     return JSON.parse(fs.readFileSync(USERS_FILE, 'utf-8'));
   } catch {
@@ -46,7 +42,7 @@ function readUsers(): LocalUser[] {
   }
 }
 
-function saveUsers(users: LocalUser[]) {
+function saveUsers(users: UserType[]) {
   fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
 }
 
@@ -77,14 +73,29 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
   callbackURL: "/auth/google/callback"
 }, (accessToken, refreshToken, profile, done) => {
-  const userData: GoogleUser = {
+  const userData: UserType = {
     id: profile.id,
     name: profile.displayName,
     email: profile.emails?.[0].value || '',
-    photo: profile.photos?.[0].value || ''
+    photo: profile.photos?.[0].value || '',
+    password: '',
+    provider: 'google',
   };
   console.log("Usuário autenticado:", userData);
-  return done(null, userData);
+
+  const users = readUsers();
+
+  const existingUser = users.find(u => u.id === userData.id || u.email === userData.email);
+
+  if (!existingUser) {
+    users.push(userData);
+    saveUsers(users);
+    console.log("Novo usuário Google salvo:", userData);
+    return done(null, userData);
+  } else {
+    console.log("Usuário Google já existente:", existingUser);
+    return done(null, existingUser);
+  }
 }));
 
 passport.serializeUser((user, done) => {
@@ -136,11 +147,13 @@ app.post('/auth/register', asyncHandler(async (req, res) => {
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
-  const newUser: LocalUser = {
+  const newUser: UserType = {
     id: uuidv4(),
     name,
     email,
-    password: hashedPassword
+    password: hashedPassword,
+    photo: '',
+    provider: 'local'
   };
 
   users.push(newUser);
@@ -154,8 +167,8 @@ app.post('/auth/login', asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const users = readUsers();
 
-  const user = users.find(u => u.email === email);
-  if (!user) return res.status(401).json({ error: 'Usuário não encontrado' });
+  const user = users.find(u => u.email === email && u.provider === 'local');
+  if (!user) return res.status(401).json({ error: 'Usuário local não encontrado' });
 
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) return res.status(401).json({ error: 'Senha incorreta' });
@@ -165,6 +178,7 @@ app.post('/auth/login', asyncHandler(async (req, res) => {
     res.json({ message: 'Login bem-sucedido', user });
   });
 }));
+
 
 // Inicia o servidor
 app.listen(PORT, () => {

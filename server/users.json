@@ -1,1 +1,90 @@
-[]
+[
+  {
+    "id": "23c3bc3e-1e14-45c6-b6cd-5eef10bc9f67",
+    "name": "asdsdfs",
+    "email": "sdfsdf@safs.com",
+    "password": "$2b$10$cqI5QMqxCaW1ysEJozlo4expeYE0YoSxE3iHt3zSCVjBUlH95ECdK",
+    "photo": "",
+    "provider": "local"
+  },
+  {
+    "id": "112811344431446728140",
+    "name": "Lusca",
+    "email": "leitedesouzanuneslucas@gmail.com",
+    "photo": "https://lh3.googleusercontent.com/a/ACg8ocKBIZSsiWbb40YcQxaw3NcLboB5ZSIi4ckqbcV442Rl_EyuXmC3=s96-c",
+    "password": "",
+    "provider": "google"
+  },
+  {
+    "id": "114101195791581777841",
+    "name": "JOAO Alves",
+    "email": "joao333marcelo@gmail.com",
+    "photo": "https://lh3.googleusercontent.com/a/ACg8ocIMwUql9_rZ1JKAZakOR8P9twiChR3vEJ2KsCh2W9Rfq8SjlauP=s96-c",
+    "password": "",
+    "provider": "google"
+  },
+  {
+    "id": "e8b558cf-cc6d-4a17-bde3-1125fdc8c244",
+    "name": "hawa",
+    "email": "",
+    "password": "$2b$10$pYYowdVEIUvyNIaV.DSk7OmUckdsPIV95folOITEIwYzbwO19Rk1O",
+    "photo": "",
+    "provider": "local"
+  },
+  {
+    "id": "ecc4cf0e-93d8-4bd8-b5fe-6ee28fe13418",
+    "name": "Ababa",
+    "email": "ABABA@Gmail.com",
+    "password": "$2b$10$PHx8eUwdRYIY1PEIgXR/vOGPlkbPMFM4JYDAetUSLjej0KUvcrrui",
+    "photo": "",
+    "provider": "local"
+  },
+  {
+    "id": "114470140006344904947",
+    "name": "Luiz Tavares",
+    "email": "tavaresluiz216@gmail.com",
+    "photo": "https://lh3.googleusercontent.com/a/ACg8ocIMA48jFxHM99ZMLXpIpdsrYIBs2W-nUslpLTS8jQsFGIgAFXIQAw=s96-c",
+    "password": "",
+    "provider": "google"
+  },
+  {
+    "id": "105193311424203704940",
+    "name": "otsopo",
+    "email": "leozinho.ciommo@gmail.com",
+    "photo": "https://lh3.googleusercontent.com/a-/ALV-UjVUvEd97I9fJTMPSnEdTCmma5rFQpfJrZ9jb7_ASc2MIKgXKV5MGr8SSuvJ_vYd26TweYoqRPNLmiG0S0-i3PVvrQKDTUtfGQCzUKKj_8IGZivZ73J_667uT0svVc3txTWDPESQUdroi5j9EonqX94-9Hmbldm-wcQL9O7h4h9fXmTKY040H1LFhNjX1zxId_o-mvyn6jOeU6kRPcbEcMnn2XVYeTU9kgegH2WgIZfJS1-h12wFVtlJSxuNDRgLa46WhcL6qipCBvl8C-QadGhZyjqQUCANn6lcRrcNaUpzaGB3-Yi1tzOW8LQLjXVqn0-oeLK0JyAGcDtMcFxH3MDKrxC3-N_c_MuymHksR8coWp0hnTNC86ExZMXXsleblIO1d73GB9bnOWaBDm4jjPTViHDVTeEwIZCyMe96VzTllA9UX8VL_VuEMaGvGFRUPLvOqUjyGj-KMAWYoDmGF7tD2Z-OTNpdlwTyMFGh3FS-N8o4uB4MMAaY_d9FgcXDgcN_gTpm1wQ9cyc-1WzAk8vzF9YIZYF0jLruKzKKVgAaNClh2k3nMJgdV12haBsBjsOvju7z7PxP_JtmZn13WH01PSPiDvSw-YayKa8RMyd4O1cjFK-oO5P0lcwz4Zgl9kvVAtl0KwZu0ytO5VlNcraCgFTXQvzu_gQxSPZLexD6hKqD6dNaNEY54AFr7wQSiSijau7QGSkPcptNTG3Miz0Uh8qNSg8QofmgvnfOCa9qZ72h5HMSbEme5wgvjhF_XYMYL4ldJ6Pd16TC97W_Pygq59dXGDiIaEvPrDbh02F_CvpHRkxTSxjCT3NbQpn1VoJehEippqU00hd9lBJQhSVqf09KzP5HoHZF_G0bp4T_Mn0Q012R_oy7T5FWai-eVYmk5XujguIMwqaA0xeJVPm0uOULmccRkvbR3WcEuHZeiXKbaekU1NVUvv1DTrNmOP4XXyCyUF2jL_woTODdbBejfuQueL1iew=s96-c",
+    "password": "",
+    "provider": "google"
+  },
+  {
+    "id": "df448007-b6be-4101-8ba9-8e7e633d9f18",
+    "name": "no",
+    "email": ".@..com",
+    "password": "$2b$10$EJ6MFhfDV9tQ5JiCCqBg4uavdNbwadOkoqpaLC2NG4tjctPbootEy",
+    "photo": "",
+    "provider": "local"
+  },
+  {
+    "id": "117254747328246227538",
+    "name": "Marcos Rocha",
+    "email": "dev.marcost.rocha@gmail.com",
+    "photo": "https://lh3.googleusercontent.com/a/ACg8ocKV0C6uHcBZTxaIaHrz15mwvS4YEv1x4yyH4oWhJZ9B9fZrG-U=s96-c",
+    "password": "",
+    "provider": "google"
+  },
+  {
+    "id": "114096943490428883592",
+    "name": "ANA BEATRIZ PEREIRA JORDAO",
+    "email": "ana.jordao@aluno.ifsp.edu.br",
+    "photo": "https://lh3.googleusercontent.com/a/ACg8ocJXtzCv_Egba7QZQKYd_RaoAtIUtp3QRNgXCIw5zl_fvJzYGw=s96-c",
+    "password": "",
+    "provider": "google"
+  },
+  {
+    "id": "61f48ed8-68af-4b5c-a6f8-bc083dcdc030",
+    "name": "ana",
+    "email": "ana@asd",
+    "password": "$2b$10$Ves71.3F9eju7WxRcqJn3uj/Y7g6cSPOGjXzN0eG1O3jJvt9iohoe",
+    "photo": "",
+    "provider": "local"
+  }
+]
