@@ -6,6 +6,17 @@
     border-radius: 50%;
     position: absolute;
 }
+@keyframes ababa {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
 #d1{
     top:33%;
     left: 35%;
@@ -13,8 +24,8 @@
 }
 #d2{
     top:53%;
-    left: 55%;
-    -webkit-filter:blur(0.5px);
+    left: 65%;
+    -webkit-filter:blur(1px);
 }
 #d3{
     top:53%;

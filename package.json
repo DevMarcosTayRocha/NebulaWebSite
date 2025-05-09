@@ -31,5 +31,13 @@
   "main": "eslint.config.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevMarcosTayRocha/NebulaWebSite.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DevMarcosTayRocha/NebulaWebSite/issues"
+  },
+  "homepage": "https://github.com/DevMarcosTayRocha/NebulaWebSite#readme"
 }
