@@ -15,7 +15,7 @@
 .apr-card {
     width: 100%;
     height: 200px;
-    background-color: rgb(17, 10, 17);
+    background-color: rgb(41, 41, 41);
     display: flex;
     justify-content: space-between; 
 }
