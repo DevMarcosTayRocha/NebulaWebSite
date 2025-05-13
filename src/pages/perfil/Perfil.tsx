@@ -3,8 +3,28 @@ import "../../index.css"
 import { Menu } from "../../components/Menu";
 import { Rank } from "./components/rank";
 import { BarraDeProgresso } from "./components/barraProgresso";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+interface User {
+  idsite: string;
+  id: string;
+  name: string;
+  email: string;
+  photo: string;
+  provider: string;
+  prf_user: string;   
+}
 
 function Perfil() {
+
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    axios.get('http://localhost:4000/auth/me', { withCredentials: true })
+      .then(res => setUser(res.data))
+      .catch(() => setUser(null));
+  }, []);
 
   return (
     <>
@@ -19,14 +39,14 @@ function Perfil() {
       {/* BARRA USUARIO */}
       <div className="prf-usuario-barra">
         <div className="prf-container">
-          <div style={{ backgroundImage: `url(./src/assets/fotoUsuarioExemple.jpg)` }} className="prf-foto" />
+          <div style={{ backgroundImage: `url(${user?.photo || '../../src/assets/iconeUsuario.png'}) ` }} className="prf-foto" />
           <div className="prf-infomacoes">
             <div className="prf-nome-usuario">
-              <span>Fulano</span>
+              <span>{user?.name}</span>
             </div>
             <div className="prf-usuario-rank">
               <div className="prf-usuario">
-                <span>@usuario1000</span>
+                <span>{user?.prf_user}</span>
               </div>
               <div className="prf-rank">
                 <span>#1000</span>

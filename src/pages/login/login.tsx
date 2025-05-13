@@ -58,6 +58,7 @@ function App() {
           /><br />
           <input
             placeholder="Email"
+            type='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required

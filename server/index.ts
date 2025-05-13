@@ -16,21 +16,32 @@ const PORT = 4000;
 const CLIENT_URL = process.env.CLIENT_URL!;
 const USERS_FILE = path.join(__dirname, 'users.json');
 
+function getNextIdSite(): number {
+  const users = readUsers();
+  if (users.length === 0) return 1;
+
+  const maxId = Math.max(...users.map(u => u.idsite as number));
+  return maxId + 1;
+}
+
 const asyncHandler = (
-    fn: (req: Request, res: Response, next: NextFunction) => Promise<any>
-  ) => (req: Request, res: Response, next: NextFunction) => {
-    fn(req, res, next).catch(next);
-  };
+  fn: (req: Request, res: Response, next: NextFunction) => Promise<any>
+) => (req: Request, res: Response, next: NextFunction) => {
+  fn(req, res, next).catch(next);
+};
+
 
 // Tipos
 
 interface UserType {
+  idsite: Number;
   id: string;
   name: string;
   email: string;
   photo: string;
   password: string;
   provider: 'google' | 'local';
+  prf_user: string;
 }
 
 // Utilidades
@@ -74,13 +85,17 @@ passport.use(new GoogleStrategy({
   callbackURL: "/auth/google/callback"
 }, (accessToken, refreshToken, profile, done) => {
   const userData: UserType = {
+    idsite: getNextIdSite(),
     id: profile.id,
     name: profile.displayName,
     email: profile.emails?.[0].value || '',
     photo: profile.photos?.[0].value || '',
     password: '',
     provider: 'google',
+    prf_user: `@${profile.displayName.replace(/\s/g, '')}${getNextIdSite()}`
   };
+
+
   console.log("Usuário autenticado:", userData);
 
   const users = readUsers();
@@ -148,12 +163,14 @@ app.post('/auth/register', asyncHandler(async (req, res) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
   const newUser: UserType = {
+    idsite: getNextIdSite(),
     id: uuidv4(),
     name,
     email,
     password: hashedPassword,
-    photo: '',
-    provider: 'local'
+    photo: 'https://images.vexels.com/media/users/3/235233/isolated/preview/be93f74201bee65ad7f8678f0869143a-cracha-de-perfil-de-capacete-de-astronauta.png',
+    provider: 'local',
+    prf_user: `@${name.replace(/\s/g, '')}${getNextIdSite()}`
   };
 
   users.push(newUser);
