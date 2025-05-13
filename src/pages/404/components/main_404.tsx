@@ -12,7 +12,7 @@ export function Main() {
                         <div id="f1">4</div>
                         <div id="circle">
                             <div id="smalldot">
-                                
+                            
                             </div>
 
                         </div>
