@@ -1,0 +1,41 @@
+.ant-botao-add {
+    background-color: var(--barra-clara);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    flex-direction: column;
+    padding: 5%;
+}
+
+.ant-botao-add svg {
+    width: 50px;
+    height: 50px;
+}
+
+.ant-botao-add:hover {
+    background-color: #fff;
+    cursor: pointer;
+
+    & svg {
+        fill: var(--barra-clara);
+    }
+}
+
+.ant-botoes-add {
+    width: 100%;
+    background-color: red;
+}
+
+.ant-add-texto {
+    overflow: hidden;
+}
+
+.ant-add-texto textarea{
+    width: calc(100% - 40px);
+    height: 300px;
+    resize: none;
+    border: none;
+    padding: 20px;
+    background-color: rgb(196, 196, 196);
+}
