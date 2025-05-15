@@ -1,3 +1,4 @@
+
 .ant-botao-add {
     background-color: var(--barra-clara);
     display: flex;
@@ -8,9 +9,22 @@
     padding: 5%;
 }
 
-.ant-botao-add svg {
+.ant-botao-add.ativo {
+    background-color: #fff;
+    cursor: pointer;
+
+    & svg {
+        display: none;
+    }
+}
+
+.ant-svg-add{
     width: 50px;
     height: 50px;
+}
+
+.ant-svg-add.ativo{
+    fill: #fff;
 }
 
 .ant-botao-add:hover {
@@ -24,7 +38,6 @@
 
 .ant-botoes-add {
     width: 100%;
-    background-color: red;
 }
 
 .ant-add-texto {
@@ -32,10 +45,57 @@
 }
 
 .ant-add-texto textarea{
-    width: calc(100% - 40px);
+    width: calc(100% - 20px);
     height: 300px;
     resize: none;
     border: none;
+    padding: 10px;
+    background-color: rgb(230, 230, 230);
+    outline: none;
+    
+    font-family: "Questrial";
+}
+
+.ant-container-anotacoes {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    font-family: "Questrial";
+
+    & img {
+        width: 100%;
+    }
+}
+
+.ant-add-imagem img, .ant-add-imagem input {
+    width: 100%;
+}
+
+.ant-anotacao {
+    width: 100%;
+}
+
+.ant-anotacao-texto {
+    width: 100%;
     padding: 20px;
-    background-color: rgb(196, 196, 196);
+    background-color: #fff;
+}
+
+.ant-add-imagem input::-webkit-file-upload-button {
+    width: 100%;
+    height: 50px;
+    background-color: var(--barra-clara);
+    color: #fff;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    text-transform: uppercase;
+}
+
+.ant-add-imagem input::-webkit-file-upload-button:hover {
+    color: var(--barra-escura);
+    cursor: pointer;
 }

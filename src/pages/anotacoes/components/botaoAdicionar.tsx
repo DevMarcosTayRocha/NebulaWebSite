@@ -65,31 +65,48 @@ function BotaoAdicionar() {
 
     return (
         <>
-            <div style={{width: "100%"}}>
-        {todos.map((todo, idx) => (
-          <div key={idx} className="border p-4 rounded shadow">
-            {todo.imageUrl && (
-              <img src={todo.imageUrl} alt="Imagem" className="max-h-64" />
-            )}
-            {todo.text && <p className="mb-2">{todo.text}</p>}
-          </div>
-        ))}
-      </div>
-
-            <div className="ant-botao-add" onClick={() => setShowForm(true)}>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" /></svg>
+            <div className={showForm ? "ant-botao-add ativo" : "ant-botao-add"} onClick={() => !showForm && setShowForm(true)} >
+                <svg className={showForm ? "ant-svg-add ativo" : "ant-svg-add"} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" /></svg>
 
                 {showForm && (
                     <div className="ant-botoes-add">
-                        <div className="ant-add-imagem"><input type="file"
-            accept="image/*"
-            onChange={handleImageChange} /></div>
+                        <div className="ant-add-imagem">
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                            />
+                            {imagePreview && (
+                                <img
+                                    src={imagePreview}
+                                    alt="Pré-visualização"
+                                    className="max-h-48 mb-2"
+                                />
+                            )}
+                        </div>
                         <div className="ant-add-texto"><textarea value={text}
-            onChange={(e) => setText(e.target.value)}></textarea></div>
-                        <button onClick={() => setShowForm(false)}>CANCELAR</button>
+                            onChange={(e) => setText(e.target.value)}></textarea></div>
+                        <button onClick={() => {
+                            // Se clicar em cancelar, limpamos tudo e escondemos o formulário
+                            setShowForm(false);
+                            setText('');
+                            setImage(null);
+                            setImagePreview(null);
+                        }}>CANCELAR</button>
                         <button onClick={handleSubmit}>ADICIONAR</button>
                     </div>
                 )}
+            </div>
+
+            <div className="ant-container-anotacoes">
+                {todos.map((todo, idx) => (
+                    <div key={idx} className=".ant-anotacao">
+                        {todo.imageUrl && (
+                            <img src={todo.imageUrl} alt="Imagem" className="max-h-64" />
+                        )}
+                        {todo.text && <p className="ant-anotacao-texto">{todo.text}</p>}
+                    </div>
+                ))}
             </div>
         </>
     )
