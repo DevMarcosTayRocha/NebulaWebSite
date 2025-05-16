@@ -97,20 +97,22 @@
     word-break: break-word;
 }
 
-.ant-add-imagem input::-webkit-file-upload-button {
+.ant-label {
     width: 100%;
     height: 40px;
     background-color: var(--barra-clara);
     color: #fff;
     border: none;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Questrial";
     border-radius: 25px;
     text-transform: uppercase;
     margin-bottom: 10px;
 }
 
-.ant-add-imagem input::-webkit-file-upload-button:hover, .ant-botoes-add button:hover {
+.ant-label:hover, .ant-botoes-add button:hover {
     background-color:  var(--barra-escura);
     cursor: pointer;
 }
