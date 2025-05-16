@@ -17,6 +17,9 @@ function Anotacoes() {
                     <div className="ant-container-part part3">
                         <BotaoAdicionar />
                     </div>
+                    <div className="ant-container-part part3">
+                        <BotaoAdicionar />
+                    </div>
                 </div>
             </div>
         </>

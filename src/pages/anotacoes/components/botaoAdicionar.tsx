@@ -25,18 +25,30 @@ function BotaoAdicionar() {
     // Esta função é chamada quando a pessoa escolhe uma imagem
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]; // Pega o primeiro arquivo da lista
-        setImage(file || null); // Salva o arquivo
-
-        if (file) {
-            // Se tem imagem, vamos ler ela para mostrar na tela
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result as string); // Coloca a imagem pronta para visualizar
-            };
-            reader.readAsDataURL(file); // Lê a imagem
-        } else {
-            setImagePreview(null); // Se não tem imagem, não mostra nada
+    
+        if (!file) {
+            setImage(null);
+            setImagePreview(null);
+            return;
         }
+    
+        // Verifica se o tipo do arquivo começa com "image/"
+        if (!file.type.startsWith("image/")) {
+            alert("Por favor, selecione um arquivo de imagem válido.");
+            e.target.value = ''; // Limpa o input
+            setImage(null);
+            setImagePreview(null);
+            return;
+        }
+    
+        setImage(file); // Salva o arquivo
+    
+        // Lê a imagem para mostrar na tela
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setImagePreview(reader.result as string); // Coloca a imagem pronta para visualizar
+        };
+        reader.readAsDataURL(file);
     };
 
     // Esta função é chamada quando a pessoa clica em "Adicionar"
@@ -63,6 +75,16 @@ function BotaoAdicionar() {
         setShowForm(false); // Esconde o formulário
     };
 
+    const limiteCaracter = 2000;
+    const [antTexto, setAntTexto] = useState("")
+
+    const MostrarTextoLimite = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const valor = e.target.value;
+        if (valor.length <= limiteCaracter) {
+          setAntTexto(valor);
+        }
+      };
+
     return (
         <>
             <div className={showForm ? "ant-botao-add ativo" : "ant-botao-add"} onClick={() => !showForm && setShowForm(true)} >
@@ -84,8 +106,8 @@ function BotaoAdicionar() {
                                 />
                             )}
                         </div>
-                        <div className="ant-add-texto"><textarea value={text}
-                            onChange={(e) => setText(e.target.value)}></textarea></div>
+                        <div className="ant-add-texto"><textarea maxLength={limiteCaracter} placeholder="Coloque seu texto aqui..." value={antTexto} 
+                            onChange={MostrarTextoLimite}></textarea><span style={limiteCaracter-antTexto.length > 0 ? {fontFamily:"Questrial", color:"var(--barra-clara)"} : {fontFamily:"Questrial", color:"red"}}>{limiteCaracter - antTexto.length} / {limiteCaracter}</span></div>
                         <button onClick={() => {
                             // Se clicar em cancelar, limpamos tudo e escondemos o formulário
                             setShowForm(false);
@@ -100,7 +122,7 @@ function BotaoAdicionar() {
 
             <div className="ant-container-anotacoes">
                 {todos.map((todo, idx) => (
-                    <div key={idx} className=".ant-anotacao">
+                    <div key={idx} className="ant-anotacao">
                         {todo.imageUrl && (
                             <img src={todo.imageUrl} alt="Imagem" className="max-h-64" />
                         )}

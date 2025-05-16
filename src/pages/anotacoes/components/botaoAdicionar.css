@@ -1,4 +1,3 @@
-
 .ant-botao-add {
     background-color: var(--barra-clara);
     display: flex;
@@ -38,6 +37,9 @@
 
 .ant-botoes-add {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .ant-add-texto {
@@ -52,6 +54,7 @@
     padding: 10px;
     background-color: rgb(230, 230, 230);
     outline: none;
+    font-size: 16px;
     
     font-family: "Questrial";
 }
@@ -73,19 +76,30 @@
     width: 100%;
 }
 
+.ant-add-imagem img{
+    background-color: #fff;
+}
+
 .ant-anotacao {
     width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-radius: 25px;
+    overflow: hidden;
 }
 
 .ant-anotacao-texto {
-    width: 100%;
+    width: calc(100% - 40px);
     padding: 20px;
     background-color: #fff;
+    word-break: break-word;
 }
 
 .ant-add-imagem input::-webkit-file-upload-button {
     width: 100%;
-    height: 50px;
+    height: 40px;
     background-color: var(--barra-clara);
     color: #fff;
     border: none;
@@ -93,9 +107,28 @@
     flex-direction: column;
     border-radius: 25px;
     text-transform: uppercase;
+    margin-bottom: 10px;
 }
 
-.ant-add-imagem input::-webkit-file-upload-button:hover {
-    color: var(--barra-escura);
+.ant-add-imagem input::-webkit-file-upload-button:hover, .ant-botoes-add button:hover {
+    background-color:  var(--barra-escura);
     cursor: pointer;
+}
+
+.ant-add-imagem input {
+    color: var(--barra-clara);
+}
+
+.ant-botoes-add button {
+    width: 100%;
+    height: 40px;
+    background-color: var(--barra-clara);
+    color: #fff;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 25px;
+    text-transform: uppercase;
 }
