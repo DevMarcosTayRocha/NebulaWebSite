@@ -5,8 +5,7 @@ import Apresentacao from "./components/apresentacao";
 import CarrosselAulas from "./components/carrosselAulas";
 import Avaliacoes from "./components/avaliacoes";
 import SessaoPlanos from "./components/sessaoPlanos";
-
-import "./css/style.css"
+import Footer from "../../components/footer";
 
 function Home() {
 
@@ -22,6 +21,7 @@ function Home() {
                 <CarrosselAulas />
                 <Avaliacoes />
                 <SessaoPlanos/>
+                <Footer/>
 
             </div>
         </>

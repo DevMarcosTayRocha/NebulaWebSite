@@ -5,6 +5,7 @@ import { Rank } from "./components/rank";
 import { BarraDeProgresso } from "./components/barraProgresso";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Footer from "../../components/footer";
 
 interface User {
   idsite: string;
@@ -86,6 +87,7 @@ function Perfil() {
           </div>
         </div>
       </div>
+      <Footer/>
       </div>
     </>
   );

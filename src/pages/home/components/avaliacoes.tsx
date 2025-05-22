@@ -1,5 +1,4 @@
 import "./avaliacoes.css";
-import "../css/style.css"
 import { useState } from "react";
 
 function Avaliacoes() {

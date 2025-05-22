@@ -1,3 +1,4 @@
+import Footer from "../../components/footer";
 import { Menu } from "../../components/Menu";
 import "./Anotacoes.css"
 import BotaoAdicionar from "./components/botaoAdicionar";
@@ -8,7 +9,7 @@ function Anotacoes() {
         <>
             <Menu />
             <div id="container">
-                <div className="ant-container">
+                <div className="ant-container" style={{minHeight: "100vh"}}>
                     <div className="ant-container-part part1">
                         <BotaoAdicionar />
                     </div>
@@ -22,6 +23,7 @@ function Anotacoes() {
                         <BotaoAdicionar />
                     </div>
                 </div>
+                <Footer/>
             </div>
         </>
     )

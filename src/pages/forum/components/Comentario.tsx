@@ -19,11 +19,11 @@ export function Comentario({ fotoPerfil, nomeUsuario, dataHora, temaPergunta, co
         let contagem = false
         document.getElementById(`verRespotas${idComentarioCopy}`).onclick = () => {
             if (contagem) {
-                document.getElementById(`comentario${idComentarioCopy}`).style.cssText += 'border-radius: 10px;'
+                document.getElementById(`frm-comentario${idComentarioCopy}`).style.cssText += 'border-radius: 10px;'
                 document.getElementById(`respotasForm${idComentarioCopy}`).style.cssText += 'height: 0;'
                 document.getElementById(`respotasContainer${idComentarioCopy}`).style.cssText += 'height: 0;opacity: 0;'
             } else {
-                document.getElementById(`comentario${idComentarioCopy}`).style.cssText += 'border-radius: 0;'
+                document.getElementById(`frm-comentario${idComentarioCopy}`).style.cssText += 'border-radius: 0;'
                 document.getElementById(`respotasForm${idComentarioCopy}`).style.cssText += 'height: 200px;'
                 document.getElementById(`respotasContainer${idComentarioCopy}`).style.cssText += 'height: auto;opacity: 1;'
             }
@@ -37,8 +37,8 @@ export function Comentario({ fotoPerfil, nomeUsuario, dataHora, temaPergunta, co
     return (
         <>
             <div>
-                <div className="comentario" id={`comentario${idComentarioCopy}`}>
-                    <div className="comentario-lateral-esquerda">
+                <div className="frm-comentario" id={`frm-comentario${idComentarioCopy}`}>
+                    <div className="frm-comentario-lateral-esquerda">
                         <img src={fotoPerfil} alt="" />
                         <div>
                             <img src="../../../src/assets/setaDeAvaliacao.svg" alt="" />
@@ -49,21 +49,21 @@ export function Comentario({ fotoPerfil, nomeUsuario, dataHora, temaPergunta, co
                             <img src="../../../src/assets/delete.svg" alt="" />
                         </nav>
                     </div>
-                    <div className="comentario-lateral-direita">
-                        <div className="comentario-titulo">
+                    <div className="frm-comentario-lateral-direita">
+                        <div className="frm-comentario-titulo">
                             <h3>{temaPergunta}</h3>
                             <h4>Publicado por {nomeUsuario} faz {dataHora}</h4>
                         </div>
-                        <p className="comentario-conteudo">
+                        <p className="frm-comentario-conteudo">
                             {conteudoComentario}
                         </p>
-                        <div className="comentario-baixo">
+                        <div className="frm-comentario-baixo">
                             <button id={`verRespotas${idComentarioCopy}`}>Ver respostas.</button>
                             <div>{arrayRespostas.length} respostas</div>
                         </div>
                     </div>
                 </div>
-                <div className="comentario-ver-respostas">
+                <div className="frm-comentario-ver-respostas">
                     <div className="ver-respostas-form-esconder" id={`respotasForm${idComentarioCopy}`}>
                         <div className="ver-respostas-form">
                             <input type="text" placeholder="Digite sua resposta aqui" id={`escreverRespotas${idComentarioCopy}`} />

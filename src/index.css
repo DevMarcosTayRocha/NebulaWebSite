@@ -17,6 +17,27 @@
 }
 
 body {
+    background-color: #070209;
+}
+
+/* Formatação */
+
+body::-webkit-scrollbar {
+    width: 5px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #3b393b;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #A751D9;
+    border-radius: 20px;
+    border: 5px solid #3b393b;
+}
+
+
+body {
     background-color: #141414;
 }
 

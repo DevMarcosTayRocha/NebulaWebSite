@@ -15,14 +15,14 @@ function SessaoPlanos() {
                         <img alt="Iniciar video sobre planos" src="./src/assets/play.svg" />
                     </div>
                 </div>
-                <span>
-                    <p>
+                <div className="planos-mini-texto">
+                    <span>
                         Após assistir o vídeo acima e entender como os nossos cursos funcionam, agora você poderá escolher qual o melhor plano para você.
-                    </p>
                 </span>
+                    </div>
                 <div className="container-planos">
                     <div className="plano">
-                        <img src="./src/assets/background-padrao2.jpg!d" />
+                        <img src="./src/assets/background-padrao.webp" />
                         <h2>ÓRBITA</h2>
                         <p>"I'll get Dumbledore if you let go of me," said Harry. "Just let go, Mr. Crouch, and I'll get him.. . ."</p>
                         <h3>A PARTIR DE</h3>
@@ -36,7 +36,7 @@ function SessaoPlanos() {
                         </div>
                     </div>
                     <div className="plano">
-                        <img src="./src/assets/background-padrao2.jpg!d" />
+                        <img src="./src/assets/background-padrao.webp" />
                         <h2>GALÁXIA</h2>
                         <p>"I'll get Dumbledore if you let go of me," said Harry. "Just let go, Mr. Crouch, and I'll get him.. . ."</p>
                         <h3>A PARTIR DE</h3>
@@ -50,7 +50,7 @@ function SessaoPlanos() {
                         </div>
                     </div>
                     <div className="plano plano-universo">
-                        <img src="./src/assets/background-padrao2.jpg!d" />
+                        <img src="./src/assets/background-padrao.webp" />
                         <h2>UNIVERSO</h2>
                         <p>"I'll get Dumbledore if you let go of me," said Harry. "Just let go, Mr. Crouch, and I'll get him.. . ."</p>
                         <h3>A PARTIR DE</h3>
