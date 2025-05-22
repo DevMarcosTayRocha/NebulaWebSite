@@ -20,10 +20,10 @@ export function Comentario() {
         }
 
         return (
-            <div key={`comentario${comentario.idComentario}`}>
-                <div className="comentario" style={estiloComentario}>
-                    <div className="comentario-lateral-esquerda">
-                        <div className="comentario-foto-perfil" style={{backgroundImage: `url(${comentario.fotoPerfil})`}}></div>
+            <div key={`frm-comentario${comentario.idComentario}`}>
+                <div className="frm-comentario" style={estiloComentario}>
+                    <div className="frm-comentario-lateral-esquerda">
+                        <div className="frm-comentario-foto-perfil" style={{backgroundImage: `url(${comentario.fotoPerfil})`}}></div>
                         <div>
                             <img src="../../../src/assets/setaDeAvaliacao.svg" alt="" />
                             <p>{comentario.numeroAvaliacao}</p>
@@ -33,15 +33,15 @@ export function Comentario() {
                             <img src="../../../src/assets/delete.svg" alt="" />
                         </nav>
                     </div>
-                    <div className="comentario-lateral-direita">
-                        <div className="comentario-titulo">
+                    <div className="frm-comentario-lateral-direita">
+                        <div className="frm-comentario-titulo">
                             <h3>{comentario.temaPergunta}</h3>
                             <h4>Publicado por {comentario.nomeUsuario} faz {comentario.dataHora}</h4>
                         </div>
-                        <p className="comentario-conteudo">
+                        <p className="frm-comentario-conteudo">
                             {comentario.conteudoComentario}
                         </p>
-                        <div className="comentario-baixo">
+                        <div className="frm-comentario-baixo">
                             <button onClick={() => {
                                 comentario.contagem = !comentario.contagem
                                 setAtivo(comentario.contagem)
@@ -50,7 +50,7 @@ export function Comentario() {
                         </div>
                     </div>
                 </div>
-                <div className="comentario-ver-respostas">
+                <div className="frm-comentario-ver-respostas">
                     <div className="ver-respostas-form-esconder" style={estiloFormulario}>
                         <div className="ver-respostas-form">
                             <input type="text" maxLength={50} placeholder="Digite sua resposta aqui" onChange={(e) => {
