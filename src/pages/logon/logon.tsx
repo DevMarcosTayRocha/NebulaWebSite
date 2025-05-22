@@ -2,13 +2,13 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-import "./login.css";
+import "./logon.css";
 
 axios.defaults.withCredentials = true; // Importante para sessões
 
 const API_URL = "http://localhost:4000"; // Backend local
 
-function Login() {
+function Logon() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -48,7 +48,9 @@ function Login() {
 
     <div className="login">
 
-  
+<div className="bgc-login">
+
+</div>
 
     <div className="form-login">
       
@@ -89,14 +91,15 @@ function Login() {
           />
           <br />
 
-          <button className="enter-btn" onClick={register}>Cadastrar</button>
-          
+          <button className="enter-btn" onClick={login}>
+            Finalizar
+          </button>
           <hr />
-          <button className="login-google" onClick={loginGoogle}> <img src="./src/assets/search.png" alt="" />  Cadastrar com Google</button>
+          <button className="login-google" onClick={loginGoogle}> <img src="./src/assets/search.png" alt="" />  Entrar com Google</button>
           
 
-          <Link to="/entrar">
-              <h3 id="have-c">Já possuo uma conta</h3>
+          <Link to="/logon">
+              <h3 id="have-c">Não possuo uma conta</h3>
           </Link>
       
         
@@ -105,13 +108,11 @@ function Login() {
         
       )}
     </div>
-    <div className="bgc-login">
-
-</div>
+   
     </div>
 
     
   );
 }
 
-export default Login;
+export default Logon;

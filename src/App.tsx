@@ -4,7 +4,8 @@ import Perfil from './pages/perfil/Perfil'
 import Home from './pages/home/paginaInicial';
 import Page404 from './pages/404/page404';
 import Anotacoes from './pages/anotacoes/Anotacoes';
-import CadastroEntrar from './pages/login/login';
+import Login from './pages/login/login';
+import Logon from './pages/logon/logon';
 import Configuracoes from './pages/configuracoes/configuracoes';
 import Cursos from './pages/cursos/cursos';
 import Planos from './pages/planos/planos';
@@ -24,7 +25,8 @@ function App() {
             <Route path="/forum" element={<Forum />} />
             <Route path="/planos" element={<Planos />} />
             <Route path="/configuracoes" element={<Configuracoes />} />
-            <Route path="/cadastroentrar" element={<CadastroEntrar />} />
+            <Route path="/cadastrar" element={<Login />} />
+            <Route path="/entrar" element={<Logon />} />
 
             <Route path="*" element={<Page404 />}/>
           </Routes>

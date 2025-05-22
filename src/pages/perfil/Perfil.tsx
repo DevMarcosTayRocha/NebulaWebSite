@@ -3,7 +3,7 @@ import "../../index.css"
 import { Menu } from "../../components/Menu";
 import { Rank } from "./components/rank";
 import { BarraDeProgresso } from "./components/barraProgresso";
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 interface User {
@@ -39,7 +39,7 @@ function Perfil() {
       {/* BARRA USUARIO */}
       <div className="prf-usuario-barra">
         <div className="prf-container">
-          <div style={{ backgroundImage: `url(${user?.photo || '../../src/assets/iconeUsuario.png'}) ` }} className="prf-foto" />
+          <div style={{ backgroundImage: `url(${user?.photo || '../../src/assets/fotoUsuario.png'}) ` }} className="prf-foto" />
           <div className="prf-infomacoes">
             <div className="prf-nome-usuario">
               <span>{user?.name}</span>

@@ -33,7 +33,7 @@ function Apresentacao() {
                         <div className="apr-descricao-card">
                             <div className="apr-titulo-card">TITULO</div>
                             <div className="apr-texto-card">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ex atque ut debitis cupiditate explicabo deleniti aspernatur commodi similique tempore nostrum ipsam id eos sit, dolores veniam! Facilis, quia sed!</div>
-                            <Link to="cadastroentrar" className="apr-botao-card"><span>CADASTRAR</span></Link>
+                            <Link to="cadastrar" className="apr-botao-card"><span>CADASTRAR</span></Link>
                         </div>
                     </div>
                 </div>

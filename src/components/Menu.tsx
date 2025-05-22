@@ -1,6 +1,6 @@
 import "./menu.css"
 import { Link } from "react-router-dom";
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 interface User {
@@ -15,6 +15,14 @@ interface User {
 
 export function Menu() {
   
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    axios.get('http://localhost:4000/auth/me', { withCredentials: true })
+      .then(res => setUser(res.data))
+      .catch(() => setUser(null));
+  }, []);
+
   const [menuAberto, setMenuAberto] = useState(false);
   const [temaClaro, setTemaClaro] = useState(false);
 
@@ -43,7 +51,7 @@ export function Menu() {
 
         <Link to="/perfil">
         <div className={`menu-icones ${temaClaro ? "claro" : ""}` } id="perfil-icone">
-          <img src="https://lh3.googleusercontent.com/a/ACg8ocKV0C6uHcBZTxaIaHrz15mwvS4YEv1x4yyH4oWhJZ9B9fZrG-U=s96-c" alt="perfil" />
+          <img src={user?.photo || '../../src/assets/iconeUsuario.png'} alt="perfil" />
           <span className="texto-barra">PERFIL</span>
         </div>
         </Link>

@@ -38,16 +38,16 @@ export function Rank() {
                 </div>
             </div>
 
-            <UsuarioRank fotoRank="./src/assets/fotoUsuarioExemple.jpg" usuarioRank="Milk" pontosRank={1000} posicaoRank={1} />
-            <UsuarioRank fotoRank="./src/assets/fotoUsuarioExemple.jpg" usuarioRank="Milk2" pontosRank={900} posicaoRank={2} />
-            <UsuarioRank fotoRank="./src/assets/fotoUsuarioExemple.jpg" usuarioRank="Milk3" pontosRank={800} posicaoRank={3} />
-            <UsuarioRank fotoRank="./src/assets/fotoUsuarioExemple.jpg" usuarioRank="Milk4" pontosRank={700} posicaoRank={4} />
-            <UsuarioRank fotoRank="./src/assets/fotoUsuarioExemple.jpg" usuarioRank="Milk5" pontosRank={600} posicaoRank={5} />
-            <UsuarioRank fotoRank="./src/assets/fotoUsuarioExemple.jpg" usuarioRank="Milk6" pontosRank={500} posicaoRank={6} />
-            <UsuarioRank fotoRank="./src/assets/fotoUsuarioExemple.jpg" usuarioRank="Milk7" pontosRank={400} posicaoRank={7} />
-            <UsuarioRank fotoRank="./src/assets/fotoUsuarioExemple.jpg" usuarioRank="Milk8" pontosRank={300} posicaoRank={8} />
-            <UsuarioRank fotoRank="./src/assets/fotoUsuarioExemple.jpg" usuarioRank="Milk9" pontosRank={250} posicaoRank={9} />
-            <UsuarioRank fotoRank="./src/assets/fotoUsuarioExemple.jpg" usuarioRank="Milk0" pontosRank={200} posicaoRank={10} />
+            <UsuarioRank fotoRank="./src/assets/fotoUsuario.png" usuarioRank="Milk" pontosRank={1000} posicaoRank={1} />
+            <UsuarioRank fotoRank="./src/assets/fotoUsuario.png" usuarioRank="Milk2" pontosRank={900} posicaoRank={2} />
+            <UsuarioRank fotoRank="./src/assets/fotoUsuario.png" usuarioRank="Milk3" pontosRank={800} posicaoRank={3} />
+            <UsuarioRank fotoRank="./src/assets/fotoUsuario.png" usuarioRank="Milk4" pontosRank={700} posicaoRank={4} />
+            <UsuarioRank fotoRank="./src/assets/fotoUsuario.png" usuarioRank="Milk5" pontosRank={600} posicaoRank={5} />
+            <UsuarioRank fotoRank="./src/assets/fotoUsuario.png" usuarioRank="Milk6" pontosRank={500} posicaoRank={6} />
+            <UsuarioRank fotoRank="./src/assets/fotoUsuario.png" usuarioRank="Milk7" pontosRank={400} posicaoRank={7} />
+            <UsuarioRank fotoRank="./src/assets/fotoUsuario.png" usuarioRank="Milk8" pontosRank={300} posicaoRank={8} />
+            <UsuarioRank fotoRank="./src/assets/fotoUsuario.png" usuarioRank="Milk9" pontosRank={250} posicaoRank={9} />
+            <UsuarioRank fotoRank="./src/assets/fotoUsuario.png" usuarioRank="Milk0" pontosRank={200} posicaoRank={10} />
         </>
     )
 }
