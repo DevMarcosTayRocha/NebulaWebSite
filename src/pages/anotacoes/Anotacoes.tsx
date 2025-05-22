@@ -3,6 +3,7 @@ import "./Anotacoes.css"
 import BotaoAdicionar from "./components/botaoAdicionar";
 
 function Anotacoes() {
+
     return (
         <>
             <Menu />

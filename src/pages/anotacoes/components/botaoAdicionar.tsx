@@ -85,7 +85,7 @@ function BotaoAdicionar() {
   const handleSubmit = () => {
     // Se a pessoa não digitou nada e não colocou imagem, mostramos um aviso
     if (!text && !image && !pdf) {
-      alert("Você precisa adicionar texto, imagem ou ambos.");
+      alert("Você precisa adicionar imagem, pdf, texto ou todos.");
       return;
     }
 
@@ -159,7 +159,7 @@ function BotaoAdicionar() {
               <label className="ant-label" htmlFor="uploadPDF">
                 <span>Escolha um PDF</span>
                 <input
-                    id="uploadPDF"
+                  id="uploadPDF"
                   type="file"
                   accept="application/pdf"
                   onChange={handlePdfChange}
@@ -169,7 +169,8 @@ function BotaoAdicionar() {
               {pdfUrl && pdfName && (
                 <div className="ant-pdf-preview">
                   <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
-                    <img src="./src/assets/pdfPreto.svg" alt="" />{pdfName}
+                    <img src="./src/assets/pdfRoxo.svg" alt="" />
+                    {pdfName}
                   </a>
                 </div>
               )}
@@ -212,18 +213,44 @@ function BotaoAdicionar() {
 
       <div className="ant-container-anotacoes">
         {todos.map((todo, idx) => (
-          <div key={idx} className="ant-anotacao">
-            {todo.imageUrl && (
-              <img src={todo.imageUrl} alt="Imagem" className="max-h-64" />
-            )}
-            {todo.text && <p className="ant-anotacao-texto">{todo.text}</p>}
-            {todo.pdfUrl && todo.pdfName && (
-              <div className="ant-pdf-view">
-                <a href={todo.pdfUrl} target="_blank" rel="noopener noreferrer">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M360-460h40v-80h40q17 0 28.5-11.5T480-580v-40q0-17-11.5-28.5T440-660h-80v200Zm40-120v-40h40v40h-40Zm120 120h80q17 0 28.5-11.5T640-500v-120q0-17-11.5-28.5T600-660h-80v200Zm40-40v-120h40v120h-40Zm120 40h40v-80h40v-40h-40v-40h40v-40h-80v200ZM320-240q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320Zm0-80h480v-480H320v480ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm160-720v480-480Z"/></svg>{todo.pdfName}
-                </a>
-              </div>
-            )}
+          <div key={idx} className="ant-nao-tenho-mais-ideia-de-nome-de-div-perdao">
+            <div className="ant-anotacao">
+              {todo.imageUrl && (
+                <img src={todo.imageUrl} alt="Imagem" className="max-h-64" />
+              )}
+              {todo.text && <p className="ant-anotacao-texto">{todo.text}
+  </p>}
+              {todo.pdfUrl && todo.pdfName && (
+                <div className="ant-pdf-view">
+                  <a
+                    href={todo.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="24px"
+                      viewBox="0 -960 960 960"
+                      width="24px"
+                      fill="#000000"
+                    >
+                      <path d="M360-460h40v-80h40q17 0 28.5-11.5T480-580v-40q0-17-11.5-28.5T440-660h-80v200Zm40-120v-40h40v40h-40Zm120 120h80q17 0 28.5-11.5T640-500v-120q0-17-11.5-28.5T600-660h-80v200Zm40-40v-120h40v120h-40Zm120 40h40v-80h40v-40h-40v-40h40v-40h-80v200ZM320-240q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320Zm0-80h480v-480H320v480ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm160-720v480-480Z" />
+                    </svg>
+                    {todo.pdfName}
+                  </a>
+                </div>
+              )}
+            </div>
+            <div className="ant-anotacao-botoes">
+              <button
+                onClick={() => {
+                  const novosTodos = todos.filter((_, i) => i !== idx);
+                  setTodos(novosTodos);
+                }}
+              >
+                Excluir
+              </button>
+            </div>
           </div>
         ))}
       </div>
