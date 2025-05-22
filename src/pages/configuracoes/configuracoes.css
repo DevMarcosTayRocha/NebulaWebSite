@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#container-config {
+    width: calc(100% - 160px);
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+
+}
+
+h1 {
+
+    font-family: 'Archivo Black';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 70px;
+    color: #9A30EB;
+}
+
+p {
+    font-family: 'Questrial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 37px;
+    color: #FFFFFF;
+
+
+}
+
+.botoes {
+    width: 100%;
+    display: flex;
+    gap: 100px;
+    padding: 0;
+
+}
+
+.btn {
+    width: calc(100% - 40px);
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #282828;
+    margin: 5px 0;
+    text-align: center;
+    font-family: 'Archivo Black';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 39px;
+    color: #FFFFFF;
+}
