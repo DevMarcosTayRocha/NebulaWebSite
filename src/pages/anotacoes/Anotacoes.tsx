@@ -1,11 +1,27 @@
 import { Menu } from "../../components/Menu";
+import "./Anotacoes.css"
+import BotaoAdicionar from "./components/botaoAdicionar";
 
 function Anotacoes() {
+
     return (
         <>
             <Menu />
             <div id="container">
-            <h1 style={{ color: "#fff" }}>Pagina de anotacoes</h1>
+                <div className="ant-container">
+                    <div className="ant-container-part part1">
+                        <BotaoAdicionar />
+                    </div>
+                    <div className="ant-container-part part2">
+                        <BotaoAdicionar />
+                    </div>
+                    <div className="ant-container-part part3">
+                        <BotaoAdicionar />
+                    </div>
+                    <div className="ant-container-part part3">
+                        <BotaoAdicionar />
+                    </div>
+                </div>
             </div>
         </>
     )

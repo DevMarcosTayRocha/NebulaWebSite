@@ -1,6 +1,6 @@
 .menu-barra-lateral {
   height: 100vh;
-  width: 70px;
+  width: 60px;
   position: fixed;
   top: 0;
   left: 0;
@@ -37,19 +37,19 @@
 }
 
 .menu-icones svg {
-  min-width: 40px;
-  min-height: 40px;
-  width: 40px;
-  height: 40px;
+  min-width: 30px;
+  min-height: 30px;
+  width: 30px;
+  height: 30px;
   padding-left: 15px;
   fill: var(--barra-clara);
 }
 
 .menu-icones img {
-  min-width: 40px;
-  min-height: 40px;
-  width: 40px;
-  height: 40px;
+  min-width: 30px;
+  min-height: 30px;
+  width: 30px;
+  height: 30px;
   margin-left: 15px;
   border-radius: 20px;
 }
@@ -70,10 +70,6 @@
   & span {
     color: var(--barra-escura);
   }
-}
-
-#perfil-icone:hover {
-  
 }
 
 .menu-icones.claro svg {
