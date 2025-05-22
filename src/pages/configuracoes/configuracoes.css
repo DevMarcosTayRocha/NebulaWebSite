@@ -1,8 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
 #container-config {
     width: calc(100% - 160px);
     position: absolute;
@@ -13,7 +8,7 @@
 
 }
 
-h1 {
+#container-config h1 {
 
     font-family: 'Archivo Black';
     font-style: normal;
@@ -23,7 +18,7 @@ h1 {
     color: #9A30EB;
 }
 
-p {
+#container-config p {
     font-family: 'Questrial';
     font-style: normal;
     font-weight: 400;
@@ -34,15 +29,14 @@ p {
 
 }
 
-.botoes {
+.cnfg-botoes {
     width: 100%;
     display: flex;
     gap: 100px;
     padding: 0;
-
 }
 
-.btn {
+.cnfg-btn {
     width: calc(100% - 40px);
     padding: 20px;
     border-radius: 10px;
@@ -55,4 +49,8 @@ p {
     font-size: 18px;
     line-height: 39px;
     color: #FFFFFF;
+}
+
+.cnfg-btn:hover {
+    cursor: pointer;
 }
