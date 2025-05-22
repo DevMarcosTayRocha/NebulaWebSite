@@ -1,86 +1,94 @@
 import "./Comentario.css"
 import { Respostas } from "./respostas"
+import { comentarios } from "./comentariosDados"
+import { useState } from "react"
 
-interface comentarioProps {
-    fotoPerfil: string;
-    nomeUsuario: string;
-    dataHora: string;
-    temaPergunta: string;
-    conteudoComentario: string;
-    numeroAvaliacao: string;
-    avaliacaoDoUsuario: string;
-    idComentario: Number;
-    arrayRespostas: ArrayBuffer;
-}
 
-export function Comentario({ fotoPerfil, nomeUsuario, dataHora, temaPergunta, conteudoComentario, numeroAvaliacao, avaliacaoDoUsuario, idComentario, arrayRespostas }: comentarioProps) {
-    let idComentarioCopy = idComentario
-    setTimeout(() => {
-        let contagem = false
-        document.getElementById(`verRespotas${idComentarioCopy}`).onclick = () => {
-            if (contagem) {
-                document.getElementById(`frm-comentario${idComentarioCopy}`).style.cssText += 'border-radius: 10px;'
-                document.getElementById(`respotasForm${idComentarioCopy}`).style.cssText += 'height: 0;'
-                document.getElementById(`respotasContainer${idComentarioCopy}`).style.cssText += 'height: 0;opacity: 0;'
-            } else {
-                document.getElementById(`frm-comentario${idComentarioCopy}`).style.cssText += 'border-radius: 0;'
-                document.getElementById(`respotasForm${idComentarioCopy}`).style.cssText += 'height: 200px;'
-                document.getElementById(`respotasContainer${idComentarioCopy}`).style.cssText += 'height: auto;opacity: 1;'
-            }
-            contagem = !contagem
+export function Comentario() {
+    const htmlComentarios = comentarios.map(comentario => {
+        const [resposta, setResposta] = useState('')
+        const [ativo, setAtivo] = useState(false)
+        const estiloComentario = {
+          borderRadius: ativo ? '10px 10px 0px 0px' : '10px 10px 10px 10px'
         }
-        // document.getElementById(`enviarRespotas${idComentarioCopy}`).onclick = () => {
-        //     document.getElementById(`respotasContainer${idComentarioCopy}`).innerHTML += document.getElementById(`escreverResposta${idComentarioCopy}`).value
-        // }
-    }, 50)
+        const estiloFormulario = {
+          height: ativo ? '200px' : '0px'
+        }
+        const estiloRespostas = {
+          height: ativo ? 'auto' : '0px',
+          opacity: ativo ? 1 : 0
+        }
 
-    return (
-        <>
-            <div>
-                <div className="frm-comentario" id={`frm-comentario${idComentarioCopy}`}>
-                    <div className="frm-comentario-lateral-esquerda">
-                        <img src={fotoPerfil} alt="" />
+        return (
+            <div key={`comentario${comentario.idComentario}`}>
+                <div className="comentario" style={estiloComentario}>
+                    <div className="comentario-lateral-esquerda">
+                        <div className="comentario-foto-perfil" style={{backgroundImage: `url(${comentario.fotoPerfil})`}}></div>
                         <div>
                             <img src="../../../src/assets/setaDeAvaliacao.svg" alt="" />
-                            <p>{numeroAvaliacao}</p>
+                            <p>{comentario.numeroAvaliacao}</p>
                         </div>
-                        <nav className={avaliacaoDoUsuario}>
+                        <nav className={comentario.avaliacaoDoUsuario}>
                             <img src="../../../src/assets/pencil.svg" alt="" />
                             <img src="../../../src/assets/delete.svg" alt="" />
                         </nav>
                     </div>
-                    <div className="frm-comentario-lateral-direita">
-                        <div className="frm-comentario-titulo">
-                            <h3>{temaPergunta}</h3>
-                            <h4>Publicado por {nomeUsuario} faz {dataHora}</h4>
+                    <div className="comentario-lateral-direita">
+                        <div className="comentario-titulo">
+                            <h3>{comentario.temaPergunta}</h3>
+                            <h4>Publicado por {comentario.nomeUsuario} faz {comentario.dataHora}</h4>
                         </div>
-                        <p className="frm-comentario-conteudo">
-                            {conteudoComentario}
+                        <p className="comentario-conteudo">
+                            {comentario.conteudoComentario}
                         </p>
-                        <div className="frm-comentario-baixo">
-                            <button id={`verRespotas${idComentarioCopy}`}>Ver respostas.</button>
-                            <div>{arrayRespostas.length} respostas</div>
+                        <div className="comentario-baixo">
+                            <button onClick={() => {
+                                comentario.contagem = !comentario.contagem
+                                setAtivo(comentario.contagem)
+                            }}>Ver respostas.</button>
+                            <div>{comentario.arrayRespostas.length} respostas</div>
                         </div>
                     </div>
                 </div>
-                <div className="frm-comentario-ver-respostas">
-                    <div className="ver-respostas-form-esconder" id={`respotasForm${idComentarioCopy}`}>
+                <div className="comentario-ver-respostas">
+                    <div className="ver-respostas-form-esconder" style={estiloFormulario}>
                         <div className="ver-respostas-form">
-                            <input type="text" placeholder="Digite sua resposta aqui" id={`escreverRespotas${idComentarioCopy}`} />
-                            <button id={`enviarRespotas${idComentarioCopy}`}>
+                            <input type="text" maxLength={50} placeholder="Digite sua resposta aqui" onChange={(e) => {
+                                setResposta(e.target.value)
+                            }}/>
+                            <button id={`enviarRespotas${comentario.idComentario}`} onClick={() => {
+                                if (resposta.length > 0) {
+                                    comentario.arrayRespostas.push({
+                                        idResposta: comentario.arrayRespostas.length+1,
+                                        rfotoPerfil: "../../../src/assets/icones-usuarios/kurbie.jpg",
+                                        rnomeUsuario: "Luiz",
+                                        rdataHora: new Date().toLocaleString(),
+                                        rconteudoComentario: resposta
+                                    })
+                                    setResposta('')
+                                }
+                            }}>
                                 <img src="../../../src/assets/submit.svg" alt="enviar" />
                             </button>
                         </div>
                     </div>
-                    <div className="ver-respostas-container" id={`respotasContainer${idComentarioCopy}`}>
+                    <div className="ver-respostas-container" style={estiloRespostas}>
                         {
-                            Array.from({ length: arrayRespostas.length }, (_, i) => (
-                                <Respostas rfotoPerfil={arrayRespostas[i][0]} rnomeUsuario={arrayRespostas[i][1]} rdataHora={arrayRespostas[i][2]} rconteudoComentario={arrayRespostas[i][3]}/>
-                            ))
+                            comentario.arrayRespostas.map(resposta => {
+                                return (
+                                    <Respostas key={`resposta${comentario.idComentario}000${resposta.idResposta}`} rfotoPerfil={resposta.rfotoPerfil} rnomeUsuario={resposta.rnomeUsuario} rdataHora={resposta.rdataHora} rconteudoComentario={resposta.rconteudoComentario}/>
+                                )
+                            })
                         }
                     </div>
                 </div>
             </div>
+        )
+    })
+
+    return (
+        <>
+            {htmlComentarios}
         </>
     )
 }
