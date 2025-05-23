@@ -91,7 +91,7 @@ function Login() {
 
           <button className="enter-btn" onClick={register}>Cadastrar</button>
           
-          <hr />
+      
           <button className="login-google" onClick={loginGoogle}> <img src="./src/assets/search.png" alt="" />  Cadastrar com Google</button>
           
 
