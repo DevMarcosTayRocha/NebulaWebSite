@@ -14,17 +14,6 @@ function Logon() {
   const [name, setName] = useState("");
   const [user, setUser] = useState<any>(null);
 
-  const register = async () => {
-    try {
-      await axios.post(`${API_URL}/auth/register`, { name, email, password });
-      alert("Cadastro feito!");
-    } catch (err: any) {
-      alert(err.response?.data?.error || "Erro");
-    }
-  };
-
-
-
   const login = async () => {
     try {
       await axios.post(`${API_URL}/auth/login`, { email, password });
@@ -55,8 +44,8 @@ function Logon() {
 
     <div className="form-login">
       
-      <h1 className="login-title">Cadastre - se</h1>
-      <h2>Crie sua conta</h2>
+      <h1 className="login-title">Entre</h1>
+      <h2>Entre na sua conta</h2>
 
       {user ? (
         <>
@@ -92,10 +81,9 @@ function Logon() {
           />
           <br />
 
-          <button className="enter-btn" onClick={register}>
-            Finalizar
+          <button className="enter-btn" onClick={login}>
+            Entrar
           </button>
-          <hr />
           <button className="login-google" onClick={loginGoogle}> <img src="./src/assets/search.png" alt="" />  Entrar com Google</button>
           
 

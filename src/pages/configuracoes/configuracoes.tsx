@@ -2,10 +2,26 @@ import { Menu } from "../../components/Menu";
 import "./configuracoes.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from 'react-router-dom'; 
+
+axios.defaults.withCredentials = true; // Importante para sessões
+
+const API_URL = "http://localhost:4000"; // Backend local
 
 function Configuracoes() {
+  const navigate = useNavigate();
+
   const [idioma, setIdioma] = useState(false);
   const [tema, setTema] = useState(false);
+  const [user, setUser] = useState<any>(null);
+
+  const logout = async () => {
+    await axios.get(`${API_URL}/auth/logout`);
+    setUser(null);
+
+    navigate('/cadastrar');
+  };
 
   return (
     <>
@@ -60,7 +76,7 @@ function Configuracoes() {
         <Link to="/cadastrar" className="cnfg-btn">
           <div>TROCAR USUARIO</div>
         </Link>
-        <div className="cnfg-btn">SAIR</div>
+        <div className="cnfg-btn" onClick={logout}>SAIR</div>
       </div>
     </>
   );

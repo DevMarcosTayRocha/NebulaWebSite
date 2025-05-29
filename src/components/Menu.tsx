@@ -51,7 +51,7 @@ export function Menu() {
 
         <Link to="/perfil">
         <div className={`menu-icones ${temaClaro ? "claro" : ""}` } id="perfil-icone">
-          <img src={user?.photo || '../../src/assets/iconeUsuario.png'} alt="perfil" />
+          <img src={user?.photo || '../../src/assets/iconeUsuario.svg'} alt="perfil" />
           <span className="texto-barra">PERFIL</span>
         </div>
         </Link>
