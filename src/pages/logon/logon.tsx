@@ -52,6 +52,7 @@ function Logon() {
 
 </div>
 
+
     <div className="form-login">
       
       <h1 className="login-title">Cadastre - se</h1>
@@ -91,14 +92,14 @@ function Logon() {
           />
           <br />
 
-          <button className="enter-btn" onClick={login}>
+          <button className="enter-btn" onClick={register}>
             Finalizar
           </button>
           <hr />
           <button className="login-google" onClick={loginGoogle}> <img src="./src/assets/search.png" alt="" />  Entrar com Google</button>
           
 
-          <Link to="/logon">
+          <Link to="/cadastrar">
               <h3 id="have-c">Não possuo uma conta</h3>
           </Link>
       
