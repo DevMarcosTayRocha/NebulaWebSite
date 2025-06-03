@@ -37,7 +37,7 @@ export function Rank() {
                     </div>
                 </div>
             </div>
-
+            <div className="prf-container-rank">
             <UsuarioRank fotoRank="./src/assets/fotoUsuario.png" usuarioRank="Milk" pontosRank={1000} posicaoRank={1} />
             <UsuarioRank fotoRank="./src/assets/fotoUsuario.png" usuarioRank="Milk2" pontosRank={900} posicaoRank={2} />
             <UsuarioRank fotoRank="./src/assets/fotoUsuario.png" usuarioRank="Milk3" pontosRank={800} posicaoRank={3} />
@@ -48,6 +48,8 @@ export function Rank() {
             <UsuarioRank fotoRank="./src/assets/fotoUsuario.png" usuarioRank="Milk8" pontosRank={300} posicaoRank={8} />
             <UsuarioRank fotoRank="./src/assets/fotoUsuario.png" usuarioRank="Milk9" pontosRank={250} posicaoRank={9} />
             <UsuarioRank fotoRank="./src/assets/fotoUsuario.png" usuarioRank="Milk0" pontosRank={200} posicaoRank={10} />
+            </div>
+            
         </>
     )
 }

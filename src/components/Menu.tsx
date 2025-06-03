@@ -1,7 +1,7 @@
-import "./menu.css"
+import "./menu.css";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 interface User {
   idsite: string;
@@ -14,13 +14,20 @@ interface User {
 }
 
 export function Menu() {
-  
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/auth/me', { withCredentials: true })
-      .then(res => setUser(res.data))
-      .catch(() => setUser(null));
+    axios
+      .get("http://localhost:4000/auth/me", { withCredentials: true })
+      .then((res) => {
+        setUser(res.data);
+        setIsAuthenticated(true);
+      })
+      .catch(() => {
+        setUser(null);
+        setIsAuthenticated(false);
+      });
   }, []);
 
   const [menuAberto, setMenuAberto] = useState(false);
@@ -35,9 +42,17 @@ export function Menu() {
   };
 
   return (
-    <div className={`menu-barra-lateral ${menuAberto ? "ativo" : ""} ${temaClaro ? "claro" : ""}`}>
+    <div
+      className={`menu-barra-lateral ${menuAberto ? "ativo" : ""} ${
+        temaClaro ? "claro" : ""
+      }`}
+    >
       <div id="menu-principais-icones">
-        <div className={`menu-icones ${temaClaro ? "claro" : ""}`} id="menu-icone" onClick={toggleMenu}>
+        <div
+          className={`menu-icones ${temaClaro ? "claro" : ""}`}
+          id="menu-icone"
+          onClick={toggleMenu}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24px"
@@ -49,15 +64,28 @@ export function Menu() {
           </svg>
         </div>
 
-        <Link to="/perfil">
-        <div className={`menu-icones ${temaClaro ? "claro" : ""}` } id="perfil-icone">
-          <img src={user?.photo || '../../src/assets/iconeUsuario.svg'} alt="perfil" />
-          <span className="texto-barra">PERFIL</span>
-        </div>
+        <Link to={isAuthenticated ? "/perfil" : "/entrar"}>
+          <div
+            className={`menu-icones ${temaClaro ? "claro" : ""}`}
+            id="perfil-icone"
+          >
+            <img
+              src={
+                isAuthenticated
+                  ? user?.photo || "../../src/assets/iconeUsuario.svg"
+                  : "../../src/assets/iconeUsuario.svg"
+              }
+              alt="perfil"
+            />
+            <span className="texto-barra">PERFIL</span>
+          </div>
         </Link>
 
-        <Link to="/anotacoes">
-          <div className={`menu-icones ${temaClaro ? "claro" : ""}`} id="anotacoes-icone">
+        <Link to={isAuthenticated ? "/anotacoes" : "/entrar"}>
+          <div
+            className={`menu-icones ${temaClaro ? "claro" : ""}`}
+            id="anotacoes-icone"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
@@ -67,12 +95,16 @@ export function Menu() {
             >
               <path d="M160-400v-80h280v80H160Zm0-160v-80h440v80H160Zm0-160v-80h440v80H160Zm360 560v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
             </svg>
+
             <span className="texto-barra">ANOTAÇÕES</span>
           </div>
         </Link>
 
-        <Link to="/cursos">
-          <div className={`menu-icones ${temaClaro ? "claro" : ""}`} id="cursos-icone">
+        <Link to={isAuthenticated ? "/cursos" : "/entrar"}>
+          <div
+            className={`menu-icones ${temaClaro ? "claro" : ""}`}
+            id="cursos-icone"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
@@ -87,8 +119,11 @@ export function Menu() {
           </div>
         </Link>
 
-        <Link to="/forum">
-          <div className={`menu-icones ${temaClaro ? "claro" : ""}`} id="forum-icone">
+        <Link to={isAuthenticated ? "/forum" : "/entrar"}>
+          <div
+            className={`menu-icones ${temaClaro ? "claro" : ""}`}
+            id="forum-icone"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
@@ -103,8 +138,11 @@ export function Menu() {
           </div>
         </Link>
 
-        <Link to="/planos">
-          <div className={`menu-icones ${temaClaro ? "claro" : ""}`} id="carrinho-icone">
+        <Link to={isAuthenticated ? "/planos" : "/entrar"}>
+          <div
+            className={`menu-icones ${temaClaro ? "claro" : ""}`}
+            id="carrinho-icone"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
@@ -122,13 +160,28 @@ export function Menu() {
 
       <div>
         <Link to="/">
-          <div className={`menu-icones ${temaClaro ? "claro" : ""}`} id="carrinho-icone">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" /></svg>
+          <div
+            className={`menu-icones ${temaClaro ? "claro" : ""}`}
+            id="carrinho-icone"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#ffffff"
+            >
+              <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
+            </svg>
             <span className="texto-barra">INÍCIO</span>
           </div>
         </Link>
         <Link to="/configuracoes">
-          <div className={`menu-icones ${temaClaro ? "claro" : ""}`} id="configuracoes-icone" onClick={toggleTema}>
+          <div
+            className={`menu-icones ${temaClaro ? "claro" : ""}`}
+            id="configuracoes-icone"
+            onClick={toggleTema}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
@@ -143,6 +196,6 @@ export function Menu() {
           </div>
         </Link>
       </div>
-      </div>
+    </div>
   );
 }

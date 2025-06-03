@@ -7,7 +7,7 @@
 
 .prf-rank-header {
     background-color: var(--barra-clara);
-    border-radius: 25px 25px 0 0;
+    border-radius: 5px 5px 0 0;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -82,6 +82,25 @@
     height: 50px;
     width: 50px;
     background-size: cover;
-    border-radius: 25px;
+    border-radius: 5px;
     background-position: center;
+}
+
+.prf-container-rank {
+    overflow-y: scroll;
+    height: 320px;
+    margin-bottom: 35px;
+}
+
+.prf-container-rank::-webkit-scrollbar {
+    height: 25px;
+}
+
+.prf-container-rank::-webkit-scrollbar-track {
+    background: #3b393b;
+}
+
+.prf-container-rank::-webkit-scrollbar-thumb {
+    background-color: #A751D9;
+    
 }
