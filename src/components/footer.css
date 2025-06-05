@@ -1,23 +1,25 @@
 /* Footer */
 
 footer {
-    width: 100%;
+    width: calc(100vw - 60px);
     height: 60px;
+    position: absolute;
     background-color: var(--cor-primaria);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     color: #fff;
 
     font-family: "Inter", sans-serif;
     position: relative;
     bottom: 0;
+    left: 60px;
 }
 
 #footer-conteudo {
-    width: calc(100% - 200px);
+    width: calc(100vw - 60px);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 100px;
 
     transition: 0.5s;

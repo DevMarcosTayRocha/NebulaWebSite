@@ -101,6 +101,6 @@
 }
 
 .prf-container-rank::-webkit-scrollbar-thumb {
-    background-color: #A751D9;
+    background-color: var(--barra-clara);
     
 }

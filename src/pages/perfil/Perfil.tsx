@@ -28,7 +28,7 @@ function Perfil() {
   }, []);
 
   return (
-    <>
+    <div className="container-perfil">
       <Menu />
 
       <div id="prf-containerAll">
@@ -87,9 +87,9 @@ function Perfil() {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
-    </>
+      <Footer />
+    </div>
   );
 }
 

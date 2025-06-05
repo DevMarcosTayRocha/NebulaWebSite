@@ -1,36 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Questrial&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Questrial&display=swap");
 
 :root {
-    --cor-primaria: #9B3BD2;
-    --cor-secundaria: #D390FF;
-    --barra-clara: #9A30EB;
-    --barra-escura: #070209;
+  --cor-primaria: #9b3bd2;
+  --cor-secundaria: #d390ff;
+  --barra-clara: #9a30eb;
+  --barra-escura: #070209;
 }
 
-    
-    
-    html {
-        overflow-x: hidden;
-    }
-    
-    .slick-center {
-      transform: scale(1.05) !important;
-      z-index: 2 !important;
-    }
-    
-    .slick-slide:not(.slick-center) {
-      transform: scale(0.9) translateY(10px) !important;
-      
-    }
+html {
+  overflow-x: hidden;
+}
 
-    @media screen and (min-width:1025px ) {
-        .slick-list {
-     
-      margin: 0 -10px !important;
-      overflow: visible !important;
-    }
-    }
+footer {
+  width: 100%;
+}
 
-  
-    
-   
+.container-planos {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.slick-center {
+  transform: scale(1.05) !important;
+  z-index: 2 !important;
+}
+
+.slick-slide:not(.slick-center) {
+  transform: scale(0.9) translateY(10px) !important;
+}
+
+@media screen and (min-width: 1025px) {
+  .slick-list {
+    margin: 0 -10px !important;
+    overflow: visible !important;
+  }
+}

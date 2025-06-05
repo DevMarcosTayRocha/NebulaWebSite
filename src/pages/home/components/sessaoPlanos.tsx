@@ -20,7 +20,7 @@ function SessaoPlanos() {
                         Após assistir o vídeo acima e entender como os nossos cursos funcionam, agora você poderá escolher qual o melhor plano para você.
                 </span>
                     </div>
-                <div className="container-planos">
+                <div className="container-planos-pagIni">
                     <div className="plano">
                         <img src="./src/assets/background-padrao.webp" />
                         <h2>ÓRBITA</h2>

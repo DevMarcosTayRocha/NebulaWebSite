@@ -6,6 +6,7 @@ import CarrosselAulas from "./components/carrosselAulas";
 import Avaliacoes from "./components/avaliacoes";
 import SessaoPlanos from "./components/sessaoPlanos";
 import Footer from "../../components/footer";
+import "./paginaInicial.css";
 
 function Home() {
 
@@ -21,7 +22,10 @@ function Home() {
                 <CarrosselAulas />
                 <Avaliacoes />
                 <SessaoPlanos/>
+                <footer>
                 <Footer/>
+                </footer>
+                
 
             </div>
         </>

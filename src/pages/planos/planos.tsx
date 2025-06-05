@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { createGlobalStyle } from "styled-components";
 import { Menu } from "../../components/Menu";
 import "./planos.css";
+import Footer from "../../components/footer";
 
 
 /* Dependências principais (já devem estar no seu package.json):
@@ -398,7 +399,7 @@ function Planos() {
   );
 
   return (
-    <>
+    <div className="container-planos">
       <Menu />
       <div
         style={{
@@ -672,7 +673,10 @@ function Planos() {
           </div>
         </div>
       </div>
-    </>
+      <footer>
+      <Footer />
+      </footer>
+    </div>
   );
 }
 

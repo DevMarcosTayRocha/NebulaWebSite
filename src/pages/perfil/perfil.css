@@ -1,17 +1,18 @@
+.container-perfil {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
 #prf-containerAll {
   width: calc(100% - 60px);
-  position: absolute;
-  right: 0;
-
+  margin-left: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-}
-
-#prf-containerAll Footer {
-    position: relative;
-    bottom: -90px;
+  min-height: calc(100vh - 60px);
 }
 
 .prf-banner {

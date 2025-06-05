@@ -54,7 +54,7 @@
 }
 
 /* Planos */
-.container-planos {
+.container-planos-pagIni {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -80,6 +80,7 @@
 .plano img {
     width: 100%;
     height: 250px;
+    object-fit: cover;
 }
 
 .plano h2 {
