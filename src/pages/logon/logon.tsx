@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Menu } from "../../components/Menu";
 
 import "./logon.css";
 
@@ -34,73 +35,64 @@ function Logon() {
   };
 
   return (
-
     <div className="login">
 
-<div className="bgc-login">
+      <Menu />
+      <div className="bgc-login"></div>
 
-</div>
+      <div className="form-login">
+        <h1 className="login-title">Entre</h1>
+        <h2>Entre na sua conta</h2>
 
+        {user ? (
+          <>
+            <p>Logado como: {user.name}</p>
+            <button onClick={logout}>Logout</button>
+          </>
+        ) : (
+          <>
+            <input
+              className="input-login"
+              placeholder="Nome"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+            <br />
+            <input
+              className="input-login"
+              placeholder="Email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <br />
+            <input
+              className="input-login"
+              placeholder="Senha"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <br />
 
-    <div className="form-login">
-      
-      <h1 className="login-title">Entre</h1>
-      <h2>Entre na sua conta</h2>
+            <button className="enter-btn" onClick={login}>
+              Entrar
+            </button>
+            <button className="login-google" onClick={loginGoogle}>
+              {" "}
+              <img src="./src/assets/search.png" alt="" /> Entrar com Google
+            </button>
 
-      {user ? (
-        <>
-          <p>Logado como: {user.name}</p>
-          <button onClick={logout}>Logout</button>
-        </>
-      ) : (
-        <>
-          <input
-            className="input-login"
-            placeholder="Nome"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-          <br />
-          <input
-            className="input-login"
-            placeholder="Email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <br />
-          <input
-            className="input-login"
-            placeholder="Senha"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <br />
-
-          <button className="enter-btn" onClick={login}>
-            Entrar
-          </button>
-          <button className="login-google" onClick={loginGoogle}> <img src="./src/assets/search.png" alt="" />  Entrar com Google</button>
-          
-
-          <Link to="/cadastrar">
+            <Link to="/cadastrar">
               <h3 id="have-c">Não possuo uma conta</h3>
-          </Link>
-      
-        
-        </>
-
-        
-      )}
+            </Link>
+          </>
+        )}
+      </div>
     </div>
-   
-    </div>
-
-    
   );
 }
 

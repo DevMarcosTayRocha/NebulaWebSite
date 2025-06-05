@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Menu } from "../../components/Menu";
 
 import "./login.css";
 
@@ -49,7 +50,7 @@ function Login() {
     <div className="login">
 
   
-
+    <Menu />
     <div className="form-login">
       
       <h1 className="login-title">Cadastre - se</h1>

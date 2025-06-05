@@ -73,6 +73,10 @@
     height: 25px;
 }
 
+.container-carrossel::-webkit-scrollbar-thumb:hover {
+    cursor: pointer;
+}
+
 .container-carrossel::-webkit-scrollbar-track {
     background: #3b393b;
     border-radius: 20px;

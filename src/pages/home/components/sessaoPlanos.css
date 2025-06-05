@@ -147,19 +147,19 @@
 }
 
 /* Plano: universo */
-.plano-universo {
+.plano {
     background-color: #A751D9;
 }
 
-.plano-universo h2 {
+.plano h2 {
     opacity: 1;
 }
 
-.plano-universo h3 {
+.plano h3 {
     opacity: 0.5;
 }
 
-.plano-universo .plano-button {
+.plano .plano-button {
     background-color: #ffffff;
     color: #A751D9;
 }

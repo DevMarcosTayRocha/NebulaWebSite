@@ -49,7 +49,7 @@ function SessaoPlanos() {
                             <div className="nav-beneficio"><p>Beneficio 5</p> <img src="./src/assets/check-escuro.svg" /></div>
                         </div>
                     </div>
-                    <div className="plano plano-universo">
+                    <div className="plano">
                         <img src="./src/assets/background-padrao.webp" />
                         <h2>UNIVERSO</h2>
                         <p>"I'll get Dumbledore if you let go of me," said Harry. "Just let go, Mr. Crouch, and I'll get him.. . ."</p>
