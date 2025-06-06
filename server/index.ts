@@ -8,10 +8,16 @@ import path from 'path';
 import bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import multer from "multer";
+
+const app = express();
+const upload = multer({ dest: "uploads/" });
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 
 dotenv.config();
 
-const app = express();
 const PORT = 4000;
 const CLIENT_URL = process.env.CLIENT_URL!;
 const USERS_FILE = path.join(__dirname, 'users.json');
@@ -42,6 +48,7 @@ interface UserType {
   password: string;
   provider: 'google' | 'local';
   prf_user: string;
+  bio?: string;
 }
 
 // Utilidades
@@ -204,6 +211,33 @@ app.post('/auth/login', asyncHandler(async (req, res) => {
     res.json({ message: 'Login bem-sucedido', user });
   });
 }));
+
+app.put('/auth/update', upload.single("photo"), asyncHandler(async (req, res) => {
+  if (!req.isAuthenticated() || !req.user) {
+    return res.status(401).json({ error: "Não autenticado" });
+  }
+
+  const { name, bio, idUser } = req.body;
+  const photoFile = req.file;
+
+  const users = readUsers();
+  const userId = (req.user as UserType).id;
+
+  const index = users.findIndex(u => u.id === userId);
+  if (index === -1) return res.status(404).json({ error: "Usuário não encontrado" });
+
+  // Atualiza os campos
+  if (name) users[index].name = name;
+  if (idUser) users[index].prf_user = idUser;
+  if (bio) users[index].bio = bio; // campo novo, precisa ser adicionado no tipo
+  if (photoFile) {
+    users[index].photo = `/uploads/${photoFile.filename}`;
+  }
+
+  saveUsers(users);
+  res.json({ success: true, user: users[index] });
+}));
+
 
 
 // Inicia o servidor

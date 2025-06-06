@@ -1,22 +1,13 @@
 [
   {
     "idsite": 1,
-    "id": "102143299551191680960",
-    "name": "Nebula",
-    "email": "nebula.academy.brasil@gmail.com",
-    "photo": "https://lh3.googleusercontent.com/a/ACg8ocLfqRLu8KhmTQV0sMNc7UzeB6AIlScJyfKOW5wN-NNEu30mPA=s96-c",
-    "password": "",
-    "provider": "google",
-    "prf_user": "@Nebula1"
-  },
-  {
-    "idsite": 2,
     "id": "112811344431446728140",
     "name": "Lucas Leite",
     "email": "leitedesouzanuneslucas@gmail.com",
     "photo": "https://lh3.googleusercontent.com/a/ACg8ocKBIZSsiWbb40YcQxaw3NcLboB5ZSIi4ckqbcV442Rl_EyuXmC3=s96-c",
     "password": "",
     "provider": "google",
-    "prf_user": "@LucasLeite2"
+    "prf_user": "@LucasLeite1",
+    "bio": "asdasd"
   }
 ]
