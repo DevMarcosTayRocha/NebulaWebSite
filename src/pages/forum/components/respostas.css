@@ -53,6 +53,8 @@
 .resposta-conteudo {
     width: calc(100% - (50px * 2));
     padding: 40px 50px 100px 50px;
+    white-space: pre-wrap;
+    word-break: break-word;
 
     font-weight: 300;
     font-size: 24px;

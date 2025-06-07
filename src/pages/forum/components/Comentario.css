@@ -1,10 +1,3 @@
-.container-forum {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-  }
-
 .frm-comentario {
     width: 1500px;
     background-color: #454545;
@@ -101,6 +94,8 @@
 .frm-comentario-conteudo {
     width: calc(100% - (50px * 2));
     padding: 40px 50px 200px 50px;
+    white-space: pre-wrap;
+    word-break: break-word;
 
     font-weight: 300;
     font-size: 24px;
@@ -108,6 +103,24 @@
     color: #FFFFFF;
 
     font-family: "Inter", sans-serif;
+}
+.frm-comentario-conteudo-editar-input {
+    width: 100%;
+    height: 300px;
+    box-sizing: border-box;
+    background-color: rgba(240, 248, 255, 0);
+
+    font-weight: 300;
+    font-size: 24px;
+    text-align: justify;
+    color: #FFFFFF;
+
+    font-family: "Inter", sans-serif;
+}
+.frm-comentario-conteudo-editar {
+    width: calc(100% - (50px * 2));
+    padding: 40px 50px 200px 50px;
+    border: none;
 }
 .frm-comentario-baixo {
     width: 100%;
@@ -169,13 +182,13 @@
     gap: 50px;
     padding: 50px;
 }
-.ver-respostas-form input {
+.ver-respostas-form textarea {
     width: calc(100% - 125px);
-    height: 75px;
+    height: 130px;
     background-color: #555555;
     border: 2px solid #A4A4A4;
     border-radius: 7px;
-    padding: 0 20px;
+    padding: 20px 20px 0 20px;
 
     font-weight: 400;
     font-size: 32px;

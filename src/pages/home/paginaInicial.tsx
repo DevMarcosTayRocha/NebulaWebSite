@@ -15,18 +15,13 @@ function Home() {
             <Menu />
 
             <div id="container">
-
                 <Banner />
                 <Objetivos />
                 <Apresentacao />
                 <CarrosselAulas />
                 <Avaliacoes />
                 <SessaoPlanos/>
-                <footer>
                 <Footer/>
-                </footer>
-                
-
             </div>
         </>
     )

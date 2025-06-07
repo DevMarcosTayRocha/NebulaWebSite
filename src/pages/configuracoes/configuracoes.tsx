@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'; 
+import Footer from "../../components/footer";
 
 axios.defaults.withCredentials = true; // Importante para sessões
 
@@ -77,6 +78,9 @@ function Configuracoes() {
           <div>TROCAR USUARIO</div>
         </Link>
         <div className="cnfg-btn" onClick={logout}>SAIR</div>
+
+
+        <Footer />
       </div>
     </>
   );
