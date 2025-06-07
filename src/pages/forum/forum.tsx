@@ -8,7 +8,7 @@ function Forum() {
       <Menu />
       <div id="container">
         <Comentario />
-      <Footer />
+        <Footer />
       </div>
     </>
   )

@@ -1,4 +1,4 @@
-export let comentarios = [{
+export const initial_comentarios = [{
     idComentario: 1,
     fotoPerfil: "../../../src/assets/icones-usuarios/kurbie.jpg",
     nomeUsuario: "Luiz",
