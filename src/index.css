@@ -47,13 +47,13 @@ body {
 
 
 #container {
-  width: 1500px;
-  margin-left: calc(((100vw) - (1500px))/2);
-  justify-self: center;
+    width: calc(100vw - 60px);
+    margin-left: 60px;
+    justify-self: center;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .pdr-descricao {
@@ -68,7 +68,7 @@ body {
     font-size: 36px;
 }
 
-@media screen and (max-width: 425px){
+@media screen and (max-width: 425px) {
     #container {
         width: 100%;
     }
