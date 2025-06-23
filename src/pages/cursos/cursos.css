@@ -8,37 +8,65 @@
     flex-direction: column;
 }
 
-.cursos-div-titulo {
-    width: 100%;
-    display: flex;
-    box-sizing: border-box;
-    align-items: center;
-    gap: 40px;
-    padding: 30px 0;
-}
-
-.cursos-div-titulo h1 {
-    font-family: 'Archivo Black';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 35px;
-
-    color: #F8EFFF;
-}
-
-.cursos-div-titulo hr {
-    width: max-content;
-    flex-grow: 1;
-    height: 1px;
-    box-sizing: border-box;
-    background-color: #F8EFFF;
-}
-
 .cursos-alinhar-tamplates {
     width: 100%;
     box-sizing: border-box;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 50px;
+}
+
+.cursos-espacamento p {
+    font-family: 'Questrial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 25px;
+    text-align: justify;
+
+    color: #F8EFFF;
+}
+
+.cursos-video-sessao {
+    width: 100%;
+    height: 250px;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cursos-video-sessao div {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    filter: blur(3px);
+}
+
+.cursos-video-sessao img {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+}
+
+.curso-download {
+    padding: 10px 60px;
+    margin-top: 40px;
+    background-color: #9A30EB;
+    align-self: center;
+    letter-spacing: 2px;
+    white-space: pre-wrap;
+    word-break: break-word;
+
+    font-family: 'Archivo Black';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 26px;
+    text-align: justify;
+
+    color: #FFFFFF;
 }
