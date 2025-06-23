@@ -1,12 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Questrial&display=swap");
 
-:root {
-  --cor-primaria: #9b3bd2;
-  --cor-secundaria: #d390ff;
-  --barra-clara: #9a30eb;
-  --barra-escura: #070209;
-}
-
 html {
   overflow-x: hidden;
 }

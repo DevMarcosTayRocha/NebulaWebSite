@@ -9,7 +9,7 @@ function Cursos() {
       <Menu />
       <div id="container">
         <div className="cursos-espacamento">
-          <div className="cursos-div-titulo">
+          <div className="sessao">
             <h1>CURSO UNIVERSO</h1>
             <hr />
           </div>
@@ -17,13 +17,13 @@ function Cursos() {
             <TemplateModulos assinatura='universo' />
           </div>
 
-          <div className="cursos-div-titulo">
+          <div className="sessao">
             <h1>CURSO GALÁXIA</h1>
             <hr />
           </div>
           <TemplateModulos assinatura='galaxia' />
 
-          <div className="cursos-div-titulo">
+          <div className="sessao">
             <h1>CURSO ÓRBITA</h1>
             <hr />
           </div>

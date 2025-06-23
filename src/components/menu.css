@@ -1,10 +1,10 @@
 .menu-barra-lateral {
   height: 100vh;
-  width: 60px;
+  width: 220px;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: var(--barra-escura);
+  background-color: var(--cinza-escuro3);
   display: flex;
 
   flex-direction: column;
@@ -17,12 +17,7 @@
 }
 
 .menu-barra-lateral.claro {
-  background-color: var(--barra-clara);
-}
-
-.menu-barra-lateral.ativo {
-  width: 220px;
-  transition: 1;
+  background-color: var(--roxo1);
 }
 
 #menu-principais-icones {
@@ -33,16 +28,16 @@
 .menu-icones {
   display: flex;
   align-items: center;
-  height: 60px;
+  height: 50px;
 }
 
 .menu-icones svg {
-  min-width: 30px;
-  min-height: 30px;
-  width: 30px;
-  height: 30px;
+  min-width: 20px;
+  min-height: 20px;
+  width: 20px;
+  height: 20px;
   padding-left: 15px;
-  fill: var(--barra-clara);
+  fill: var(--roxo1);
 }
 
 .menu-icones img {
@@ -60,41 +55,41 @@
 }
 
 .menu-icones:hover {
-  background-color: var(--barra-clara);
+  background-color: var(--roxo1);
   cursor: pointer;
 
   & svg {
-    fill: var(--barra-escura);
+    fill: var(--cinza-escuro3);
   }
 
   & span {
-    color: var(--barra-escura);
+    color: var(--cinza-escuro3);
   }
 }
 
 .menu-icones.claro svg {
-  fill: #fff;
+  fill: var(--roxo1);
 }
 
 .menu-icones.claro span {
-  color: #fff;
+  color: var(--branco);
 }
 
 .menu-icones.claro:hover {
-  background-color: #fff;
+  background-color: var(--branco);
   cursor: pointer;
 }
 
 .menu-icones.claro:hover svg {
-  fill: var(--barra-clara);
+  fill: var(--roxo1);
 }
 
 .menu-icones.claro:hover span {
-  color: var(--barra-clara);
+  color: var(--roxo1);
 }
 
 .menu-icones span {
-  color: var(--barra-clara);
+  color: var(--roxo1);
 }
 
 @media screen and (max-width: 425px) {

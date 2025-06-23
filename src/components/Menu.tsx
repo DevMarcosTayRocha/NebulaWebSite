@@ -30,12 +30,7 @@ export function Menu() {
       });
   }, []);
 
-  const [menuAberto, setMenuAberto] = useState(false);
   const [temaClaro, setTemaClaro] = useState(false);
-
-  const toggleMenu = () => {
-    setMenuAberto((prev) => !prev);
-  };
 
   const toggleTema = () => {
     setTemaClaro((prev) => !prev);
@@ -43,26 +38,9 @@ export function Menu() {
 
   return (
     <div
-      className={`menu-barra-lateral ${menuAberto ? "ativo" : ""} ${
-        temaClaro ? "claro" : ""
-      }`}
+      className={"menu-barra-lateral"}
     >
       <div id="menu-principais-icones">
-        <div
-          className={`menu-icones ${temaClaro ? "claro" : ""}`}
-          id="menu-icone"
-          onClick={toggleMenu}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="24px"
-            viewBox="0 -960 960 960"
-            width="24px"
-            fill="#FFFFFF"
-          >
-            <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
-          </svg>
-        </div>
 
         <Link to={isAuthenticated ? "/perfil" : "/entrar"}>
           <div

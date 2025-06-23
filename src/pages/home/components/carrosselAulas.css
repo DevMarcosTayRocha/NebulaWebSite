@@ -2,22 +2,19 @@
     font-family: "Archivo Black",sans-serif;
     width: 90%;
     height: auto;
-    padding: 60px 0;
     justify-self: center;
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    gap: 25px;
     overflow: hidden;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    margin-bottom: 100px;
+    padding-bottom: 25px;
 }
 
 .carrosel-card {
-    padding: 20px;
-    border-radius: 15px;
-    width: 4%;
+    padding: 25px;
     height: 500px;
     min-width: 300px;
     overflow: hidden;
@@ -44,14 +41,14 @@
 
 .carrosel-card a {
     background-color: #A751D9;
-    padding: 20px;
-    border-radius: 15px;
-    font-size: 40px;
+    padding: 10px;
+    font-size: 24px;
     display: flex;
     transition: all 0.2s;
     text-decoration: none;
     justify-content: center;
     align-items: center;
+    font-family: 'Questrial', sans-serif;
 }
 
 .carrosel-card a:hover {

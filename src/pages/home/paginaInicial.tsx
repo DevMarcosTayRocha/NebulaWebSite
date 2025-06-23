@@ -12,9 +12,9 @@ function Home() {
 
     return (
         <>
-            <Menu />
+            <Menu/>
 
-            <div id="container">
+            <div className="container">
                 <Banner />
                 <Objetivos />
                 <Apresentacao />

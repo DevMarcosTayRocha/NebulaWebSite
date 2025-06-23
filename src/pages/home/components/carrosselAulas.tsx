@@ -3,6 +3,11 @@ import "./carrosselAulas.css";
 function CarrosselAulas() {
   return (
     <>
+      <div className="sessao sessao-descentralizada">
+        <h1>QUEM SOMOS</h1>
+        <hr />
+      </div>
+
       <div className="container-carrossel">
         <div className="carrosel-card">
           <div
