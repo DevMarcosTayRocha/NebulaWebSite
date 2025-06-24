@@ -9,24 +9,22 @@
 .apr-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    gap: 30px;
+    gap: 25px;
 }
 
 .apr-card {
-    width: 100%;
-    height: 200px;
     background-color: var(--cinza-escuro1);
     display: flex;
-    justify-content: space-between; 
+    width: 100%;
 }
 
 .apr-descricao-card {
     color: var(--branco);
-    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;  
     text-align: justify;
+    padding: 25px;
+    gap: 25px;
 }
 
 .apr-titulo-card {
@@ -38,10 +36,11 @@
 }
 
 .apr-imagem-card {
-    width: 100%;
-    aspect-ratio: 1 / 1;
+    width: 200px;
+    height: 100%;
     background-size: cover;
     background-position: center;
+    flex-shrink: 0;
 }
 
 .apr-botao-card {

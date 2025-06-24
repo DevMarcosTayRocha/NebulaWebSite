@@ -185,7 +185,7 @@ function BotaoAdicionar() {
               <span
                 style={
                   limiteCaracter - text.length > 0
-                    ? { fontFamily: "Questrial", color: "var(--barra-clara)" }
+                    ? { fontFamily: "Questrial", color: "var(--roxo1)" }
                     : { fontFamily: "Questrial", color: "red" }
                 }
               >

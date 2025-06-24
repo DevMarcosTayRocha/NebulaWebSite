@@ -19,7 +19,8 @@
     --cinza-escuro2: #1D1D1D;
     --cinza-escuro3: #141414;
 
-    --cinza-claro: #4E4E4E;
+    --cinza-claro1: #4E4E4E;
+    --cinza-claro2: #dbdbdb;
 
     --roxo1: #9A30EB;
 }
@@ -56,7 +57,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .pdr-descricao-destaque {
-    color: var(--barra-clara);
+    color: var(--roxo1);
     font-size: 36px;
 }
 

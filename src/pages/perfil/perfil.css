@@ -24,7 +24,7 @@
 .prf-usuario-barra {
   width: 100%;
   height: 100px;
-  background-color: var(--barra-clara);
+  background-color: var(--roxo1);
   display: flex;
   justify-content: center;
 
@@ -127,7 +127,7 @@
 }
 
 .prf-titulo-estatistica {
-  background-color: var(--barra-clara);
+  background-color: var(--roxo1);
   height: 100%;
   width: 150px;
   border-radius: 5px 0 0 5px;
@@ -147,7 +147,7 @@
   overflow: hidden;
 }
 .prf-barra-estatistica::-webkit-progress-value {
-  background-color: var(--barra-clara);
+  background-color: var(--roxo1);
 }
 
 .prf-barra-estatistica::-webkit-progress-bar {
@@ -156,7 +156,7 @@
 }
 
 .prf-porcentagem-estatistica {
-  background-color: var(--barra-clara);
+  background-color: var(--roxo1);
   height: 100%;
 }
 

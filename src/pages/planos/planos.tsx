@@ -4,9 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { createGlobalStyle } from "styled-components";
 import { Menu } from "../../components/Menu";
-import "./planos.css";
-import Footer from "../../components/footer";
-
+import './planos.css'
 
 /* Dependências principais (já devem estar no seu package.json):
 bash
@@ -44,14 +42,32 @@ interface Plan {
 interface PaymentMethod {
   id: string;
   name: string;
+  icon: string;
   component: React.ReactNode;
 }
+
 
 //estilos
 
 function Planos() {
   const [selectedPlanIndex, setSelectedPlanIndex] = useState(0);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
+  const copyPixKey = () => {
+    const pixKey = document.getElementById('pixKey')?.textContent;
+    if (pixKey) {
+      navigator.clipboard.writeText(pixKey.trim())
+        .then(() => {
+          setToastMessage("Chave PIX copiada com sucesso!");
+          setTimeout(() => setToastMessage(null), 2000); // Some após 2 segundos
+        })
+        .catch(err => {
+          setToastMessage("Erro ao copiar a chave!");
+          setTimeout(() => setToastMessage(null), 2000);
+        });
+    }
+  };
   // Configurações do carrossel para slides grandes
   const settings = {
     dots: true,
@@ -72,7 +88,7 @@ function Planos() {
           borderRadius: "50%",
 
           backgroundColor:
-            i === selectedPlanIndex ? "#ffffff" : "rgba(255, 255, 255, 0.3)",
+            i === selectedPlanIndex ? "#ffffff" : "rgba(69, 69, 69, 1)",
           transition: "all 0.3s ease",
           transform: i === selectedPlanIndex ? "scale(1.4)" : "scale(1)",
         }}
@@ -81,7 +97,7 @@ function Planos() {
     appendDots: (dots: React.ReactNode[]) => (
       <div
         style={{
-          marginTop: "5%",
+          marginTop: '5%',
           position: "relative",
           bottom: "-25px",
           left: 0,
@@ -89,6 +105,7 @@ function Planos() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+
         }}
       >
         <ul
@@ -97,6 +114,7 @@ function Planos() {
             padding: 0,
             display: "flex",
             gap: "12px",
+
           }}
         >
           {dots}
@@ -123,48 +141,33 @@ function Planos() {
   const plans: Plan[] = [
     {
       name: "ÓRBITA",
-      description:
-        "O nosso melhor plano Lorem ipsum dolor sit amet. Et debitis laudantium ea internos inventore aut impedit iste sit expedita facere ut..",
+      description: "O nosso melhor plano Lorem ipsum dolor sit amet. Et debitis laudantium ea internos inventore aut impedit iste sit expedita facere ut..",
       benefits: [
-        "Benefício 1",
-        "Benefício 2",
-        "Benefício 3",
-        "Benefício 4",
-        "Benefício 5",
-        "Benefício 6",
+        "Benefício 1", "Benefício 2", "Benefício 3",
+        "Benefício 4", "Benefício 5", "Benefício 6"
       ],
       price: 900.99,
-      color: "#9B3BD2",
+      color: "#9a30eb"
     },
     {
       name: "GALAXIA",
-      description:
-        "O nosso melhor plano Lorem ipsum dolor sit amet. Et debitis laudantium ea internos inventore aut impedit iste sit expedita facere ut..",
+      description: "O nosso melhor plano Lorem ipsum dolor sit amet. Et debitis laudantium ea internos inventore aut impedit iste sit expedita facere ut..",
       benefits: [
-        "Benefício 1",
-        "Benefício 2",
-        "Benefício 3",
-        "Benefício 4",
-        "Benefício 5",
-        "Benefício 6",
+        "Benefício 1", "Benefício 2", "Benefício 3",
+        "Benefício 4", "Benefício 5", "Benefício 6"
       ],
       price: 990.99,
-      color: "#9B3BD2",
+      color: "#9a30eb",
     },
     {
       name: "UNIVERSO",
-      description:
-        "O nosso melhor plano Lorem ipsum dolor sit amet. Et debitis laudantium ea internos inventore aut impedit iste sit expedita facere ut..",
+      description: "O nosso melhor plano Lorem ipsum dolor sit amet. Et debitis laudantium ea internos inventore aut impedit iste sit expedita facere ut..",
       benefits: [
-        "Benefício 1",
-        "Benefício 2",
-        "Benefício 3",
-        "Benefício 4",
-        "Benefício 5",
-        "Benefício 6",
+        "Benefício 1", "Benefício 2", "Benefício 3",
+        "Benefício 4", "Benefício 5", "Benefício 6"
       ],
-      price: 1299.9,
-      color: "#9B3BD2",
+      price: 1299.90,
+      color: "#9a30eb",
     },
   ];
 
@@ -175,42 +178,92 @@ function Planos() {
     {
       id: "pix",
       name: "PIX",
+      icon: "icons8-pix-50.png",
       component: (
         <div className="pix-form">
-          <h3>PLANO SELECIONADO: {selectedPlan.name}</h3>
+          <h3 style={{ fontWeight: 100 }}>PLANO SELECIONADO: <span className="plan-span">{selectedPlan.name}</span> </h3>
           <p>
             PREÇO TOTAL:{" "}
-            <strong>
-              R$ {selectedPlan.price.toFixed(2).replace(".", ",")}
+            <strong className="strong-pay">
+              {selectedPlan.price.toFixed(2).replace(".", ",")}
             </strong>
           </p>
-          <p>Pagamento instantâneo com chave PIX</p>
-          <div
-            style={{
-              backgroundColor: "#f0f0f0",
-              height: "200px",
-              width: "200px",
+          <p style={{ marginTop: '1.5rem' }}>O pagamento por pix é feito por meio de QRCODE ou CHAVE PIX. O pagamento tem até 24 horas para ser aceito e você poderá usar este seu plano.</p>
+          <div className="qrcode-content" >
+            <div
+              style={{
+                backgroundColor: "#f0f0f0",
+                height: "350px",
+                width: "350px",
+                left: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                margin: "20px 0",
+                backgroundImage: 'url(UdYkGR.jpg)',
+                backgroundSize: 'cover'
+
+              }}
+            >
+
+            </div>
+
+            <div className="ABAAA" style={{
+              whiteSpace: 'pre-wrap',
+              wordBreak: 'break-word',
+
+              height: "350px",
+              width: "350px",
               left: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              margin: "20px 0",
-              borderRadius: "8px",
-            }}
-          >
-            <p style={{ color: "#333" }}>QR CODE PIX SERIA GERADO AQUI</p>
+              marginLeft: '2.5rem',
+              marginTop: '20px',
+              textAlign: 'justify',
+            }}>
+              <h3 style={{ fontFamily: 'Archivo black' }}>CHAVE PIX</h3>
+              <div style={{ position: 'relative' }}>
+                <p id="pixKey" style={{ maxWidth: '100%', textAlign: 'justify' }}>
+                omasd82sdmn29hsoijdf8jsdd9f8nmssdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfarg dfgaf987gya sdfughba9 SD786YFGH sd8y7hg9a8s7dfhg 98S7DHG0A 8sdfyng0 87df
+                </p>
+                <button
+                  onClick={() => copyPixKey()}
+                  className="btn-hover"
+                  style={{
+                    height: '2rem',
+                    width: '100%',
+                    fontSize: '16px',
+                    fontFamily: 'Questrial',
+                    color: 'white',
+                    backgroundColor: "#9030eb",
+                    border: 'none',
+
+                    marginTop: '10px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '5px'
+                  }}
+                >
+                  <span>Copiar chave PIX</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.91 4.895 3 6 3h8c1.105 0 2 .911 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.09 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
-          <button
+          <button className="btn-pay"
             style={{
               backgroundColor: "#9030eb",
               fontSize: "20px",
-              fontFamily: "Archivo black",
+              fontFamily: 'Archivo black',
               color: "white",
               border: "none",
               padding: "12px 24px",
-              borderRadius: "5px",
+
               cursor: "pointer",
               width: "100%",
+
             }}
           >
             GERAR CHAVE PIX
@@ -221,28 +274,37 @@ function Planos() {
     {
       id: "credit",
       name: "CARTÃO DE CRÉDITO",
+      icon: "icons8-cartão-50.png",
       component: (
         <div className="credit-card-form">
-          <h3>PLANO SELECIONADO: {selectedPlan.name}</h3>
+          < h3 style={{ fontWeight: '100' }}>PLANO SELECIONADO: <span className="plan-span">{selectedPlan.name}</span></h3>
           <p>
             PREÇO TOTAL:{" "}
-            <strong>
+            <strong className="strong-pay">
               R$ {selectedPlan.price.toFixed(2).replace(".", ",")}
             </strong>
           </p>
+
+          <p style={{ marginTop: '1.5rem' }}>O pagamento por cartão de crédito é preciso das seguintes informações:</p>
 
           <div style={{ margin: "15px 0" }}>
             <label style={{ display: "block", marginBottom: "5px" }}>
               Número do cartão:
             </label>
-            <input
+            <input className="pay-input"
               type="text"
               placeholder="1234 5678 9012 3456"
               style={{
-                width: "100%",
+                width: "97%",
+                height: '2rem',
                 padding: "10px",
-                borderRadius: "4px",
-                border: "1px solid #ddd",
+
+                fontFamily: "Questrial",
+                fontSize: '18px',
+                backgroundColor: '#7E7E7E',
+                color: "white",
+                borderBlock: 'none',
+                textTransform: 'uppercase'
               }}
             />
           </div>
@@ -251,47 +313,65 @@ function Planos() {
             <label style={{ display: "block", marginBottom: "5px" }}>
               Nome no cartão:
             </label>
-            <input
+            <input className="pay-input"
               type="text"
               placeholder="Nome como está no cartão"
               style={{
-                width: "100%",
+                width: "97%",
+                height: '2rem',
                 padding: "10px",
-                borderRadius: "4px",
-                border: "1px solid #ddd",
+
+                fontFamily: "Questrial",
+                fontSize: '18px',
+                backgroundColor: '#7E7E7E',
+                color: "white",
+                borderBlock: 'none',
+                textTransform: 'uppercase'
               }}
             />
           </div>
 
-          <div style={{ display: "flex", gap: "15px", margin: "15px 0" }}>
+          <div style={{ display: "flex", gap: "15px", margin: "15px 0", }}>
             <div style={{ flex: 1 }}>
               <label style={{ display: "block", marginBottom: "5px" }}>
                 Validade:
               </label>
-              <input
+              <input className="pay-input"
                 type="text"
                 placeholder="MM/AA"
                 style={{
-                  width: "100%",
+                  width: "70%",
+                  height: '2rem',
                   padding: "10px",
-                  borderRadius: "4px",
-                  border: "1px solid #ddd",
+
+                  fontFamily: "Questrial",
+                  fontSize: '18px',
+                  backgroundColor: '#7E7E7E',
+                  color: "white",
+                  borderBlock: 'none',
+                  textTransform: 'uppercase'
                 }}
               />
             </div>
 
-            <div style={{ flex: 1 }}>
+            <div style={{ flex: 1, marginLeft: "5%" }}>
               <label style={{ display: "block", marginBottom: "5px" }}>
                 CVV:
               </label>
-              <input
+              <input className="pay-input"
                 type="text"
                 placeholder="123"
                 style={{
-                  width: "100%",
+                  width: "50%",
+                  height: '2rem',
                   padding: "10px",
-                  borderRadius: "4px",
-                  border: "1px solid #ddd",
+
+                  fontFamily: "Questrial",
+                  fontSize: '18px',
+                  backgroundColor: '#7E7E7E',
+                  color: "white",
+                  borderBlock: 'none',
+                  textTransform: 'uppercase',
                 }}
               />
             </div>
@@ -303,10 +383,16 @@ function Planos() {
             </label>
             <select
               style={{
-                width: "100%",
+                width: "50%",
+                height: '3rem',
                 padding: "10px",
-                borderRadius: "4px",
-                border: "1px solid #ddd",
+
+                fontFamily: "Questrial",
+                fontSize: '18px',
+                backgroundColor: '#7E7E7E',
+                color: "white",
+                borderBlock: 'none',
+                textTransform: 'uppercase',
               }}
             >
               <option>
@@ -324,17 +410,19 @@ function Planos() {
             </select>
           </div>
 
-          <button
+          <button className="btn-pay"
             style={{
               backgroundColor: "#9030eb",
               fontSize: "20px",
-              fontFamily: "Archivo black",
+              fontFamily: 'Archivo black',
               color: "white",
               border: "none",
               padding: "12px 24px",
-              borderRadius: "5px",
+
               cursor: "pointer",
               width: "100%",
+
+
             }}
           >
             FINALIZAR COMPRA
@@ -345,46 +433,205 @@ function Planos() {
     {
       id: "debit",
       name: "CARTÃO DE DÉBITO",
+      icon: "icons8-cartão-50.png",
       component: (
         <div className="debit-card-form">
-          <h3>PLANO SELECIONADO: {selectedPlan.name}</h3>
+          <h3 style={{ fontWeight: '100' }}>PLANO SELECIONADO: <span className="plan-span">{selectedPlan.name}</span></h3>
+
           <p>
             PREÇO TOTAL:{" "}
-            <strong>
+            <strong className="strong-pay">
               R$ {selectedPlan.price.toFixed(2).replace(".", ",")}
             </strong>
           </p>
 
-          {/* Formulário similar ao de crédito */}
-          {/* ... */}
+          <p style={{ marginTop: '1.5rem' }}> O pagamento por cartão de crédito é preciso das seguintes informações:</p>
+
+          <div style={{ marginTop: '5%' }}>
+            <label style={{ display: "block", marginBottom: "5px" }}>
+              Número do cartão:
+            </label>
+            <input className="pay-input"
+              type="text"
+              placeholder="1234 5678 9012 3456"
+              style={{
+                width: "97%",
+                height: '2rem',
+                padding: "10px",
+
+                fontFamily: "Questrial",
+                fontSize: '18px',
+                backgroundColor: '#7E7E7E',
+                color: "white",
+                borderBlock: 'none',
+                textTransform: 'uppercase'
+              }}
+            />
+          </div>
+
+          <div style={{ marginTop: '5%' }}>
+            <label style={{ display: "block", marginBottom: "5px" }}>
+              Nome no cartão:
+            </label>
+            <input className="pay-input"
+              type="text"
+              placeholder="Nome como está no cartão"
+              style={{
+                width: "97%",
+                height: '2rem',
+                padding: "10px",
+
+                fontFamily: "Questrial",
+                fontSize: '18px',
+                backgroundColor: '#7E7E7E',
+                color: "white",
+                borderBlock: 'none',
+                textTransform: 'uppercase'
+              }}
+            />
+          </div>
+
+          <div style={{ display: "flex", gap: "15px", marginTop: '5%' }}>
+            <div style={{ flex: 1 }}>
+              <label style={{ display: "block", marginBottom: "5px" }}>
+                Validade:
+              </label>
+              <input className="pay-input"
+                type="text"
+                placeholder="MM/AA"
+                style={{
+                  width: "70%",
+                  height: '2rem',
+                  padding: "10px",
+
+                  fontFamily: "Questrial",
+                  fontSize: '18px',
+                  backgroundColor: '#7E7E7E',
+                  color: "white",
+                  borderBlock: 'none',
+                  textTransform: 'uppercase'
+                }}
+              />
+            </div>
+
+            <div style={{ flex: 1 }}>
+              <label style={{ display: "block", marginBottom: "5px" }}>
+                CVV:
+              </label>
+              <input className="pay-input"
+                type="text"
+                placeholder="123"
+                style={{
+                  width: "50%",
+                  height: '2rem',
+                  padding: "10px",
+
+                  fontFamily: "Questrial",
+                  fontSize: '18px',
+                  backgroundColor: '#7E7E7E',
+                  color: "white",
+                  borderBlock: 'none',
+                  textTransform: 'uppercase',
+
+
+                }}
+              />
+
+
+            </div>
+
+          </div>
+          <button className="btn-pay"
+            style={{
+              backgroundColor: "#9030eb",
+              fontSize: "20px",
+              fontFamily: 'Archivo black',
+              color: "white",
+              border: "none",
+              padding: "12px 24px",
+
+              cursor: "pointer",
+              width: "100%",
+              marginTop: '5%'
+
+            }}
+          >
+            FINALIZAR COMPRA
+          </button>
         </div>
+
       ),
     },
     {
       id: "boleto",
       name: "BOLETO",
+      icon: "icons8-código-de-barras-50.png",
       component: (
         <div className="boleto-form">
-          <h3>PLANO SELECIONADO: {selectedPlan.name}</h3>
+          <h3 style={{ fontWeight: '100' }} >PLANO SELECIONADO: <span className="plan-span">{selectedPlan.name}</span></h3>
           <p>
             PREÇO TOTAL:{" "}
-            <strong>
+            <strong className="strong-pay">
               R$ {selectedPlan.price.toFixed(2).replace(".", ",")}
             </strong>
           </p>
-          <p>Boleto com vencimento em 3 dias úteis</p>
-          <button
+          <p style={{ marginTop: '1.5rem' }}>O boleto deve ser pago em até <span style={{ fontFamily: 'Archivo black', fontWeight: '150' }}>24 HORAS</span> e poderá ser confirmado sua compra em até dois dias. Para o boleto ser gerado, precisamos das seguintes informações:</p>
+
+          <label style={{ display: "block", marginTop: "1.5rem" }}>
+            Nome completo:
+          </label>
+
+          <input className="pay-input"
+            type="text"
+            placeholder="Nome completo como exibido no seu documento"
+            style={{
+              width: "97%",
+              height: '2rem',
+              padding: "10px",
+              marginTop: '0.5rem',
+              fontFamily: "Questrial",
+              fontSize: '18px',
+              backgroundColor: '#7E7E7E',
+              color: "white",
+              borderBlock: 'none',
+              textTransform: 'uppercase'
+            }}
+          />
+
+          <label style={{ display: "block", marginTop: "1.5rem" }}>
+            CPF:
+          </label>
+
+          <input className="pay-input"
+            type="text"
+            placeholder="000.000.000 - 00"
+            style={{
+              width: "97%",
+              height: '2rem',
+              padding: "10px",
+              marginTop: '0.5rem',
+              fontFamily: "Questrial",
+              fontSize: '18px',
+              backgroundColor: '#7E7E7E',
+              color: "white",
+              borderBlock: 'none',
+              textTransform: 'uppercase'
+            }}
+          />
+
+          <button className="btn-pay"
             style={{
               backgroundColor: "#9030eb",
               fontSize: "20px",
-              fontFamily: "Archivo black",
+              fontFamily: 'Archivo black',
               color: "white",
               border: "none",
               padding: "12px 24px",
-              borderRadius: "5px",
+
               cursor: "pointer",
               width: "100%",
               marginTop: "20px",
+
             }}
           >
             GERAR BOLETO
@@ -394,27 +641,40 @@ function Planos() {
     },
   ];
 
-  const [activePaymentMethod, setActivePaymentMethod] = useState<string | null>(
-    null
-  );
+  const [activePaymentMethod, setActivePaymentMethod] = useState<string | null>(null);
+  const [contentHeight, setContentHeight] = useState<{ [key: string]: number }>({});
+
+  // Função para medir a altura do conteúdo
+  const measureRef = (id: string, ref: HTMLDivElement | null) => {
+    if (ref && !contentHeight[id]) {
+      setContentHeight(prev => ({
+        ...prev,
+        [id]: ref.scrollHeight
+      }));
+    }
+  };
 
   return (
-    <div className="container-planos">
+    <>
       <Menu />
-      <div
-        style={{
-          maxWidth: "100vw",
-          margin: "0 auto",
-          padding: "20px",
-          color: "#fff",
-          backgroundColor: "#121212",
-          minHeight: "100vh",
-          fontFamily: '"Questrial", sans-serif',
-          userSelect: "none",
-        }}
-      >
-        <style>
-          {`
+      <div className="container-planos">
+
+        <div
+          style={{
+            maxWidth: "100vw",
+            margin: "0 auto",
+            padding: "20px",
+            color: "#fff",
+            backgroundColor: "#121212",
+            minHeight: "100vh",
+            fontFamily: '"Questrial", sans-serif',
+            userSelect: 'none',
+            transform: 'scale(1.1)',
+            marginTop: '3%'
+          }}
+        >
+          <style>
+            {`
 
         
 
@@ -440,243 +700,237 @@ function Planos() {
       background-color: rgb(255, 255, 255) !important; /* Roxo claro quando inativo */
     }
         `}
-        </style>
+          </style>
 
-        <h1
-          style={{
-            textAlign: "center",
-            marginBottom: "50px",
-            fontSize: "2.5rem",
-            fontFamily: "Archivo Black",
-          }}
-        >
-          Escolha um de nossos{" "}
+
+
           <h1
             style={{
-              color: "#9A30EB",
-              fontSize: "3rem",
+              textAlign: "center",
+              marginBottom: "50px",
+              fontSize: "2.5rem",
+              fontFamily: 'Archivo Black',
             }}
           >
-            PLANOS
+            Escolha um de nossos <h1 style={{
+              color: '#9A30EB',
+              fontSize: '3rem'
+            }}>PLANOS</h1>
           </h1>
-        </h1>
 
-        {/* Carrossel de Planos */}
-        <div style={{ margin: "0 auto 60px", maxWidth: "1000px" }}>
-          <Slider {...settings}>
-            {plans.map((plan, index) => (
-              <div
-                key={index}
-                style={{
-                  padding: "20px",
-                  outline: "none",
-                }}
-              >
+          {/* Carrossel de Planos */}
+          <div style={{ margin: "0 auto 60px", maxWidth: "1000px" }}>
+            <Slider {...settings}>
+              {plans.map((plan, index) => (
                 <div
+                  key={index}
                   style={{
-                    backgroundColor: plan.color,
-                    padding: "25px",
-                    borderRadius:
-                      selectedPlanIndex === index ? "10px" : "15px !important",
-                    height: "400px",
-                    color: "white",
-                    boxShadow: "0 10px 20px rgba(0,0,0,0.3)",
-                    transform:
-                      selectedPlanIndex === index
-                        ? "scale(1.05)"
-                        : "scale(0.95)",
-                    transition: "all 0.3s ease",
-                    opacity: selectedPlanIndex === index ? 1 : 0.8,
-                    display: "flex",
-                    flexDirection: "column",
-                    position: "relative",
+                    padding: "20px",
+                    outline: "none",
                   }}
                 >
-                  <h2
-                    style={{
-                      fontSize: "2rem",
-                      marginBottom: "15px",
-                      fontFamily: "Archivo black",
-                    }}
-                  >
-                    {plan.name}
-                  </h2>
-                  <p
-                    style={{
-                      marginBottom: "20px",
-                      flexGrow: 1,
-                      fontSize: "18px",
-                    }}
-                  >
-                    {plan.description}
-                  </p>
-
-                  {/* Grade de benefícios - 2 linhas x 3 colunas */}
                   <div
-                    className="ben-gri"
                     style={{
+                      backgroundColor: plan.color,
+                      padding: "25px",
+                      borderRadius: selectedPlanIndex === index ? "10px" : "15px !important",
+                      height: "400px",
+                      color: "white",
+                      boxShadow: "0 10px 20px rgba(0,0,0,0.3)",
+                      transform: selectedPlanIndex === index ? "scale(1.05)" : "scale(0.95)",
+                      transition: "all 0.3s ease",
+                      opacity: selectedPlanIndex === index ? 1 : 0.8,
+                      display: "flex",
+                      flexDirection: "column",
+                      position: 'relative'
+                    }}
+                  >
+                    <h2 style={{ fontSize: "2rem", marginBottom: "15px", fontFamily: 'Archivo black' }}>
+                      {plan.name}
+                    </h2>
+                    <p style={{ marginBottom: "20px", flexGrow: 1, fontSize: '18px' }}>
+                      {plan.description}
+                    </p>
+
+                    {/* Grade de benefícios - 2 linhas x 3 colunas */}
+                    <div className="ben-gri" style={{
                       display: "grid",
                       gridTemplateColumns: "repeat(3, 1fr)", // 3 colunas
-                      gridTemplateRows: "repeat(2, auto)", // 2 linhas
+                      gridTemplateRows: "repeat(2, auto)",  // 2 linhas
                       gap: "15px",
                       marginBottom: "60px",
-                      fontWeight: "bold",
-                      fontSize: "20px",
-                      fontFamily: "Archivo black",
-                      listStyle: "none",
-                    }}
-                  >
-                    {plan.benefits.map((benefit, i) => (
-                      <div
-                        key={i}
-                        style={{
+                      fontWeight: 'bold',
+                      fontSize: '20px',
+                      fontFamily: 'Archivo black',
+                      listStyle: 'none'
+                    }}>
+                      {plan.benefits.map((benefit, i) => (
+                        <div key={i} style={{
                           display: "flex",
                           alignItems: "center",
-                          gap: "8px",
-                        }}
-                      >
-                        <div
-                          style={{
+                          gap: "8px"
+                        }}>
+                          <div style={{
                             width: "25px",
                             height: "25px",
-                            backgroundSize: "cover",
-                            backgroundImage:
-                              "url(./src/assets/check-claro2.svg)",
-                          }}
-                        >
-                          {" "}
-                        </div>
-                        <span>{benefit}</span>
-                      </div>
-                    ))}
-                  </div>
+                            backgroundSize: 'cover',
 
-                  <div style={{ marginTop: "auto" }}>
-                    <p style={{ marginBottom: "5px", fontSize: "20px" }}>
-                      No valor:
-                    </p>
-                    <h3 style={{ fontSize: "2.3rem", marginBottom: "20px" }}>
-                      R$ {plan.price.toFixed(2).replace(".", ",")}
-                    </h3>
-                    <button
-                      style={{
-                        backgroundColor:
-                          selectedPlanIndex === index ? "#fff" : "#610EA1",
-                        color:
-                          selectedPlanIndex === index ? "#9A30EB" : "white",
-                        border: "none",
-                        padding: "12px 24px",
-                        borderRadius: "5px",
-                        cursor: "pointer",
-                        fontWeight: "bold",
-                        width: "100%",
-                        fontSize: "1rem",
-                        transition: "all 0.3s ease",
-                        marginTop: "",
-                      }}
-                    >
-                      {selectedPlanIndex === index
-                        ? "PLANO SELECIONADO"
-                        : "SELECIONAR ESTE PLANO"}
-                    </button>
+                            backgroundImage:
+                              (index === 0 && i < 2) ||
+                                (index === 1 && i < 3) ||
+                                (index === 2)
+                                ? 'url(./src/assets/check-claro2.svg)'
+                                : 'url(x.png)'
+                          }}></div>
+                          <span>{benefit}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div style={{ marginTop: "auto" }}>
+                      <p style={{ marginBottom: "5px", fontSize: '20px' }}>No valor:</p>
+                      <h3 style={{ fontSize: "2.3rem", marginBottom: "20px" }}>
+                        R$ {plan.price.toFixed(2).replace(".", ",")}
+                      </h3>
+                      <button
+                        style={{
+                          backgroundColor: selectedPlanIndex === index ? "#fff" : "#610EA1",
+                          color: selectedPlanIndex === index ? "#9A30EB" : "white",
+                          border: "none",
+                          padding: "12px 24px",
+
+                          cursor: "pointer",
+                          fontWeight: "bold",
+                          width: "100%",
+                          fontSize: "1rem",
+                          transition: "all 0.3s ease",
+                          marginTop: ''
+                        }}
+                      >
+                        {selectedPlanIndex === index ? "PLANO SELECIONADO" : "SELECIONAR ESTE PLANO"}
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </Slider>
-        </div>
+              ))}
+            </Slider>
+          </div>
 
-        {/* Seção de Pagamento */}
-        <div
-          style={{
-            maxWidth: "800px",
-            margin: "0 auto",
-            padding: "0 20px",
-          }}
-        >
-          <h2
-            style={{
-              textAlign: "center",
-              marginBottom: "30px",
-              fontSize: "2rem",
-              fontFamily: "Archivo black",
-            }}
-          >
-            Escolha seu metodo de{" "}
-            <span
-              style={{
-                color: "#9A30EB",
-                textTransform: "uppercase",
-              }}
-            >
-              Pagamento
-            </span>
-          </h2>
-
+          {/* Seção de Pagamento */}
           <div
             style={{
-              display: "flex",
-              flexDirection: "column", // Itens em coluna
-              gap: "15px",
+              maxWidth: "800px",
+              margin: "0 auto",
+              padding: "0 20px",
             }}
           >
-            {paymentMethods.map((method) => (
-              <div
-                key={method.id}
-                style={{
-                  border: "1px solid #444",
-                  borderRadius: "8px",
-                  overflow: "hidden",
-                  backgroundColor:
-                    activePaymentMethod === method.id ? "#222" : "#1a1a1a",
-                }}
-              >
-                <button
-                  onClick={() =>
-                    setActivePaymentMethod(
-                      activePaymentMethod === method.id ? null : method.id
-                    )
-                  }
+            <h2
+              style={{
+                textAlign: "center",
+                marginBottom: "30px",
+                fontSize: "2rem",
+                fontFamily: 'Archivo black'
+              }}
+            >
+              Escolha seu metodo de <span style={{
+                color: '#9A30EB',
+                textTransform: 'uppercase'
+              }}>Pagamento</span>
+            </h2>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "15px",
+              }}
+            >
+              {paymentMethods.map((method) => (
+                <div
+                  key={method.id}
                   style={{
-                    width: "100%",
-                    padding: "15px",
-                    backgroundColor: "transparent",
-                    border: "none",
-                    textAlign: "left",
-                    cursor: "pointer",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    fontWeight: "bold",
-                    fontSize: "1.1rem",
-                    color: "#fff",
+
+
+                    overflow: "hidden",
+                    backgroundColor: activePaymentMethod === method.id ? "#454545" : "#454545",
+                    transition: "all 0.3s ease",
                   }}
                 >
-                  {method.name}
-                  <span style={{ fontSize: "1.5rem" }}>
-                    {activePaymentMethod === method.id ? "−" : "+"}
-                  </span>
-                </button>
 
-                {activePaymentMethod === method.id && (
-                  <div
+
+                  <button
+                    onClick={() =>
+                      setActivePaymentMethod(
+                        activePaymentMethod === method.id ? null : method.id
+                      )
+                    }
                     style={{
-                      padding: "20px",
-                      borderTop: "1px solid #444",
+                      width: "100%",
+                      padding: "15px",
+                      backgroundColor: "#454545",
+                      border: "none",
+                      textAlign: "left",
+                      cursor: "pointer",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      fontWeight: "bold",
+                      fontSize: "1.1rem",
+                      color: "#fff",
+                      transition: "all 10s ease",
                     }}
                   >
-                    {method.component}
+                    <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                      <img
+                        src={method.icon}
+                        alt={method.name}
+                        style={{ width: "24px", height: "24px" }}
+                      />
+                      <span>{method.name}</span>
+                    </div>
+                    <span style={{ fontSize: "1.5rem", transition: "transform 0.3s ease" }}>
+
+                    </span>
+                  </button>
+
+                  <div
+                    ref={(ref) => measureRef(method.id, ref)}
+                    style={{
+                      height: activePaymentMethod === method.id ? `${contentHeight[method.id]}px` : "0",
+                      overflow: "hidden",
+                      transition: "height 0.5s ease",
+
+                    }}
+                  >
+                    <div style={{ padding: "20px" }}>
+                      {method.component}
+                    </div>
                   </div>
-                )}
-              </div>
-            ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
+
+        {toastMessage && (
+  <div style={{
+    position: "fixed",
+    top: "20px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    backgroundColor: "#9030eb",
+    color: "white",
+    padding: "12px 24px",
+    fontFamily: 'Questrial',
+    boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
+    zIndex: 1000,
+    animation: "toastSlideIn 0.5s forwards, toastFadeOut 0.5s 1.5s forwards"
+  }}>
+    {toastMessage}
+  </div>
+)}
       </div>
-      <footer>
-      <Footer />
-      </footer>
-    </div>
+    </>
   );
 }
 

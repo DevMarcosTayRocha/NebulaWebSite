@@ -22,7 +22,7 @@
 #msg-404{
      font-family: "Archivo Black", sans-serif;
     font-size: 37px;
-    color:var(--barra-clara);
+    color:var(--roxo1);
     text-align: center;
     text-transform: uppercase;
 }
@@ -51,7 +51,7 @@
     display: table-cell;
     position: relative;
     top: -2rem;
-    color: var(--barra-clara);
+    color: var(--roxo1);
     font-weight: bold;
     text-shadow: 2px 2px 10px #000000;
     user-select: none;
@@ -97,7 +97,7 @@
 #circle3 {
     height: 70px;
     width: 70px;
-    background-color: var(--barra-clara);
+    background-color: var(--roxo1);
     border-radius: 50%;
     position: absolute;
     
@@ -146,7 +146,7 @@
 #btn{
     height: 40px;
     width: 560px;
-    color:var(--barra-clara);
+    color:var(--roxo1);
     background-color:white;
     font-family: "Questrial", sans-serif;
     font-size: 23px;
@@ -163,7 +163,7 @@
 }
 #btn:hover{
     cursor: pointer;
-    background-color: var(--barra-clara);
+    background-color: var(--roxo1);
     color: white;
 }
 
