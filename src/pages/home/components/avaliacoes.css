@@ -22,14 +22,15 @@
     text-align: center;
     justify-content: center;
     background-color: var(--branco);
-    gap: 12px;
+    gap: 5px;
     cursor: poArchivo black;
-    
+
     font-family: "Archivo black", sans-serif;
 }
 
 .nav-estrelas-demo div:hover {
     cursor: pointer;
+    background-color: var(--roxo1);
 }
 
 .nav-estrelas-demo div p {
@@ -41,48 +42,37 @@
     font-weight: 700;
 }
 
-.nav-estrelas-demo div img {
-    width: 30px;
-    height: 30px;
-    filter: grayscale(100%);
-    transition: all 0.3s;
-}
-
-.button-filtros {
-    padding: 10px 20px;
+.nav-estrelas-demo {
     display: flex;
-    text-align: center;
-    justify-content: center;
-    background-color: var(--branco);
-    gap: 12px;
-    position: relative;
-    
-    font-family: "Archivo black", sans-serif;
+    gap: 25 px;
 }
 
-.button-filtros:hover {
+.estrela-item {
+    display: flex;
+    align-items: center;
     cursor: pointer;
 }
 
-.button-filtros p {
+.estrela-icon {
+    fill: var(--cinza-escuro2);
+}
+
+.estrela-item:hover,
+.estrela-item.ativa {
+    background-color: var(--roxo1);
+    color: var(--branco);
+
+    & .estrela-icon {
+        fill: var(--branco);
+    }
+}
+
+.nav-filtros-extras-cursos {
     display: flex;
-    text-align: center;
-    justify-content: center;
-    flex-direction: column;
-    font-size: 20px;
-    font-weight: 700;
+    font-family: "Archivo black", sans-serif;
 }
 
-.button-filtros img {
-    width: 30px;
-    height: 30px;
-}
-
-/* Filtros: extra */
 .button-filtros-div-extra {
-    position: absolute;
-    right: 0;
-    bottom: calc(100% + 15px);
     background-color: var(--branco);
     cursor: auto;
     overflow: hidden;
@@ -90,9 +80,38 @@
     padding: 0;
     width: 0;
     height: 0;
+
+    display: flex;
+    gap: 25px;
 }
 
-/* Navegação do conteiner das avaliações */
+.nav-filtros-extras-cursos {
+    display: flex;
+    gap: 25px;
+}
+
+.filtros-extra {
+    text-align: center;
+    background-color: var(--branco);
+    padding: 0 25px;
+    color: var(--cinza-escuro2);
+    font-size: 23px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filtros-extra:hover {
+    background-color: var(--roxo1);
+    color: var(--branco);
+    cursor: pointer;
+}
+
+.filtros-extra.ativo {
+    background-color: var(--roxo1);
+    color: var(--branco);
+}
 
 .container-texto {
     width: 100%;
@@ -104,11 +123,6 @@
     gap: 70px;
 }
 
-/* Intodução das avaliações */
-
-
-
-/* Conteiner das avaliações */
 .container-avaliações {
     width: calc(100% - (130px * 2));
     display: flex;
@@ -117,11 +131,7 @@
     margin-bottom: 200px;
     padding: 0 130px;
 }
-/* Conteiner das avaliações */
 
-
-
-/* Navegação do conteiner das avaliações */
 .container-nav-estrelas {
     display: flex;
     justify-content: space-between;
@@ -134,48 +144,6 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 25px;
-}
-
-.filtros-extra-titulo h2 {
-    font-size: 30px;
-    font-weight: 700;
-    
-    font-family: "Archivo black", sans-serif;
-}
-
-.filtros-extra-titulo img {
-    width: 50px;
-    height: 50px;
-    cursor: poArchivo black;
-}
-
-.filtros-extra-input {
-    text-align: start;
-    background-color: var(--cinza-claro2);
-    border: none;
-    padding: 10px 20px;
-    width: calc(100% - (20px * 2));
-    color: var(--cinza-escuro3);
-    font-size: 23px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    cursor: poArchivo black;
-}
-
-.filtros-extra-aplicar {
-    text-align: center;
-    background-color: #A751D9;
-    border: none;
-    padding: 10px 20px;
-    width: calc(100% - (20px * 2));
-    color: var(--branco);
-    font-size: 23px;
-    font-weight: 600;
-    cursor: poArchivo black;
-}
-
-.filtros-extra-aplicar:hover {
-    background-color: #000000;
 }
 
 .container-nav-comentarios {
@@ -198,7 +166,6 @@
     gap: 25px;
 }
 
-/* Comentario */
 .comentario {
     padding: 20px;
     background-color: var(--branco);
@@ -219,7 +186,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 .comentario-usuario-icon {
@@ -242,14 +209,14 @@
     font-size: 20px;
     font-weight: 800;
     text-align: start;
-    
+
     font-family: "Archivo Black", sans-serif;
 }
 
 .comentario-usuario-titulo h4 {
     font-size: 16px;
     font-weight: 500;
-    
+
     font-family: "Questrial", sans-serif;
 }
 
@@ -269,31 +236,69 @@
     font-size: 16px;
     font-weight: 400;
     text-align: justify;
-    
+
     font-family: "Questrial", sans-serif;
 }
 
-.button-mais-comentarios {
+.avl-botoes-mais-menos {
+    display: flex;
+    gap: 25px;
+    transition: 0.5s;
+}
+
+.button-mais-menos {
     width: 100%;
     height: 60px;
     background-color: var(--roxo1);
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: poArchivo black;
 }
 
-.button-mais-comentarios svg {
+.button-mais-menos svg {
     height: 80px;
     width: 80px;
 }
 
-.button-mais-comentarios:hover {
+.button-mais-menos:hover {
     background-color: var(--branco);
+    cursor: pointer;
 
     & svg {
         fill: var(--roxo1);
     }
 
 }
-/* Conteiner das avaliações: comentarios */
+
+.button-mais-menos.desligada {
+    cursor: auto;
+    transition: 0.5s;
+    background-color: var(--cinza-escuro1);
+
+    & svg {
+        fill: var(--cinza-escuro3);
+    }
+}
+
+#avl-button-menos {
+    width: 100%;
+    height: 60px;
+    background-color: var(--roxo1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & svg {
+        fill: var(--branco);
+    }
+}
+
+#avl-button-menos.ligada {
+    cursor: auto;
+    transition: 0.5s;
+    background-color: var(--cinza-escuro1);
+
+    & svg {
+        fill: var(--cinza-escuro3);
+    }
+}

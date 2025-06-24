@@ -2,71 +2,87 @@ import "./avaliacoes.css";
 import { useState } from "react";
 import { avaliacoes1 } from "./avaliacoesDados";
 import { avaliacoes2 } from "./avaliacoesDados";
+import { avaliacoes3 } from "./avaliacoesDados";
+import { avaliacoes4 } from "./avaliacoesDados";
+import { useEffect } from "react";
 
 function Avaliacoes() {
 
+  const [filtroEstrelaSelecionada, setFiltroEstrelaSelecionada] = useState<number | null>(null);
+
+  const [filtrosSelecionados, setFiltrosSelecionados] = useState<string[]>([]);
+
+  const toggleFiltroCurso = (filtro: string) => {
+    setFiltrosSelecionados((prev) =>
+      prev.includes(filtro)
+        ? prev.filter((item) => item !== filtro)
+        : [...prev, filtro]
+    );
+    setContainerHeight(1000);
+  };
+
   const [containerHeight, setContainerHeight] = useState(1000);
 
+  useEffect(() => {
+    const setaMenos = document.getElementById("avl-button-menos");
+    if (setaMenos) {
+      setaMenos.classList.add("ligada"); // Começa desligado visualmente
+    }
+  }, []);
+
   const maisAvaliacoes = () => {
-    const containerTamanhoTotal = document.getElementById(
-      "container-comentarios"
-    );
-
-    const setaMaisAvaliacoes = document.getElementById("avl-seta-mais");
-    if (!containerTamanhoTotal) return;
-
+    const containerTamanhoTotal = document.getElementById("container-comentarios");
+    const setaMais = document.getElementById("avl-button-mais");
+    const setaMenos = document.getElementById("avl-button-menos");
+  
+    if (!containerTamanhoTotal || !setaMais || !setaMenos) return;
+  
     const totalHeight = containerTamanhoTotal.scrollHeight;
-    console.log("Tamanho do container Total: " + totalHeight);
-
-    if (containerHeight + 1000 <= totalHeight) {
-      setContainerHeight((prev) => prev + 1000);
-      setaMaisAvaliacoes.style.transform = "rotate(0deg)";
-    }
-
-    if (containerHeight + 1000 > totalHeight) {
+    const novoAltura = containerHeight + 1000;
+  
+    if (novoAltura >= totalHeight) {
       setContainerHeight(totalHeight);
-      setaMaisAvaliacoes.style.transform = "rotate(180deg)";
+      setaMais.classList.add("desligada");
+    } else {
+      setContainerHeight(novoAltura);
     }
-
-    if (containerHeight == totalHeight) {
-      setContainerHeight(1000);
-      setaMaisAvaliacoes.style.transform = "rotate(0deg)";
-    }
+  
+    // Ativa o botão de menos
+    setaMenos.classList.remove("ligada");
   };
 
-  let abreFechaFiltrosTrue = false;
+  const menosAvaliacoes = () => {
+    const setaMenos = document.getElementById("avl-button-menos");
+    const setaMais = document.getElementById("avl-button-mais");
+  
+    if (!setaMenos || !setaMais) return;
+  
+    if (containerHeight <= 1000) {
+      setContainerHeight(1000);
+      setaMenos.classList.add("ligada"); // volta ao estado desligado
+    } else {
+      setContainerHeight(1000);
+      setaMenos.classList.add("ligada");
+    }
+  
+    setaMais.classList.remove("desligada");
+  };
+
 
   const filtroEstrela = (qualEstrela: number) => {
-    for (let i = 1; i <= 5; i++) {
-      const estrela = document.getElementById(`estrela-filtro-${i}`);
-      if (estrela) {
-        estrela.style.filter =
-          i === qualEstrela ? "grayscale(0%)" : "grayscale(100%)";
-      }
-    }
+    setFiltroEstrelaSelecionada((prev) => (prev === qualEstrela ? null : qualEstrela));
+    setContainerHeight(1000);
   };
 
-  const abreFechaFiltro = (trueClick: boolean) => {
-    const filtrosExtra = document.getElementById("filtros-extra");
-    if (!filtrosExtra) return;
+  const filtrarAvaliacoes = (avaliacoes: any[]) => {
+    return avaliacoes.filter((item) => {
+      const cursoCondicao =
+        filtrosSelecionados.length === 0 || filtrosSelecionados.includes(item.curso.toUpperCase());
+      const estrelaCondicao =
+        filtroEstrelaSelecionada === null || item.estrelas === filtroEstrelaSelecionada;
 
-    if (trueClick) {
-      abreFechaFiltrosTrue = !abreFechaFiltrosTrue;
-      filtrosExtra.style.width = "250px";
-      filtrosExtra.style.height = "auto";
-      filtrosExtra.style.padding = "25px";
-      document.onclick = () => {
-        setTimeout(() => {
-          if (!abreFechaFiltrosTrue) {
-            filtrosExtra.style.width = "0px";
-            filtrosExtra.style.height = "0px";
-            filtrosExtra.style.padding = "0px";
-          }
-        }, 50);
-      };
-    } else {
-      document.onclick = () => { };
-    }
+      return cursoCondicao && estrelaCondicao;
+    });
   };
 
   return (
@@ -80,36 +96,38 @@ function Avaliacoes() {
         <div className="container-nav-estrelas">
           <nav className="nav-estrelas-demo">
             {[1, 2, 3, 4, 5].map((num) => (
-              <div key={num} onClick={() => filtroEstrela(num)}>
+              <div
+                key={num}
+                className={`estrela-item ${filtroEstrelaSelecionada === num ? "ativa" : ""}`}
+                onClick={() => filtroEstrela(num)}
+              >
                 <p>{num}</p>
-                <img
-                  id={`estrela-filtro-${num}`}
-                  src="/estrela-clara.svg"
-                  alt={`Estrela ${num}`}
-                />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  className="estrela-icon"
+                >
+                  <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 
+        2 9.24 7.46 13.97 5.82 21z" />
+                </svg>
               </div>
             ))}
           </nav>
-          <div className="button-filtros" onClick={() => abreFechaFiltro(true)}>
-            <p>Filtros</p>
-            <img src="/filtros.svg" />
-            <div
-              className="button-filtros-div-extra"
-              id="filtros-extra"
-              onClick={() => abreFechaFiltro(true)}
-            >
-              <div className="filtros-extra-titulo">
-                <h2>Filtros</h2>
-                <img
-                  src="/close.svg"
-                  onClick={() => abreFechaFiltro(true)}
-                />
+
+          <nav className="nav-filtros-extras-cursos">
+            {["ÓRBITA", "GALÁXIA", "UNIVERSO"].map((filtro) => (
+              <div
+                key={filtro}
+                className={`filtros-extra ${filtrosSelecionados.includes(filtro) ? "ativo" : ""}`}
+                onClick={() => toggleFiltroCurso(filtro)}
+              >
+                {filtro}
               </div>
-              <div className="filtros-extra">ÓRBITA</div>
-              <div className="filtros-extra">GALÁXIA</div>
-              <div className="filtros-extra">UNIVERSO</div>
-            </div>
-          </div>
+            ))}
+          </nav>
+
         </div>
         <div
           className="container-nav-comentarios"
@@ -118,7 +136,7 @@ function Avaliacoes() {
         >
 
           <div className="nav-comentarios">
-            {avaliacoes1.map((item, index) => (
+            {filtrarAvaliacoes(avaliacoes1).map((item, index) => (
               <div className="comentario" key={index}>
                 <div className="comentario-content">
                   <div className="comentario-usuario">
@@ -148,7 +166,7 @@ function Avaliacoes() {
           </div>
 
           <div className="nav-comentarios">
-            {avaliacoes2.map((item, index) => (
+            {filtrarAvaliacoes(avaliacoes2).map((item, index) => (
               <div className="comentario" key={index}>
                 <div className="comentario-content">
                   <div className="comentario-usuario">
@@ -178,7 +196,7 @@ function Avaliacoes() {
           </div>
 
           <div className="nav-comentarios">
-            {avaliacoes1.map((item, index) => (
+            {filtrarAvaliacoes(avaliacoes3).map((item, index) => (
               <div className="comentario" key={index}>
                 <div className="comentario-content">
                   <div className="comentario-usuario">
@@ -208,7 +226,7 @@ function Avaliacoes() {
           </div>
 
           <div className="nav-comentarios">
-            {avaliacoes2.map((item, index) => (
+            {filtrarAvaliacoes(avaliacoes4).map((item, index) => (
               <div className="comentario" key={index}>
                 <div className="comentario-content">
                   <div className="comentario-usuario">
@@ -238,19 +256,36 @@ function Avaliacoes() {
           </div>
 
         </div>
-        <div className="button-mais-comentarios" onClick={maisAvaliacoes}>
-          <svg
-            id="avl-seta-mais"
-            style={{ transition: "100ms" }}
-            xmlns="http://www.w3.org/2000/svg"
-            height="24px"
-            viewBox="0 -960 960 960"
-            width="24px"
-            fill="#FFFFFF"
-          >
-            <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
-          </svg>
+        <div className="avl-botoes-mais-menos">
+          <div className="button-mais-menos" id="avl-button-menos" onClick={menosAvaliacoes}>
+            <svg
+              id="avl-seta-menos"
+              className="seta"
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#FFFFFF"
+              style={{ transform: "rotate(180deg)" }}
+            >
+              <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+            </svg>
+          </div>
+          <div className="button-mais-menos" id="avl-button-mais" onClick={maisAvaliacoes}>
+            <svg
+              id="avl-seta-mais"
+              className="seta"
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#FFFFFF"
+            >
+              <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+            </svg>
+          </div>
         </div>
+
       </div>
     </>
   );

@@ -5,8 +5,9 @@ function SessaoPlanos() {
     return (
         <>
             <div id="ssp-container">
-                <div className="pdr-descricao">
-                    <span>Conheça os nossos <span className="pdr-descricao-destaque">PLANOS</span></span>
+                <div className="sessao sessao-descentralizada">
+                    <h1>ENCONTRE O MELHOR PLANO PARA VOCÊ</h1>
+                    <hr />
                 </div>
 
                 <div className="video-planos">
@@ -18,8 +19,8 @@ function SessaoPlanos() {
                 <div className="planos-mini-texto">
                     <span>
                         Após assistir o vídeo acima e entender como os nossos cursos funcionam, agora você poderá escolher qual o melhor plano para você.
-                </span>
-                    </div>
+                    </span>
+                </div>
                 <div className="container-planos-pagIni">
                     <div className="plano">
                         <img src="./src/assets/background-padrao.webp" />
