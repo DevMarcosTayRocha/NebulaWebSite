@@ -11,10 +11,6 @@
     letter-spacing: 1px;
 }
 
-html {
-    display: flex;
-}
-
 :root {
     --branco: #F8EFFF;
     --preto: #070209;
@@ -28,22 +24,16 @@ html {
     --roxo1: #9A30EB;
 }
 
-body {
-    background-color: red;
-}
-
 body::-webkit-scrollbar {
-    width: 25px;
+    width: 10px;
 }
 
 body::-webkit-scrollbar-track {
-    background: var(--barra-escura);
+    background: var(--cinza-escuro3);
 }
 
 body::-webkit-scrollbar-thumb {
-    background-color: var(--barra-clara);
-    border-radius: 20px;
-    border: 5px solid var(--barra-escura);
+    background-color: var(--roxo1);
 }
 
 .container {
@@ -55,6 +45,7 @@ body::-webkit-scrollbar-thumb {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--cinza-escuro2);
 }
 
 .pdr-descricao {
