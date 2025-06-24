@@ -11,7 +11,7 @@ export const initial_cursos = {
                 descricao: 'Este modulo vai tratar de Lorem ipsum dolor sit amet. Id laudantium nesciunt ea soluta odit sed blanditiis repellendus. Sit officia excepturi id porro ullam ut adipisci consequuntur ut quia voluptas 33 internos tempore. Qui nihil officia eum necessitatibus consequatur qui voluptates repellendus est optio accusantium! Qui consequatur rerum vel earum sint non error consequatur et explicabo unde. Lorem ipsum dolor sit amet. Id laudantium nesciunt ea soluta odit sed blanditiis repellendus. Sit officia excepturi id porro ullam ut adipisci consequuntur ut quia voluptas 33 internos tempore. Qui nihil officia eum necessitatibus.',
                 pdf: '',
                 videoBackground: '/ceu-estrelado.jpg',
-                video: ''
+                video: '/cursos/mod1-intro.mp4'
             },
             atividades: [
                 {
