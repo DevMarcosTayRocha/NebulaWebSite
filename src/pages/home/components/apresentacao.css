@@ -51,6 +51,7 @@
     align-items: center;
     background-color: var(--roxo1);
     color: var(--branco);
+    padding: 10px 0;
 }
 
 .apr-botao-card:hover {

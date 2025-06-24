@@ -6,7 +6,7 @@ function Forum() {
   return (
     <>
       <Menu />
-      <div id="container">
+      <div className="container">
         <Comentario />
         <Footer />
       </div>
