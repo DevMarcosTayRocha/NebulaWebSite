@@ -211,6 +211,6 @@
 }
 
 .ant-anotacao-botoes button:hover {
-  background-color: var(--barra-escura);
+  background-color: var(--cinza-escuro3);
   cursor: pointer;
 }

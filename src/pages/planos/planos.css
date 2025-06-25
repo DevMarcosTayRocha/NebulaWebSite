@@ -1,13 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Questrial&display=swap');
-
-:root {
-    --cor-primaria: #9B3BD2;
-    --cor-secundaria: #D390FF;
-    --barra-clara: #9A30EB;
-    --barra-escura: #070209;
-}
-
-    
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Questrial&display=swap');    
     
     html {
         overflow-x: hidden;

@@ -1,9 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Menu } from "../../components/Menu";
 
-import "./logon.css";
 
 axios.defaults.withCredentials = true; // Importante para sessões
 
@@ -36,6 +34,8 @@ function Logon() {
 
   return (
     <div className="login">
+
+      
 
       <div className="bgc-login"></div>
 

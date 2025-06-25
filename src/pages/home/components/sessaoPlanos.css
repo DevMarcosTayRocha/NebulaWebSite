@@ -3,7 +3,7 @@
 }
 
 .video-planos-background {
-    background-image: url(../../../assets/background-padrao2.jpg);
+    background-image: url(background-padrao2.jpg);
     position: absolute;
     width: 100%;
     height: 100%;
@@ -71,7 +71,6 @@
     flex-direction: column;
     gap: 20px;
     background-color: #0e0e0e;
-    border-radius: 30px;
     overflow: hidden;
 }
 
@@ -118,7 +117,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
+    border-radius: 0px;
     cursor: pointer;
     
     font-family: "Inter", sans-serif;

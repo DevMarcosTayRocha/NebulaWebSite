@@ -10,12 +10,24 @@ axios.defaults.withCredentials = true; // Importante para sessões
 
 const API_URL = "http://localhost:4000"; // Backend local
 
+
+interface User {
+  idsite: string;
+  id: string;
+  name: string;
+  email: string;
+  photo: string;
+  provider: string;
+  prf_user: string;
+  bio: string;
+}
+
 function Configuracoes() {
   const navigate = useNavigate();
 
   const [idioma, setIdioma] = useState(false);
   const [tema, setTema] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User>(null);
 
   const logout = async () => {
     await axios.get(`${API_URL}/auth/logout`);
@@ -27,6 +39,7 @@ function Configuracoes() {
   return (
     <>
       <Menu />
+      <div className="container">
       <div id="container-config">
         <h1>Trocar Idioma</h1>
         <p>Escolha o idioma que melhor te ajude a navegar pelo nosso site.</p>
@@ -81,6 +94,7 @@ function Configuracoes() {
 
 
         <Footer />
+      </div>
       </div>
     </>
   );

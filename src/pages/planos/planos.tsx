@@ -704,19 +704,7 @@ function Planos() {
 
 
 
-          <h1
-            style={{
-              textAlign: "center",
-              marginBottom: "50px",
-              fontSize: "2.5rem",
-              fontFamily: 'Archivo Black',
-            }}
-          >
-            Escolha um de nossos <h1 style={{
-              color: '#9A30EB',
-              fontSize: '3rem'
-            }}>PLANOS</h1>
-          </h1>
+          
 
           {/* Carrossel de Planos */}
           <div style={{ margin: "0 auto 60px", maxWidth: "1000px" }}>

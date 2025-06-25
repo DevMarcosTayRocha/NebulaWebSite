@@ -42,7 +42,7 @@ export function Menu() {
     >
       <div id="menu-principais-icones">
 
-        <Link to={isAuthenticated ? "/perfil" : "/entrar"}>
+        <Link to="/perfil">
           <div
             className={`menu-icones ${temaClaro ? "claro" : ""}`}
             id="perfil-icone"
@@ -68,7 +68,7 @@ export function Menu() {
           </div>
         </Link>
 
-        <Link to={isAuthenticated ? "/anotacoes" : "/entrar"}>
+        <Link to="/anotacoes">
           <div
             className={`menu-icones ${temaClaro ? "claro" : ""}`}
             id="anotacoes-icone"
@@ -87,7 +87,7 @@ export function Menu() {
           </div>
         </Link>
 
-        <Link to={isAuthenticated ? "/cursos" : "/entrar"}>
+        <Link to="/cursos">
           <div
             className={`menu-icones ${temaClaro ? "claro" : ""}`}
             id="cursos-icone"
@@ -106,7 +106,7 @@ export function Menu() {
           </div>
         </Link>
 
-        <Link to={isAuthenticated ? "/forum" : "/entrar"}>
+        <Link to="/forum">
           <div
             className={`menu-icones ${temaClaro ? "claro" : ""}`}
             id="forum-icone"
@@ -125,7 +125,7 @@ export function Menu() {
           </div>
         </Link>
 
-        <Link to={isAuthenticated ? "/planos" : "/entrar"}>
+        <Link to="/planos">
           <div
             className={`menu-icones ${temaClaro ? "claro" : ""}`}
             id="carrinho-icone"
