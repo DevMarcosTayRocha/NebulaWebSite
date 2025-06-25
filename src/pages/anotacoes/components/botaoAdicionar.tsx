@@ -1,65 +1,70 @@
 import "./botaoAdicionar.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type TodoItem = {
-  text?: string; // texto da tarefa (pode estar vazio)
-  imageUrl?: string; // imagem da tarefa (pode estar vazia)
-  pdfUrl?: string; // Novo campo para PDF
-  pdfName?: string; // Nome do arquivo PDF
+  text?: string;
+  imageUrl?: string;
+  pdfUrl?: string;
+  pdfName?: string;
 };
 
-function BotaoAdicionar() {
+type BotaoAdicionarProps = {
+  index: number;
+  ativo: boolean;
+  setAtivoIndex: (index: number | null) => void;
+};
+
+function BotaoAdicionar({ index, ativo, setAtivoIndex }: BotaoAdicionarProps) {
   const [todos, setTodos] = useState<TodoItem[]>([]);
-
-  // Serve para mostrar ou esconder o formulário (a tela onde a pessoa preenche a tarefa)
-  const [showForm, setShowForm] = useState(false);
-
-  // Aqui guardamos o texto que a pessoa digita
   const [text, setText] = useState("");
-  const limiteCaracter = 2000;
-
-  // Aqui guardamos a imagem que a pessoa escolheu
   const [image, setImage] = useState<File | null>(null);
-
-  // Aqui guardamos a imagem em formato que dá para mostrar na tela
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-
   const [pdf, setPdf] = useState<File | null>(null);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [pdfName, setPdfName] = useState<string | null>(null);
+  const limiteCaracter = 2000;
 
-  // Esta função é chamada quando a pessoa escolhe uma imagem
+  useEffect(() => {
+    if (!ativo) {
+      setText("");
+      setImage(null);
+      setImagePreview(null);
+      setPdf(null);
+      setPdfUrl(null);
+      setPdfName(null);
+    }
+  }, [ativo]);
+
+  const handleClick = () => {
+    if (!ativo) setAtivoIndex(index);
+  };
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]; // Pega o primeiro arquivo da lista
-
+    const file = e.target.files?.[0];
     if (!file) {
       setImage(null);
       setImagePreview(null);
       return;
     }
 
-    // Verifica se o tipo do arquivo começa com "image/"
     if (!file.type.startsWith("image/")) {
       alert("Por favor, selecione um arquivo de imagem válido.");
-      e.target.value = ""; // Limpa o input
+      e.target.value = "";
       setImage(null);
       setImagePreview(null);
       return;
     }
 
-    setImage(file); // Salva o arquivo
-
-    // Lê a imagem para mostrar na tela
+    setImage(file);
     const reader = new FileReader();
     reader.onloadend = () => {
-      setImagePreview(reader.result as string); // Coloca a imagem pronta para visualizar
+      setImagePreview(reader.result as string);
     };
     reader.readAsDataURL(file);
   };
 
   const handlePdfChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-
     if (!file) {
       setPdf(null);
       setPdfUrl(null);
@@ -81,15 +86,12 @@ function BotaoAdicionar() {
     setPdfName(file.name);
   };
 
-  // Esta função é chamada quando a pessoa clica em "Adicionar"
   const handleSubmit = () => {
-    // Se a pessoa não digitou nada e não colocou imagem, mostramos um aviso
     if (!text && !image && !pdf) {
       alert("Você precisa adicionar imagem, pdf, texto ou todos.");
       return;
     }
 
-    // Criamos um novo item com o texto e/ou a imagem
     const newTodo: TodoItem = {
       text: text.trim() || undefined,
       imageUrl: imagePreview || undefined,
@@ -97,17 +99,15 @@ function BotaoAdicionar() {
       pdfName: pdfName || undefined,
     };
 
-    // Colocamos a nova tarefa na lista de tarefas
     setTodos([newTodo, ...todos]);
 
-    // Limpamos o formulário depois de adicionar
     setText("");
     setImage(null);
     setImagePreview(null);
     setPdf(null);
     setPdfUrl(null);
     setPdfName(null);
-    setShowForm(false);
+    setAtivoIndex(null);
   };
 
   const MostrarTextoLimite = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -120,11 +120,11 @@ function BotaoAdicionar() {
   return (
     <>
       <div
-        className={showForm ? "ant-botao-add ativo" : "ant-botao-add"}
-        onClick={() => !showForm && setShowForm(true)}
+        className={ativo ? "ant-botao-add ativo" : "ant-botao-add"}
+        onClick={handleClick}
       >
         <svg
-          className={showForm ? "ant-svg-add ativo" : "ant-svg-add"}
+          className={ativo ? "ant-svg-add ativo" : "ant-svg-add"}
           xmlns="http://www.w3.org/2000/svg"
           height="24px"
           viewBox="0 -960 960 960"
@@ -134,13 +134,13 @@ function BotaoAdicionar() {
           <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
         </svg>
 
-        {showForm && (
+        {ativo && (
           <div className="ant-botoes-add">
             <div className="ant-add-imagem">
-              <label className="ant-label" htmlFor="uploadImagem">
+              <label className="ant-label" htmlFor={`uploadImagem-${index}`}>
                 <span>Escolha uma imagem</span>
                 <input
-                  id="uploadImagem"
+                  id={`uploadImagem-${index}`}
                   type="file"
                   accept="image/*"
                   onChange={handleImageChange}
@@ -156,10 +156,10 @@ function BotaoAdicionar() {
               )}
             </div>
             <div className="ant-add-pdf">
-              <label className="ant-label" htmlFor="uploadPDF">
+              <label className="ant-label" htmlFor={`uploadPDF-${index}`}>
                 <span>Escolha um PDF</span>
                 <input
-                  id="uploadPDF"
+                  id={`uploadPDF-${index}`}
                   type="file"
                   accept="application/pdf"
                   onChange={handlePdfChange}
@@ -192,20 +192,7 @@ function BotaoAdicionar() {
                 {limiteCaracter - text.length} / {limiteCaracter}
               </span>
             </div>
-            <button
-              onClick={() => {
-                // Se clicar em cancelar, limpamos tudo e escondemos o formulário
-                setText("");
-                setImage(null);
-                setImagePreview(null);
-                setPdf(null);
-                setPdfUrl(null);
-                setPdfName(null);
-                setShowForm(false);
-              }}
-            >
-              CANCELAR
-            </button>
+            <button onClick={() => setAtivoIndex(null)}>CANCELAR</button>
             <button onClick={handleSubmit}>ADICIONAR</button>
           </div>
         )}
@@ -218,8 +205,7 @@ function BotaoAdicionar() {
               {todo.imageUrl && (
                 <img src={todo.imageUrl} alt="Imagem" className="max-h-64" />
               )}
-              {todo.text && <p className="ant-anotacao-texto">{todo.text}
-  </p>}
+              {todo.text && <p className="ant-anotacao-texto">{todo.text}</p>}
               {todo.pdfUrl && todo.pdfName && (
                 <div className="ant-pdf-view">
                   <a

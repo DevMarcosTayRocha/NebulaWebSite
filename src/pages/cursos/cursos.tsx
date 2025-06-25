@@ -7,7 +7,7 @@ function Cursos() {
   return (
     <>
       <Menu />
-      <div id="container">
+      <div className="container">
         <div className="cursos-espacamento">
           <div className="sessao">
             <h1>CURSO UNIVERSO</h1>

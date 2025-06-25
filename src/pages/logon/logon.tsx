@@ -37,7 +37,6 @@ function Logon() {
   return (
     <div className="login">
 
-      <Menu />
       <div className="bgc-login"></div>
 
       <div className="form-login">
