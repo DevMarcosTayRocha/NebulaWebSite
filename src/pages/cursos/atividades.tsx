@@ -20,7 +20,7 @@ function atividades() {
   return (
     <>
       <Menu />
-      <div id="container">
+      <div className="container">
         <div className="cursos-espacamento">
             {atividade.questoes.map((questao, index) => {
                 const [resposta, setResposta] = useState('Digite sua resposta aqui...')

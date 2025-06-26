@@ -38,11 +38,11 @@ function Modulos() {
   return (
     <>
       <Menu />
-      <div id="container">
+      <div className="container">
         <div className="cursos-espacamento">
 
           <div className="sessao">
-            <h1>INTRODUÇÂO</h1>
+            <h1>INTRODUÇÃO</h1>
             <hr />
           </div>
           <p>{modulo.introducao.descricao}</p>

@@ -62,7 +62,7 @@ export function Comentario() {
           }}
         />
         <button onClick={adicionarComentario}>
-          <img src="../../../src/assets/submit.svg" alt="Enviar comentário" />
+          <img src="/submit.svg" alt="Enviar comentário" />
         </button>
       </div>
     </>

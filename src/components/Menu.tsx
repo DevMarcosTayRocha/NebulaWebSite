@@ -49,7 +49,7 @@ export function Menu() {
           >
             {isAuthenticated ? (
               <img
-                src={user?.photo || "../../src/assets/iconeUsuario.svg"}
+                src={user?.photo || "../c/assets/iconeUsuario.svg"}
                 alt="perfil"
               />
             ) : (
