@@ -8,7 +8,8 @@ import Login from './pages/login/login';
 import Logon from './pages/logon/logon';
 import Configuracoes from './pages/configuracoes/configuracoes';
 import Cursos from './pages/cursos/cursos';
-import Modulos from './pages/cursos/modulos'
+import Modulos from './pages/cursos/modulos';
+import Atividades from './pages/cursos/atividades';
 import Planos from './pages/planos/planos';
 import Forum from './pages/forum/forum';
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/anotacoes" element={<Anotacoes />} />
           <Route path="/cursos" element={<Cursos />} />
           <Route path="/modulos/:assinatura/:moduloId" element={<Modulos />} />
+          <Route path="/modulos/:assinatura/:moduloId/atividades/:atividadeInd" element={<Atividades />} />
           <Route path="/forum" element={<Forum />} />
           <Route path="/planos" element={<Planos />} />
           <Route path="/configuracoes" element={<Configuracoes />} />
