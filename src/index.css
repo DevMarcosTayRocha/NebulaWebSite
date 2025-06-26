@@ -61,37 +61,6 @@ body::-webkit-scrollbar-thumb {
     font-size: 36px;
 }
 
-.sessao {
-    width: 100%;
-    display: flex;
-    box-sizing: border-box;
-    align-items: center;
-    gap: 25px;
-    padding: 50px 0px 25px 0px;
-}
-
-.sessao-descentralizada {
-    width: 90%;
-}
-
-.sessao h1 {
-    font-family: 'Archivo Black';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 35px;
-
-    color: #F8EFFF;
-}
-
-.sessao hr {
-    width: max-content;
-    flex-grow: 1;
-    height: 1px;
-    box-sizing: border-box;
-    background-color: #F8EFFF;
-}
-
 @media screen and (max-width: 425px) {
     #container {
         width: 100%;

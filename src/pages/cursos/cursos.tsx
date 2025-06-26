@@ -21,13 +21,17 @@ function Cursos() {
             <h1>CURSO GALÁXIA</h1>
             <hr />
           </div>
-          <TemplateModulos assinatura='galaxia' />
+          <div className="cursos-alinhar-tamplates">
+            <TemplateModulos assinatura='galaxia' />
+          </div>
 
           <div className="sessao">
             <h1>CURSO ÓRBITA</h1>
             <hr />
           </div>
-          <TemplateModulos assinatura='orbita' />
+          <div className="cursos-alinhar-tamplates">
+            <TemplateModulos assinatura='orbita' />
+          </div>
 
         </div>
         <Footer />
