@@ -69,24 +69,15 @@
     align-items: start;
     justify-content: start;
     flex-direction: column;
-    gap: 20px;
-    background-color: #0e0e0e;
-    overflow: hidden;
-}
-
-.plano img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
+    gap: 25px;
 }
 
 .plano h2 {
-    margin: 0 30px;
+    margin: 25px 30px 0 30px;
     color: #ffffff;
-    opacity: 0.37;
-    font-size: 40px;
+    font-size: 32px;
     
-    font-family: "Inter", sans-serif;
+    font-family: "Archivo black", sans-serif;
 }
 
 .plano p {
@@ -94,21 +85,20 @@
     color: #ffffff;
     font-size: 20px;
     
-    font-family: "Inter", sans-serif;
+    font-family: "Questrial", sans-serif;
 }
 
 .plano h3 {
     margin: 15px 30px -15px 30px;
-    color: #ffffff;
-    opacity: 0.37;
-    font-size: 17px;
+    color: var(--branco);
+    font-size: 16px;
     
-    font-family: "Inter", sans-serif;
+    font-family: "Questrial", sans-serif;
 }
 
 .plano-button {
     width: calc(100% - (30px * 2));
-    margin: 0 30px;
+    margin: 0 30px 25px 30px;
     color: #ffffff;
     background-color: #585858;
     font-size: 40px;
@@ -120,23 +110,20 @@
     border-radius: 0px;
     cursor: pointer;
     
-    font-family: "Inter", sans-serif;
+    font-family: "Questrial", sans-serif;
 }
 
 .plano-nav-beneficios {
-    margin: 10px 10px 20px 10px;
+    margin: 10px 0px 10px 0px;
     display: flex;
     flex-direction: column;
-    font-weight: 500;
 }
 
 .nav-beneficio {
-    margin-top: -20px;
     display: flex;
-    height: 60px;
     align-items: center;
     justify-content: space-between;
-    width: 200px;
+    height: 40px;
 }
 
 .nav-beneficio img {
@@ -160,13 +147,14 @@
 .plano .plano-button {
     background-color: #ffffff;
     color: #A751D9;
+    height: 35px;
 }
 
 .planos-mini-texto {
     font-family: "Questrial", sans-serif;
     font-size: 20px;
     color: #fff;
-    margin: 60px 0;
+    margin: 25px 0;
     text-align: center;
 }
 /* Área de planos */

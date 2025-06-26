@@ -663,14 +663,13 @@ function Planos() {
           style={{
             maxWidth: "100vw",
             margin: "0 auto",
-            padding: "20px",
+            padding: "100px 0",
             color: "#fff",
-            backgroundColor: "#121212",
+            backgroundColor: "var(--cinza-escuro1)",
             minHeight: "100vh",
             fontFamily: '"Questrial", sans-serif',
             userSelect: 'none',
             transform: 'scale(1.1)',
-            marginTop: '3%'
           }}
         >
           <style>

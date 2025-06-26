@@ -18,6 +18,7 @@ function Home() {
                 <Objetivos />
                 <Apresentacao />
                 <Avaliacoes />
+                <CarrosselAulas/>
                 <SessaoPlanos/>
                 <Footer/>
             </div>

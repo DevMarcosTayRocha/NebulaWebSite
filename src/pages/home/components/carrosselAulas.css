@@ -40,7 +40,7 @@
 }
 
 .carrosel-card a {
-    background-color: #A751D9;
+    background-color: var(--roxo1);
     padding: 10px;
     font-size: 24px;
     display: flex;
@@ -52,8 +52,8 @@
 }
 
 .carrosel-card a:hover {
-    background-color: #7f34aa;
-    transition: all 0.2s;
+    background-color: var(--branco);
+    color: var(--roxo1);
 }
 
 .bloqueado a {
@@ -80,7 +80,7 @@
 }
 
 .container-carrossel::-webkit-scrollbar-thumb {
-    background-color: #A751D9;
+    background-color: var(--roxo1);
     border-radius: 20px;
 }
 
@@ -88,8 +88,12 @@
 .carrosel-card h3,
 .carrosel-card h4,
 .carrosel-card a {
-    color: white;
+    color: var(--branco);
     text-align: justify;
+}
+
+.carrosel-card h4 {
+    font-family: "Questrial", sans-serif;
 }
 
 .fullscreen-video {

@@ -4,8 +4,7 @@ import Perfil from './pages/perfil/Perfil';
 import Home from './pages/home/paginaInicial';
 import Page404 from './pages/404/page404';
 import Anotacoes from './pages/anotacoes/Anotacoes';
-import Login from './pages/login/login';
-import Logon from './pages/logon/logon';
+import Login from './pages/logon/login';
 import Configuracoes from './pages/configuracoes/configuracoes';
 import Cursos from './pages/cursos/cursos';
 import Modulos from './pages/cursos/modulos'
@@ -26,7 +25,6 @@ function App() {
           <Route path="/planos" element={<Planos />} />
           <Route path="/configuracoes" element={<Configuracoes />} />
           <Route path="/cadastrar" element={<Login />} />
-          <Route path="/entrar" element={<Logon />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </Router>

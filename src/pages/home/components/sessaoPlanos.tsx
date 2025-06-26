@@ -1,11 +1,13 @@
 import "./sessaoPlanos.css"
 import "../../../index.css"
+import { Link } from "react-router-dom";
+import Planos from "../../planos/planos";
 
 function SessaoPlanos() {
     return (
         <>
             <div id="ssp-container">
-                <div className="sessao sessao-descentralizada">
+                <div className="sessao">
                     <h1>ENCONTRE O MELHOR PLANO PARA VOCÊ</h1>
                     <hr />
                 </div>
@@ -23,46 +25,43 @@ function SessaoPlanos() {
                 </div>
                 <div className="container-planos-pagIni">
                     <div className="plano">
-                        <img src="background-padrao.webp" />
                         <h2>ÓRBITA</h2>
-                        <p>"I'll get Dumbledore if you let go of me," said Harry. "Just let go, Mr. Crouch, and I'll get him.. . ."</p>
-                        <h3>A PARTIR DE</h3>
-                        <div className="plano-button">R$900.99</div>
+                        <p>Para iniciantes, aborda conceitos básicos de física e astronomia, como o Sistema Solar e leis fundamentais. Ideal para quem está começando sua jornada no universo científico.</p>
                         <div className="plano-nav-beneficios">
-                            <div className="nav-beneficio"><p>Beneficio 1</p> <img src="check-claro2.svg" /></div>
-                            <div className="nav-beneficio"><p>Beneficio 2</p> <img src="check-claro2.svg" /></div>
-                            <div className="nav-beneficio"><p>Beneficio 3</p> <img src="check-escuro.svg" /></div>
-                            <div className="nav-beneficio"><p>Beneficio 4</p> <img src="check-escuro.svg" /></div>
-                            <div className="nav-beneficio"><p>Beneficio 5</p> <img src="check-escuro.svg" /></div>
+                            <div className="nav-beneficio"><p>Video aulas e PDFs</p> <img src="check-claro2.svg" /></div>
+                            <div className="nav-beneficio"><p>Tarefas</p> <img src="check-claro2.svg" /></div>
+                            <div className="nav-beneficio"><p>Planejamento de rotina</p> <img src="cancel.svg" /></div>
+                            <div className="nav-beneficio"><p>Grupo no Whatsapp</p> <img src="cancel.svg" /></div>
+                            <div className="nav-beneficio"><p>Mentorial semanal particular</p> <img src="cancel.svg" /></div>
+                            <div className="nav-beneficio"><p>Emissão de certificado digital</p> <img src="cancel.svg" /></div>
                         </div>
+                        <Link to="Planos" className="plano-button">R$900.99</Link>
                     </div>
                     <div className="plano">
-                        <img src="background-padrao.webp" />
                         <h2>GALÁXIA</h2>
-                        <p>"I'll get Dumbledore if you let go of me," said Harry. "Just let go, Mr. Crouch, and I'll get him.. . ."</p>
-                        <h3>A PARTIR DE</h3>
-                        <div className="plano-button">R$990.99</div>
+                        <p>Explora temas intermediários como leis de Newton, estrelas, galáxias e introdução à relatividade. Perfeito para quem já conhece o básico e quer se aprofundar.</p>
                         <div className="plano-nav-beneficios">
-                            <div className="nav-beneficio"><p>Beneficio 1</p> <img src="check-claro2.svg" /></div>
-                            <div className="nav-beneficio"><p>Beneficio 2</p> <img src="check-claro2.svg" /></div>
-                            <div className="nav-beneficio"><p>Beneficio 3</p> <img src="check-claro2.svg" /></div>
-                            <div className="nav-beneficio"><p>Beneficio 4</p> <img src="close.svg" /></div>
-                            <div className="nav-beneficio"><p>Beneficio 5</p> <img src="check-escuro.svg" /></div>
+                            <div className="nav-beneficio"><p>Video aulas e PDFs</p> <img src="check-claro2.svg" /></div>
+                            <div className="nav-beneficio"><p>Tarefas</p> <img src="check-claro2.svg" /></div>
+                            <div className="nav-beneficio"><p>Planejamento de rotina</p> <img src="check-claro2.svg" /></div>
+                            <div className="nav-beneficio"><p>Grupo no Whatsapp</p> <img src="cancel.svg" /></div>
+                            <div className="nav-beneficio"><p>Mentorial semanal particular</p> <img src="cancel.svg" /></div>
+                            <div className="nav-beneficio"><p>Emissão de certificado digital</p> <img src="cancel.svg" /></div>
                         </div>
+                        <Link to="Planos" className="plano-button">R$990.99</Link>
                     </div>
                     <div className="plano">
-                        <img src="background-padrao.webp" />
                         <h2>UNIVERSO</h2>
-                        <p>"I'll get Dumbledore if you let go of me," said Harry. "Just let go, Mr. Crouch, and I'll get him.. . ."</p>
-                        <h3>A PARTIR DE</h3>
-                        <div className="plano-button">R$999.99</div>
+                        <p>Plano avançado com conteúdos sobre física quântica, buracos negros, energia escura e cosmologia. Recomendado para quem busca uma formação completa e aprofundada.</p>
                         <div className="plano-nav-beneficios">
-                            <div className="nav-beneficio"><p>Beneficio 1</p> <img src="check-claro2.svg" /></div>
-                            <div className="nav-beneficio"><p>Beneficio 2</p> <img src="check-claro2.svg" /></div>
-                            <div className="nav-beneficio"><p>Beneficio 3</p> <img src="check-claro2.svg" /></div>
-                            <div className="nav-beneficio"><p>Beneficio 4</p> <img src="check-claro2.svg" /></div>
-                            <div className="nav-beneficio"><p>Beneficio 5</p> <img src="check-claro2.svg" /></div>
+                            <div className="nav-beneficio"><p>Video aulas e PDFs</p> <img src="check-claro2.svg" /></div>
+                            <div className="nav-beneficio"><p>Tarefas</p> <img src="check-claro2.svg" /></div>
+                            <div className="nav-beneficio"><p>Planejamento de rotina</p> <img src="check-claro2.svg" /></div>
+                            <div className="nav-beneficio"><p>Grupo no Whatsapp</p> <img src="check-claro2.svg" /></div>
+                            <div className="nav-beneficio"><p>Mentorial semanal particular</p> <img src="check-claro2.svg" /></div>
+                            <div className="nav-beneficio"><p>Emissão de certificado digital</p> <img src="check-claro2.svg" /></div>
                         </div>
+                        <Link to="Planos" className="plano-button">R$1299.90</Link>
                     </div>
                 </div>
             </div>

@@ -1,128 +1,49 @@
 import "./perfil.css";
 import "../../index.css";
+import { useState } from "react";
 import { Menu } from "../../components/Menu";
 import { Rank } from "./components/rank";
 import { BarraDeProgresso } from "./components/barraProgresso";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import Footer from "../../components/footer";
 
-interface User {
-  idsite: string;
-  id: string;
-  name: string;
-  email: string;
-  photo: string;
-  provider: string;
-  prf_user: string;
-  bio: string;
-}
-
 function Perfil() {
-  const [user, setUser] = useState<User | null>(null);
   const [mostrarEditor, setMostrarEditor] = useState(false);
 
-  const [nome, setNome] = useState("");
-  const [bio, setBio] = useState("");
-  const [idUser, setIdUser] = useState("");
-  const [foto, setFoto] = useState<File | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:4000/auth/me", { withCredentials: true })
-      .then((res) => {
-        setUser(res.data);
-        setIsAuthenticated(true);
-      })
-      .catch(() => {
-        setUser(null);
-        setIsAuthenticated(false);
-      });
-  }, []);
-
-  function editButton() {
-    if (user) {
-      setNome(user.name);
-      setBio(user.bio || "");
-      setIdUser(user.prf_user);
-    }
-    setMostrarEditor((prev) => !prev);
-  }
-
-  function enviarEdicao() {
-    const formData = new FormData();
-    formData.append("name", nome);
-    formData.append("bio", bio);
-    formData.append("idUser", idUser);
-    if (foto) {
-      formData.append("photo", foto);
-    }
-
-    axios
-      .put("http://localhost:4000/auth/update", formData, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((res) => {
-        setUser(res.data.user);
-        setMostrarEditor(false);
-        alert("Perfil atualizado!");
-      })
-      .catch((err) => {
-        console.error(err);
-        alert("Erro ao atualizar perfil.");
-      });
-  }
-
-  // Para sem o Banco de Dados para o site:
-
-  const [editando, setEditando] = useState(false);
-  const [newNome, setNewNome] = useState("Luiz Tavares");
+  // Estados dos dados do usuário
+  const [nome, setNome] = useState("Luiz Tavares");
   const [biografia, setBiografia] = useState(
-    "Sou Luiz Tavares, um garoto apaixonado por física. Desde pequeno, sempre me intrigaram as perguntas sobre como o universo funciona. Gosto de aprender e descobrir os segredos das leis da natureza, e espero usar esse conhecimento para fazer a diferença no mundo. Estou sempre curioso e animado para explorar novos conceitos e desafios no campo da física."
+    "Apaixonado por conhecimento e tecnologia."
   );
   const [fotoUrl, setFotoUrl] = useState("/icones-usuarios/FotoPerfil5.jpg");
 
-  const [novaFoto, setNovaFoto] = useState("");
+  // Estados temporários para edição
+  const [nomeEditado, setNomeEditado] = useState(nome);
+  const [bioEditada, setBioEditada] = useState(biografia);
+  const [fotoEditada, setFotoEditada] = useState(fotoUrl);
 
-  const [novoNome, setNovoNome] = useState(nome);
-  const [novaBiografia, setNovaBiografia] = useState(biografia);
-  const [novaFotoUrl, setNovaFotoUrl] = useState(fotoUrl);
+  // Função ao clicar em "Enviar"
+  const salvarEdicao = () => {
+    setNome(nomeEditado);
+    setBiografia(bioEditada);
+    setFotoUrl(fotoEditada);
+    setMostrarEditor(false);
+  };
 
-  function iniciarEdicao() {
-    setNovoNome(nome);
-    setNovaBiografia(biografia);
-    setNovaFotoUrl(fotoUrl);
-    setEditando(true);
-  }
-
-  function aplicarAlteracoes() {
-    setNome(novoNome);
-    setBiografia(novaBiografia);
-    setFotoUrl(novaFotoUrl);
-    setEditando(false);
-  }
   return (
     <div className="container">
       <div className="container-perfil">
         <Menu />
 
         <div id="prf-containerAll">
-          {/*  BANNER */}
           <div className="prf-banner"></div>
 
-          {/* BARRA USUARIO */}
           <div className="prf-usuario-barra">
             <div className="prf-container">
-              <img
-                className="prf-foto" src={fotoUrl}
-              />
+              <img className="prf-foto" src={fotoUrl} alt="Foto de perfil" />
+
               <div className="prf-infomacoes">
                 <div className="prf-nome-usuario">
-                  <span>{newNome}</span>
+                  <span>{nome}</span>
                 </div>
                 <div className="prf-usuario-rank">
                   <div className="prf-usuario">
@@ -133,7 +54,12 @@ function Perfil() {
                   </div>
                 </div>
               </div>
-              <div className="prf-editar" onClick={iniciarEdicao}>
+
+              {/* BOTÃO DE EDITAR */}
+              <div
+                className="prf-editar"
+                onClick={() => setMostrarEditor(true)}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="24px"
@@ -145,36 +71,61 @@ function Perfil() {
                 </svg>
               </div>
 
+              {/* MODAL DE EDIÇÃO */}
               {mostrarEditor && (
-                <div className="prf-modal-backdrop" onClick={() => setMostrarEditor(false)}>
+                <div
+                  className="prf-modal-backdrop"
+                  onClick={() => setMostrarEditor(false)}
+                >
                   <div
                     className="aba-editar"
-                    onClick={(e) => e.stopPropagation()} // impede fechamento ao clicar dentro
+                    onClick={(e) => e.stopPropagation()} // impede fechar ao clicar dentro
                   >
-                    {editando && (
-                      <div className="prf-edicao">
-                        <input
-                          type="text"
-                          value={novoNome}
-                          onChange={(e) => setNovoNome(e.target.value)}
-                          placeholder="Nome"
-                        />
-                        <textarea
-                          value={novaBiografia}
-                          onChange={(e) => setNovaBiografia(e.target.value)}
-                          placeholder="Biografia"
-                          rows={5}
-                        />
-                        <input
-                          type="text"
-                          value={novaFotoUrl}
-                          onChange={(e) => setNovaFotoUrl(e.target.value)}
-                          placeholder="URL da nova foto"
-                        />
-
-                        <button onClick={aplicarAlteracoes}>Enviar</button>
+                    <div className="prf-edicao">
+                      <input
+                      className="prf-editar-nome"
+                        type="text"
+                        value={nomeEditado}
+                        placeholder="Nome"
+                        onChange={(e) => setNomeEditado(e.target.value)}
+                      />
+                      <textarea
+                      className="prf-editar-biografia"
+                        value={bioEditada}
+                        placeholder="Biografia"
+                        rows={5}
+                        onChange={(e) => setBioEditada(e.target.value)}
+                      />
+                      
+                      <div className="prf-add-imagem">
+                      <label htmlFor="prf-editar-imagem">ESCOLHA UMA IMAGEM</label>
+                      <input
+                        id="prf-editar-imagem"
+                        hidden
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            const imageUrl = URL.createObjectURL(file);
+                            setFotoEditada(imageUrl);
+                          }
+                        }}
+                      />
                       </div>
-                    )}
+
+                      {fotoEditada && (
+                        <div className="prf-preview-imagem">
+                          <img
+                            src={fotoEditada}
+                            alt="Prévia da imagem"
+                            className="prf-preview-img"
+                          />
+                        </div>
+                      )}
+
+                      <button className="prf-botao-editar-enviar" onClick={salvarEdicao}>ENVIAR</button>
+                    </div>
                   </div>
                 </div>
               )}
@@ -187,7 +138,6 @@ function Perfil() {
                 <div className="prf-biografia">
                   <span>{biografia}</span>
                 </div>
-
                 <BarraDeProgresso />
               </div>
               <div className="prf-coluna2">

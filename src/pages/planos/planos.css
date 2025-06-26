@@ -6,9 +6,9 @@
     }
 
     .container-planos {
-      width: 1500px;
+      width: calc(100%-220px);
       position: relative;
-      left: calc(100vw - 1650px);
+      right: 0;
     }
 
 

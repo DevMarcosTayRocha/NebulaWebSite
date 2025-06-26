@@ -7,7 +7,7 @@ interface usuarioRankProps {
 
 const UsuarioRank = ({ fotoRank, usuarioRank, pontosRank, posicaoRank }: usuarioRankProps) => {
   return (
-    <div className="prf-usuarios-rank">
+    <div className={parseInt(posicaoRank) % 2 == 0 ? "prf-usuarios-rank" : "prf-usuarios-rank prf-cor2"}>
       <div className="prf-container4">
         <div className="prf-foto-rank" style={{ backgroundImage: `url(${fotoRank})` }}></div>
         <div className="prf-nome-rank"><span>{usuarioRank}</span></div>
