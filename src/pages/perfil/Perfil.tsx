@@ -1,32 +1,122 @@
 import "./perfil.css";
 import "../../index.css";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Menu } from "../../components/Menu";
 import { Rank } from "./components/rank";
 import { BarraDeProgresso } from "./components/barraProgresso";
 import Footer from "../../components/footer";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+type User = {
+  name: string;
+  bio: string;
+  prf_user: string;
+  rank: number;
+  photo: string;
+};
 
 function Perfil() {
+  const [user, setUser] = useState<User | null>(null);
   const [mostrarEditor, setMostrarEditor] = useState(false);
 
   // Estados dos dados do usuário
-  const [nome, setNome] = useState("Luiz Tavares");
-  const [biografia, setBiografia] = useState(
-    "Apaixonado por conhecimento e tecnologia."
-  );
-  const [fotoUrl, setFotoUrl] = useState("/icones-usuarios/FotoPerfil5.jpg");
+  const [nome, setNome] = useState("");
+  const [biografia, setBiografia] = useState("");
+  const [usuario, setUsuario] = useState("");
+  const [rank, setRank] = useState("0025");
+  const [fotoUrl, setFotoUrl] = useState("");
 
-  // Estados temporários para edição
-  const [nomeEditado, setNomeEditado] = useState(nome);
-  const [bioEditada, setBioEditada] = useState(biografia);
-  const [fotoEditada, setFotoEditada] = useState(fotoUrl);
+  // Estados para edição
+  const [nomeEditado, setNomeEditado] = useState("");
+  const [bioEditada, setBioEditada] = useState("");
+  const [fotoEditada, setFotoEditada] = useState<File | null>(null);
+  const [fotoPreview, setFotoPreview] = useState<string>("");
 
-  // Função ao clicar em "Enviar"
+  // Para controlar o objeto URL e liberar memória depois
+  const fotoPreviewUrlRef = useRef<string | null>(null);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/auth/me", { withCredentials: true })
+      .then((res) => {
+        const data: User = res.data;
+        setUser(data);
+
+        setNome(data.name);
+        setBiografia(data.bio || "");
+        setUsuario(data.prf_user);
+        setFotoUrl(data.photo);
+
+        setNomeEditado(data.name);
+        setBioEditada(data.bio || "");
+        setFotoPreview(data.photo);
+      })
+      .catch(() => {
+        setUser(null);
+        navigate("/cadastrar");
+      });
+
+    // Cleanup quando componente desmontar: revoga a URL criada para preview da imagem
+    return () => {
+      if (fotoPreviewUrlRef.current) {
+        URL.revokeObjectURL(fotoPreviewUrlRef.current);
+        fotoPreviewUrlRef.current = null;
+      }
+    };
+  }, [navigate]);
+
   const salvarEdicao = () => {
-    setNome(nomeEditado);
-    setBiografia(bioEditada);
-    setFotoUrl(fotoEditada);
-    setMostrarEditor(false);
+    const formData = new FormData();
+    formData.append("name", nomeEditado);
+    formData.append("bio", bioEditada);
+    formData.append("idUser", usuario);
+    if (fotoEditada) {
+      formData.append("photo", fotoEditada);
+    }
+
+    axios
+      .put("http://localhost:4000/auth/update", formData, {
+        withCredentials: true,
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((res) => {
+        const updatedUser = res.data.user;
+        setNome(updatedUser.name);
+        setBiografia(updatedUser.bio || "");
+        setFotoUrl(updatedUser.photo);
+        setMostrarEditor(false);
+        setFotoPreview(updatedUser.photo);
+        setFotoEditada(null);
+
+        // Limpa o preview antigo da imagem se foi um arquivo
+        if (fotoPreviewUrlRef.current) {
+          URL.revokeObjectURL(fotoPreviewUrlRef.current);
+          fotoPreviewUrlRef.current = null;
+        }
+      })
+      .catch((err) => {
+        console.error("Erro ao atualizar perfil:", err);
+      });
+  };
+
+  // Função para lidar com seleção do arquivo e gerar preview
+  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFotoEditada(file);
+
+      // Revoga o preview antigo antes de criar um novo
+      if (fotoPreviewUrlRef.current) {
+        URL.revokeObjectURL(fotoPreviewUrlRef.current);
+      }
+
+      const previewUrl = URL.createObjectURL(file);
+      fotoPreviewUrlRef.current = previewUrl;
+      setFotoPreview(previewUrl);
+    }
   };
 
   return (
@@ -47,19 +137,16 @@ function Perfil() {
                 </div>
                 <div className="prf-usuario-rank">
                   <div className="prf-usuario">
-                    <span>luiztavares</span>
+                    <span>{usuario}</span>
                   </div>
                   <div className="prf-rank">
-                    <span>#0025</span>
+                    <span>#{rank}</span>
                   </div>
                 </div>
               </div>
 
-              {/* BOTÃO DE EDITAR */}
-              <div
-                className="prf-editar"
-                onClick={() => setMostrarEditor(true)}
-              >
+              <div className="prf-editar" onClick={() => setMostrarEditor(true)}>
+                {/* Ícone de editar */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="24px"
@@ -71,7 +158,6 @@ function Perfil() {
                 </svg>
               </div>
 
-              {/* MODAL DE EDIÇÃO */}
               {mostrarEditor && (
                 <div
                   className="prf-modal-backdrop"
@@ -79,52 +165,53 @@ function Perfil() {
                 >
                   <div
                     className="aba-editar"
-                    onClick={(e) => e.stopPropagation()} // impede fechar ao clicar dentro
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <div className="prf-edicao">
                       <input
-                      className="prf-editar-nome"
+                        className="prf-editar-nome"
                         type="text"
                         value={nomeEditado}
                         placeholder="Nome"
                         onChange={(e) => setNomeEditado(e.target.value)}
                       />
                       <textarea
-                      className="prf-editar-biografia"
+                        className="prf-editar-biografia"
                         value={bioEditada}
                         placeholder="Biografia"
                         rows={5}
                         onChange={(e) => setBioEditada(e.target.value)}
                       />
-                      
+
                       <div className="prf-add-imagem">
-                      <label htmlFor="prf-editar-imagem">ESCOLHA UMA IMAGEM</label>
-                      <input
-                        id="prf-editar-imagem"
-                        hidden
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => {
-                          const file = e.target.files?.[0];
-                          if (file) {
-                            const imageUrl = URL.createObjectURL(file);
-                            setFotoEditada(imageUrl);
-                          }
-                        }}
-                      />
+                        <label htmlFor="prf-editar-imagem">
+                          ESCOLHA UMA IMAGEM
+                        </label>
+                        <input
+                          id="prf-editar-imagem"
+                          hidden
+                          type="file"
+                          accept="image/*"
+                          onChange={onFileChange}
+                        />
                       </div>
 
-                      {fotoEditada && (
+                      {fotoPreview && (
                         <div className="prf-preview-imagem">
                           <img
-                            src={fotoEditada}
+                            src={fotoPreview}
                             alt="Prévia da imagem"
                             className="prf-preview-img"
                           />
                         </div>
                       )}
 
-                      <button className="prf-botao-editar-enviar" onClick={salvarEdicao}>ENVIAR</button>
+                      <button
+                        className="prf-botao-editar-enviar"
+                        onClick={salvarEdicao}
+                      >
+                        ENVIAR
+                      </button>
                     </div>
                   </div>
                 </div>

@@ -63,34 +63,34 @@ const LoginPage: React.FC = () => {
           <div className="form-container sign-up">
             <form onSubmit={(e) => { e.preventDefault(); register(); }}>
               <h1>Criar conta</h1>
-              <input 
-                type="text" 
-                placeholder="Nome" 
+              <input
+                type="text"
+                placeholder="Nome"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
               />
-              <input 
-                type="email" 
-                placeholder="Email" 
+              <input
+                type="email"
+                placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              <input 
-                type="password" 
-                placeholder="Senha" 
+              <input
+                type="password"
+                placeholder="Senha"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
               <button type="submit">Cadastrar</button>
-              <button 
-                type="button" 
-                className="login-google" 
+              <button
+                type="button"
+                className="login-google"
                 onClick={loginGoogle}
               >
-                <img src="search.png" width={'25px'} alt="Google" />  
+                <img src="search.png" width={'25px'} alt="Google" />
                 Cadastrar com Google
               </button>
             </form>
@@ -100,33 +100,33 @@ const LoginPage: React.FC = () => {
           <div className="form-container sign-in">
             <form onSubmit={(e) => { e.preventDefault(); login(); }}>
               <h1>Entrar</h1>
-             
-                
-              
-              <span style={{color: '#9B3BD2'}}> faça login de forma manual:</span>
-              <input 
-                type="email" 
-                placeholder="Email" 
+
+
+
+              <span style={{ color: '#9B3BD2' }}> faça login de forma manual:</span>
+              <input
+                type="email"
+                placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              <input 
-                type="password" 
-                placeholder="Senha" 
+              <input
+                type="password"
+                placeholder="Senha"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              <a href="#" style={{color:'#9B3BD2'}}>Esqueceu sua senha?</a>
+              <a href="#" style={{ color: '#9B3BD2' }}>Esqueceu sua senha?</a>
               <button type="submit">Entrar</button>
 
-              <button 
-                type="button" 
-                className="login-google" 
+              <button
+                type="button"
+                className="login-google"
                 onClick={loginGoogle}
               >
-                <img src="search.png" width={'25px'} alt="Google" />  
+                <img src="search.png" width={'25px'} alt="Google" />
                 Entrar com Google
               </button>
             </form>
@@ -136,11 +136,17 @@ const LoginPage: React.FC = () => {
           <div className="toggle-container">
             <div className="toggle">
               <div className="toggle-panel toggle-left">
+                <Link to="/">
+                  <div className="voltar">Voltar</div>
+                </Link>
                 <h1>Bem-vindo de volta!</h1>
                 <p>Entre na sua conta Nebula para ter acesso aos seus cursos!</p>
                 <button className="hidden" id="login" onClick={handleLoginClick}>Entrar</button>
               </div>
               <div className="toggle-panel toggle-right">
+                <Link to="/">
+                  <div className="voltar">Voltar</div>
+                </Link>
                 <h1>Não possui uma conta?</h1>
                 <p>Cadastre-se no curso Nebula!</p>
                 <button className="hidden" id="register" onClick={handleRegisterClick}>Cadastrar</button>
@@ -406,6 +412,18 @@ const LoginPage: React.FC = () => {
 
         .login-container.active .toggle-right {
           transform: translateX(200%);
+        }
+
+        .voltar {
+          color: #9B3BD2;
+          position: absolute;
+          top: 5%;
+          left: 10%;
+          background-color:#eee;
+          padding: 10px 20px;
+          font-size: 16px;
+          font-family: 'Questrial';
+
         }
       `}</style>
     </div>

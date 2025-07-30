@@ -19,9 +19,9 @@ export function BarraDeProgresso() {
 
     return (
         <>
-            <BarraProgresso tituloEstatistica={"NEBULA"} pontosEstatistica={8} maximoEstatistica={10} />
-            <BarraProgresso tituloEstatistica={"GALAXY"} pontosEstatistica={10} maximoEstatistica={15} />
-            <BarraProgresso tituloEstatistica={"ORBITA"} pontosEstatistica={20} maximoEstatistica={20} />
+            <BarraProgresso tituloEstatistica={"ORBITA"} pontosEstatistica={8} maximoEstatistica={10} />
+            <BarraProgresso tituloEstatistica={"GALAXIA"} pontosEstatistica={10} maximoEstatistica={15} />
+            <BarraProgresso tituloEstatistica={"UNIVERSO"} pontosEstatistica={20} maximoEstatistica={20} />
         </>
     )
 }
