@@ -66,7 +66,7 @@ app.use(express.json());
 app.use(session({
   secret: process.env.SESSION_SECRET || 'uma-chave-muito-secreta',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: {
     maxAge: 24 * 60 * 60 * 1000, // 1 dia
     httpOnly: true,
@@ -168,7 +168,7 @@ app.get('/auth/logout', (req, res, next) => {
     req.session.destroy(err2 => {
       if (err2) return next(err2);
       res.clearCookie('connect.sid');
-      res.redirect(CLIENT_URL);
+      res.json({ message: 'Logout bem-sucedido' });
     });
   });
 });

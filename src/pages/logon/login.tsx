@@ -55,7 +55,9 @@ const LoginPage: React.FC = () => {
         <div className="user-logged-in">
           <h1>Bem-vindo, {user.name}!</h1>
           <p>Você está logado com o email: {user.email}</p>
-          <button onClick={logout}>Sair</button>
+          <Link to="/">
+                  <button>Voltar</button>
+            </Link>
         </div>
       ) : (
         <div className={`login-container ${isActive ? 'active' : ''}`} id="login-container">

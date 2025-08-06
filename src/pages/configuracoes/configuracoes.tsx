@@ -27,13 +27,17 @@ function Configuracoes() {
 
   const [idioma, setIdioma] = useState(false);
   const [tema, setTema] = useState(false);
-  const [user, setUser] = useState<User>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   const logout = async () => {
-    await axios.get(`${API_URL}/auth/logout`);
-    setUser(null);
-
-    navigate('/cadastrar');
+    try{
+      await axios.get(`${API_URL}/auth/logout`);
+      setUser(null);
+      navigate('/');
+    }
+    catch (error) {
+      console.error("Erro ao fazer logout:", error);
+    }
   };
 
   return (
