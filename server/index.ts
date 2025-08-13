@@ -39,6 +39,10 @@ interface UserType {
   provider: 'google' | 'local';
   prf_user: string;
   bio?: string;
+  /*orbita_pontos: number;
+  galaxia_pontos: number;
+  universo_pontos: number;
+  rank: string;*/
 }
 
 // Funções utilitárias
@@ -118,6 +122,7 @@ passport.use(new GoogleStrategy({
     password: '',
     provider: 'google',
     prf_user: `@${profile.displayName.replace(/\s/g, '')}${getNextIdSite()}`,
+    bio: "..."
   };
 
   users.push(newUser);
@@ -201,6 +206,7 @@ app.post('/auth/register', asyncHandler(async (req, res) => {
     photo: 'https://images.vexels.com/media/users/3/235233/isolated/preview/be93f74201bee65ad7f8678f0869143a-cracha-de-perfil-de-capacete-de-astronauta.png',
     provider: 'local',
     prf_user: `@${name.replace(/\s/g, '')}${getNextIdSite()}`,
+    bio: "..."
   };
 
   users.push(newUser);
