@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction, RequestHandler } from 'express';
+import express, { RequestHandler } from 'express';
 import dotenv from 'dotenv';
 import passport from 'passport';
 import session from 'express-session';
@@ -9,13 +9,20 @@ import bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import multer from "multer";
+import { v2 as cloudinary, UploadStream } from "cloudinary";
 
 dotenv.config();
 
-const app = express();
-const upload = multer({
-  dest: path.join(__dirname, 'uploads')
+cloudinary.config({
+  secure: true,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
+
+const app = express();
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 const PORT = 4000;
 const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
@@ -229,35 +236,59 @@ app.post('/auth/login', asyncHandler(async (req, res) => {
 }));
 
 // Atualizar perfil
-app.put('/auth/update', upload.single("photo"), asyncHandler(async (req, res) => {
-  if (!req.isAuthenticated() || !req.user) {
-    res.status(401).json({ error: "Não autenticado" });
-    return;
-  }
+app.put(
+  "/auth/update",
+  upload.single("photo"),
+  asyncHandler(async (req, res) => {
+    if (!req.isAuthenticated() || !req.user) {
+      res.status(401).json({ error: "Não autenticado" });
+      return;
+    }
 
-  const { name, bio, idUser } = req.body;
-  const photoFile = req.file;
+    const { name, bio, idUser } = req.body;
+    const photoFile = req.file;
 
-  const users = readUsers();
-  const userId = (req.user as UserType).id;
+    const users = readUsers();
+    const userId = (req.user as UserType).id;
+    const index = users.findIndex((u) => u.id === userId);
 
-  const index = users.findIndex(u => u.id === userId);
-  if (index === -1) {
-    res.status(404).json({ error: "Usuário não encontrado" });
-    return;
-  }
+    if (index === -1) {
+      res.status(404).json({ error: "Usuário não encontrado" });
+      return;
+    }
 
-  // Atualiza os campos
-  if (name) users[index].name = name;
-  if (idUser) users[index].prf_user = idUser;
-  if (bio) users[index].bio = bio;
-  if (photoFile) {
-    users[index].photo = `/uploads/${photoFile.filename}`;
-  }
+    if (name) users[index].name = name;
+    if (idUser) users[index].prf_user = idUser;
+    if (bio) users[index].bio = bio;
 
-  saveUsers(users);
-  res.json({ success: true, user: users[index] });
-}));
+    if (photoFile) {
+      const uploadToCloudinary = (fileBuffer: Buffer) => {
+        return new Promise<string>((resolve, reject) => {
+          const uploadStream = cloudinary.uploader.upload_stream(
+            { folder: "NEBULA_PFP_IMGS" },
+            (error, result) => {
+              if (error || !result) return reject(error || new Error("Upload falhou"));
+              resolve(result.secure_url);
+            }
+          );
+          uploadStream.end(fileBuffer);
+        });
+      };
+
+      try {
+        const photoUrl = await uploadToCloudinary(photoFile.buffer);
+        users[index].photo = photoUrl;
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Erro no upload do Cloudinary" });
+        return;
+      }
+    }
+
+    saveUsers(users);
+    res.json({ success: true, user: users[index] });
+  })
+);
 
 // Start server
 app.listen(PORT, () => {
