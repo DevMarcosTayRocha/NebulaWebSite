@@ -67,6 +67,12 @@
   }
 }
 
+#imgperfil_menu {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
 .menu-icones.claro svg {
   fill: var(--roxo1);
 }
